@@ -52,6 +52,14 @@ const bool FULLSCREEN = false;              // windowed or fullscreen DO NOT RUN
 const UINT GAME_WIDTH =  1280;               // width of screen in pixels
 const UINT GAME_HEIGHT = 800;               // height of screen in pixels
 
+//Turret Cells
+const int  TURRET_COL = 3;
+const int  TURRET_WIDTH = 64;
+const int  TURRET_HEIGHT = 64;
+const float TURRET_DELAY = 0.15f;
+const int  BASE_WIDTH = 128;
+const int  BASE_HEIGHT = 128;
+
 // game
 const double PI = 3.14159265;
 const float FRAME_RATE  = 100.0f;               // the target frame rate (frames/sec)
@@ -59,6 +67,7 @@ const float MIN_FRAME_RATE = 10.0f;             // the minimum frame rate
 const float MIN_FRAME_TIME = 1.0f/FRAME_RATE;   // minimum desired time for 1 frame
 const float MAX_FRAME_TIME = 1.0f/MIN_FRAME_RATE; // maximum time used in calculations
 const enum COLLISION_TYPE {NONE, CIRCLE, BOX, ROTATED_BOX};
+const enum WEAPON {AIR, GROUND, SPECIAL};
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
