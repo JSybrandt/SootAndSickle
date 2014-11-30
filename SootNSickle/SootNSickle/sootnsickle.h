@@ -13,47 +13,28 @@ using std::string;
 #include <ctime>
 
 
-#include "Controls.h"
 #include "Actor.h"
-#include "Player.h"
-#include "Guard.h"
-#include "Cursor.h"
-#include "Bullet.h"
 #include "Particle.h"
-#include "Exit.h"
-#include "Turret.h"
-#include "Wall.h"
-#include "LandMine.h"
-#include "Item.h"
+#include "Button.h"
+#include "Controls.h"
+#include "Base.h"
 
 namespace SootNSickleNS
 {
-	const int MAX_GUARDS = 100;
-	const int MAX_TURRETS = 100;
-	const int MAX_PLAYER_BULLETS = 100;
-	const int MAX_ENEMY_BULLETS = 1000;
+	const int MAX_AIR_TURRETS = 1000;
+	const int MAX_GROUND_TURRETS = 1000;
+	const int MAX_GROUND_ENEMIES = 1000;
+	const int MAX_AIR_ENEMIES = 1000;
+	const int MAX_BUILDINGS = 1000;
 	const int MAX_PARTICLES = 10000;
-	const int MAX_SCENERY = 1000;
-	const int MAX_WALLS = 100;
-	const int MAX_MINES = 100;
-	const int MAX_ITEMS = 100;
+	const int MAX_BUTTONS = 15;
 
-	const int NUM_MENU_OPTIONS = 4;
-	const float MENU_ITEM_SPEED = 300;
-	const float MENU_ITEM_DELAY = 0.25;
-
+	const int NUM_PARTICLES_IN_CONE_EFFECT = 150;
 	const int NUM_PARTICLES_IN_CLOUD_EFFECT = 200;
-	const int NUM_PARTICLES_IN_CONE_EFFECT = 100;
+	
 
-	const float TIME_UNTIL_RESET = 1;
+	const float SCREEN_SPEED = 500;
 
-	const UCHAR PAUSE_BUTTON = 'P';
-
-	const float TIME_TEXT_ON_SCREEN = 3;
-
-	const int STARTING_LIVES = 3;
-
-	const float INTRO_MUSIC_COUNTDOWN = 6;
 }
 
 
@@ -68,73 +49,34 @@ class SootNSickle : public Game
 private:
 
 	enum GameState{
-	TitleScreen,
-	Level1,
-	Level2,
-	Level3,
-	FeelingLucky,
-	RestartScreen,
-	SIZE //THIS MUST BE THE LAST ELEMENT
-};
+		TitleScreen,
+		Level1,
+		Level2,
+		Level3,
+		FeelingLucky,
+		SIZE //THIS MUST BE THE LAST ELEMENT
+	};
+
+	Controls controls;
 
     // variables
 	TextureManager backgroundTex;   
-	TextureManager baseTex;
-	TextureManager manTex;
-	TextureManager walkTex;
-	TextureManager feetTex;
-	TextureManager turretTex; 
-	TextureManager bulletTex;   
-	TextureManager cursorTex;
 	TextureManager particleTex;
-	TextureManager lineTex;
-	TextureManager exitTex;
-	TextureManager wallTex;
-	TextureManager menuCursorTex;
-	TextureManager menuTex;
-	TextureManager mineTex;
-	TextureManager cylinderTex;
-	TextureManager dangerZoneTex;
-	TextureManager pauseTex;
-	TextureManager gunTex;
-	TextureManager controlTex;
-	TextureManager creditsTex;
-	TextureManager expTex;
+	TextureManager buttonTex;
+	TextureManager guiOverlayTex;
+	TextureManager baseTex;
+	TextureManager healthBarTex;
 
-	Image creditsImage;
-	Image controlImage;
-	Image pause;
+	Base base;
 
 	TextDX infoText;
 
-	Exit exit;
+	Image background;
+	Image guiOverlay;
 
-
-	Image title;
-	Image subtitle;
-	Image menuItems[NUM_MENU_OPTIONS];
-	Image menuCursor;
-
-	Cursor cursor;
-	Image   background;         // backdrop image
-
-	Guard guards[MAX_GUARDS];
-	Turret turrets[MAX_TURRETS];
-	Actor  bases[MAX_TURRETS];
-	Bullet playerBullets[MAX_PLAYER_BULLETS];
-	Bullet enemyBullets[MAX_ENEMY_BULLETS];
+	Button buttons[MAX_BUTTONS];
 	Particle particles[MAX_PARTICLES];
-	Wall walls[MAX_WALLS];
-	LandMine mines[MAX_MINES];
-	Item items[MAX_ITEMS];
-
-	Controls P1Controls;
-	Player player;
-
-	float worldFrameTime;
-	float playerDeathCountdown;
 	
-
 	VECTOR2 screenLoc;
 
 	VECTOR2 * worldSizes; //array of sizes per level
@@ -142,14 +84,6 @@ private:
 	GameState currentState;
 
 	bool paused;
-	bool showCredits;
-
-	float textCooldown;
-	string statusString;
-
-	int numLives;
-
-	float introMusicCoutdown; 
 
 
 public:
@@ -170,17 +104,13 @@ public:
 
 
 	//places the screen so the selected location is in the middle area (might not center)
-	void updateScreen(VECTOR2 center); 
+	void updateScreen(); 
 
-	Bullet* spawnBullet(VECTOR2 loc, float dir,COLOR_ARGB c, bool playerBullet);
-	Particle* spawnParticle(VECTOR2 loc,VECTOR2 vel, COLOR_ARGB c);
-	Turret* spawnTurret(VECTOR2 loc, float dir);
-	Wall* spawnWall(VECTOR2 loc, VECTOR2 size);
-	LandMine* spawnMine(VECTOR2 loc);
-	Item* spawnItem(VECTOR2 loc, Item::ItemType t);
-	Guard* spawnGuard(VECTOR2 loc);//TODO: add stuff for AI
+	Particle* spawnParticle(VECTOR2 loc,VECTOR2 vel, COLOR_ARGB c,float lifespan = particleNS::MAX_LIFETIME,bool reverseFade = false);
 	void spawnParticleCloud(VECTOR2 loc, COLOR_ARGB c);
 	void spawnParticleCone(VECTOR2 loc, float dir, COLOR_ARGB c);
+
+	Button* spawnButton(VECTOR2 loc);
 
 	void menuLoad();
 	void menuUpdate(bool reset = false);
@@ -190,6 +120,8 @@ public:
 	void level2Load();
 	void level3Load();
 	void feelingLuckyLoad();
+
+	void guiLoad();
 
 	void levelsUpdate();
 	void levelsRender();
@@ -202,21 +134,12 @@ public:
 		return screenLoc + mouse;
 	}
 
-	VECTOR2 getPlayerLoc(){
-		return player.getCenter();
-	}
-
 	VECTOR2 getCurrentWorldSize(){return worldSizes[currentState];}
 
 	VECTOR2 getRealEndLoc(VECTOR2 startLoc, VECTOR2 endLoc);
 
-	void onPlayerDeath();
+	void onBaseDeath();
 
-	Item* getItemUnderPlayer();
-
-
-	bool l2pCheat;
-	bool infAmmoCheat;
 };
 
 #endif

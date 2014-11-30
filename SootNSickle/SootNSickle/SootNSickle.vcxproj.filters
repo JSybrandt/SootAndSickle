@@ -60,31 +60,22 @@
     <ClCompile Include="Particle.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Guard.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Cursor.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
     <ClCompile Include="Utility.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Turret.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Wall.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="LandMine.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
     <ClCompile Include="sootnsickle.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthBar.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorWithHealthBar.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,9 +104,6 @@
     <ClInclude Include="audio.h">
       <Filter>Header Files\Background</Filter>
     </ClInclude>
-    <ClInclude Include="Controls.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
     <ClInclude Include="textDX.h">
       <Filter>Header Files\Background</Filter>
     </ClInclude>
@@ -125,37 +113,25 @@
     <ClInclude Include="Particle.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Guard.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Cursor.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
-    <ClInclude Include="Exit.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Turret.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Wall.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="LandMine.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files\GameFiles</Filter>
-    </ClInclude>
     <ClInclude Include="sootnsickle.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Controls.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthBar.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorWithHealthBar.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
   </ItemGroup>

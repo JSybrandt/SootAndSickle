@@ -10,9 +10,12 @@ class Particle:public Actor
 {
 private:
 	float age;
+	float lifespan;
 public:
+	bool reverseFade;
+
 	Particle();
 	virtual void update(float frametime);
-	void create(VECTOR2 loc,VECTOR2 vel, COLOR_ARGB c);
+	void create(VECTOR2 loc,VECTOR2 vel, COLOR_ARGB c,float lifespan = particleNS::MAX_LIFETIME,bool reverseFade = false);
 	virtual void draw(VECTOR2 screenLoc);
 };
