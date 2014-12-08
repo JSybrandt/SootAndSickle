@@ -16,12 +16,12 @@ namespace turretNS{
 	const float TURRET_RADIUS = 32;
 };
 
-class Turret:public Actor
+class Turret:public ActorWithHealthBar
 {
 protected:
 	SootNSickle * game;
 	Actor base;
-	Actor* targetEntity;
+	ActorWithHealthBar* targetEntity;
 	float minDir, maxDir,rotVel;
 	float weaponCooldown;
 	float rebootCooldown;
