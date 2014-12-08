@@ -12,22 +12,30 @@
 using std::string;
 #include <ctime>
 
+#include <stack> 
 
 #include "Actor.h"
 #include "Particle.h"
 #include "Button.h"
 #include "Controls.h"
 #include "Base.h"
+#include "PowerSupply.h"
+#include "PowerField.h"
+#include "MineralPatch.h"
+#include "Extractor.h"
 
 namespace SootNSickleNS
 {
-	const int MAX_AIR_TURRETS = 1000;
-	const int MAX_GROUND_TURRETS = 1000;
+	const int MAX_AIR_TURRETS = 100;
+	const int MAX_GROUND_TURRETS = 100;
 	const int MAX_GROUND_ENEMIES = 1000;
 	const int MAX_AIR_ENEMIES = 1000;
-	const int MAX_BUILDINGS = 1000;
+	const int MAX_POWER_SUPPLIES = 100;
+	const int MAX_EXTRACTORS = 100;
+	const int MAX_MINERALS = 100;
+
 	const int MAX_PARTICLES = 10000;
-	const int MAX_BUTTONS = 15;
+	const int MAX_BUTTONS = 5;
 
 	const int NUM_PARTICLES_IN_CONE_EFFECT = 150;
 	const int NUM_PARTICLES_IN_CLOUD_EFFECT = 200;
@@ -35,6 +43,7 @@ namespace SootNSickleNS
 
 	const float SCREEN_SPEED = 500;
 
+	const float CURSOR_HEIGHT = 50;
 }
 
 
@@ -49,7 +58,7 @@ class SootNSickle : public Game
 private:
 
 	enum GameState{
-		TitleScreen,
+		TitleScreen = 0,
 		Level1,
 		Level2,
 		Level3,
@@ -66,6 +75,12 @@ private:
 	TextureManager guiOverlayTex;
 	TextureManager baseTex;
 	TextureManager healthBarTex;
+	TextureManager iconTex;
+	TextureManager cursorTex;
+	TextureManager powerFieldTex;
+	TextureManager powerSupplyTex;
+	TextureManager extractorTex;
+	TextureManager mineralTex;
 
 	Base base;
 
@@ -73,10 +88,14 @@ private:
 
 	Image background;
 	Image guiOverlay;
+	Image cursor;
 
 	Button buttons[MAX_BUTTONS];
 	Particle particles[MAX_PARTICLES];
-	
+	PowerSupply powerSupplies[MAX_POWER_SUPPLIES];
+	Extractor extractors[MAX_EXTRACTORS];
+	MineralPatch minerals[MAX_MINERALS];
+
 	VECTOR2 screenLoc;
 
 	VECTOR2 * worldSizes; //array of sizes per level
@@ -85,6 +104,11 @@ private:
 
 	bool paused;
 
+	void raiseAllButtons();
+
+	int cursorSelection;
+
+	float mineralLevel;
 
 public:
 	// Constructor
@@ -107,10 +131,13 @@ public:
 	void updateScreen(); 
 
 	Particle* spawnParticle(VECTOR2 loc,VECTOR2 vel, COLOR_ARGB c,float lifespan = particleNS::MAX_LIFETIME,bool reverseFade = false);
-	void spawnParticleCloud(VECTOR2 loc, COLOR_ARGB c);
-	void spawnParticleCone(VECTOR2 loc, float dir, COLOR_ARGB c);
+	void spawnParticleCloud(VECTOR2 loc, COLOR_ARGB c, int n = NUM_PARTICLES_IN_CLOUD_EFFECT);
+	void spawnParticleCone(VECTOR2 loc, float dir, COLOR_ARGB c, int n = NUM_PARTICLES_IN_CONE_EFFECT);
 
-	Button* spawnButton(VECTOR2 loc);
+	Button* spawnButton(VECTOR2 loc,ButtonNS::ButtonType t);
+	PowerSupply* spawnPowerSupply(VECTOR2 loc);
+	Extractor* spawnExtractor(VECTOR2 loc);
+	MineralPatch* spawnMinerals(VECTOR2 loc, float ammount);
 
 	void menuLoad();
 	void menuUpdate(bool reset = false);
@@ -140,6 +167,19 @@ public:
 
 	void onBaseDeath();
 
+	void buttonOnClick(Button* caller);
+
+	void checkClick();
+
+	bool isBuildingLocationLegal(Actor* newBuilding);
+
+	void refreshPower();
+
+	bool wasClickedLastFrame;
+
+	MineralPatch* findMineableMinerals(Extractor * caller);
+
+	void addMinerals(float n){mineralLevel+=n;}
 };
 
 #endif

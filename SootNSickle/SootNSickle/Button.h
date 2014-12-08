@@ -3,6 +3,8 @@
 
 #include "Actor.h"
 
+class SootNSickle;
+
 namespace ButtonNS
 {
 	const int WIDTH = 50;
@@ -11,27 +13,42 @@ namespace ButtonNS
 
 	const int RAISED_FRAME = 0;
 	const int PRESSED_FRAME = 1;
+
+	//must be in the order of the images
+	enum ButtonType{
+		POWER_SUPPLY_SELECTION=0,
+		GROUND_TURRET_SELECTION,
+		AIR_TURRET_SELECTION,
+		FACTORY_SELECTION,
+		EXTRACTOR_SELECTION,
+		SIZE//must be last
+	};
+
+	const int ICON_HEIGHT = 50;
 };
+
+class Button;
+
 
 class Button: public Actor
 {
 public:
 	Button();
 
-	bool initialize(Game *gamePtr, int width, int height, int ncols,TextureManager *textureM,int raised,int pressed);
+	bool initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager *iconM);
 
-	bool isClicked();
+	bool checkClick();
 	
 	bool isPressed;
 
-	void setRaisedFrame(int n){raisedFrame=n;}
-	void setPressedFrame(int n){pressedFrame=n;}
+	ButtonNS::ButtonType getButtonType(){return type;}
 
-	void create(VECTOR2 loc);
+	void create(VECTOR2 loc, ButtonNS::ButtonType t);
+
+	void draw(VECTOR2 screenLoc);
 
 private:
-
-	int raisedFrame,pressedFrame;
-	bool mouseLastFrame;
-
+	Image icon;
+	ButtonNS::ButtonType type;
+	SootNSickle* game;
 };

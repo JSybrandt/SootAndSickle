@@ -1,4 +1,6 @@
 #include "Button.h"
+#include "sootnsickle.h"
+using namespace ButtonNS;
 //justin
 
 Button::Button()
@@ -7,47 +9,53 @@ Button::Button()
 	setActive(false);
 }
 
-bool Button::isClicked()
+void Button::draw(VECTOR2 screenLoc)
+{
+	if(getActive()){
+		if(isPressed) setCurrentFrame(PRESSED_FRAME);
+		else setCurrentFrame(RAISED_FRAME);
+		Actor::draw(screenLoc);
+		icon.draw(screenLoc);
+	}
+}
+
+//only called on first click
+bool Button::checkClick()
 {
 	bool result = false;
 	if(getActive())
 	{
-		bool mouseThisFrame = input->getMouseLButton();
-		if(!mouseLastFrame && mouseThisFrame)
+		VECTOR2 mousePos(input->getMouseX(),input->getMouseY());
+		mousePos.x -= getX(); mousePos.y -= getY();
+		if(mousePos.x >= 0 && mousePos.x < getWidth() && mousePos.y >= 0 && mousePos.y < getHeight())
 		{
-			VECTOR2 mousePos(input->getMouseX(),input->getMouseY());
-			mousePos.x -= getX(); mousePos.y -= getY();
-			if(mousePos.x >= 0 && mousePos.x < getWidth() && mousePos.y >= 0 && mousePos.y < getHeight())
-			{
-				isPressed = !isPressed;
-				result = true;
+			isPressed = !isPressed;
+			result = true;
 
-				if(isPressed)
-					setCurrentFrame(pressedFrame);
-				else
-					setCurrentFrame(raisedFrame);
-			}
+			game->buttonOnClick(this);
 
 		}
-		mouseLastFrame = mouseThisFrame;
 
 	}
 	return result;
 }
 
-void Button::create(VECTOR2 loc)
+void Button::create(VECTOR2 loc, ButtonType t)
 {
 	setActive(true);
 	setX(loc.x);
 	setY(loc.y);
 	isPressed = false;
+	type = t;
+	icon.setCenter(getCenter());
+	icon.setVisible(true);
+	icon.setCurrentFrame((int)t);
 }
 
 
-bool Button::initialize(Game *gamePtr, int width, int height, int ncols,TextureManager *textureM,int raised,int pressed)
+bool Button::initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager *iconM)
 {
-	raisedFrame = raised;
-	pressedFrame = pressed;
-	setCurrentFrame(raisedFrame);
-	return Actor::initialize(gamePtr,width,height,ncols,textureM);
+	game = gamePtr;
+	bool result = icon.initialize(game->getGraphics(),0,ICON_HEIGHT,0,iconM);
+	return result && Actor::initialize(gamePtr,width,height,ncols,textureM);
 }
