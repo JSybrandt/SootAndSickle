@@ -34,8 +34,12 @@ const char BUTTON_IMAGE[] = "pictures\\button.png";
 const char GUI_OVERLAY_IMAGE[] = "pictures\\guiOverlay.png";
 const char BASE_IMAGE[] = "pictures\\base.png";
 const char HEALTH_BAR_IMAGE[] = "pictures\\healthBar.png";
-
-
+const char ICON_IMAGE[] = "pictures\\buttonImages.png";
+const char CURSOR_IMAGE[] = "pictures\\cursorImages.png";
+const char POWER_SUPPLY_IMAGE[] = "pictures\\powerSupply.png";
+const char POWER_FIELD_IMAGE[] = "pictures\\powerField.png";
+const char MINERAL_IMAGE[] = "pictures\\minerals.png";
+const char EXTRACTOR_IMAGE[] = "pictures\\extractor.png";
 //Sound Locations
 const char WAVE_BANK[] = "audio\\Win\\Wave Bank.xwb";
 const char SOUND_BANK[] = "audio\\win\\Sound Bank.xsb";

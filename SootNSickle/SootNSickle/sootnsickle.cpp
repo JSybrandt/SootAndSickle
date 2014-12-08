@@ -30,6 +30,12 @@ SootNSickle::SootNSickle()
 	controls.left = 'A';
 	controls.right = 'D';
 	controls.pause = 'P';
+
+	cursorSelection = -1;
+
+	wasClickedLastFrame = false;
+
+	mineralLevel = 0;
 }
 
 //=============================================================================
@@ -69,11 +75,31 @@ void SootNSickle::initialize(HWND hwnd)
 	if(!healthBarTex.initialize(graphics,HEALTH_BAR_IMAGE))
 		throw GameError(6,"Failed to init health bar tex");
 
+	if(!powerFieldTex.initialize(graphics,POWER_FIELD_IMAGE))
+		throw GameError(6,"Failed to init power field tex");
+
+	if(!powerSupplyTex.initialize(graphics,POWER_SUPPLY_IMAGE))
+		throw GameError(6,"Failed to init power Supply tex");
+
+	if(!iconTex.initialize(graphics,ICON_IMAGE))
+		throw GameError(6,"Failed to init icon tex");
+
+	if(!cursorTex.initialize(graphics,CURSOR_IMAGE))
+		throw GameError(6,"Failed to init cursor tex");
+
+	if(!cursor.initialize(graphics,0,CURSOR_HEIGHT,0,&cursorTex))
+		throw GameError(9,"Failed to init cursor");
+
 	if(!infoText.initialize(graphics,20,true,false,"Verdana"))
 		throw GameError(9,"Failed to init mine text");
 
 	infoText.setFontColor(graphicsNS::WHITE);
 
+	if(!mineralTex.initialize(graphics,MINERAL_IMAGE))
+		throw GameError(6,"Failed to init mineral tex");
+
+	if(!extractorTex.initialize(graphics,EXTRACTOR_IMAGE))
+		throw GameError(6,"Failed to init extractor tex");
 	
 	if(!background.initialize(graphics,0,0,0,&backgroundTex))
 		throw GameError(9,"Failed to init background");
@@ -81,7 +107,7 @@ void SootNSickle::initialize(HWND hwnd)
 	if(!guiOverlay.initialize(graphics,0,0,0,&guiOverlayTex))
 		throw GameError(9,"Failed to init gui overlay");
 
-	if(!base.initialize(this,0,0,0,&baseTex,&healthBarTex))
+	if(!base.initialize(this,0,0,0,&baseTex,&healthBarTex,&powerFieldTex))
 		throw GameError(6,"Failed to init base");
 
 	for(int i = 0 ; i < MAX_PARTICLES; i++)
@@ -92,8 +118,26 @@ void SootNSickle::initialize(HWND hwnd)
 
 	for(int i = 0 ; i < MAX_BUTTONS; i++)
 	{
-		if(!buttons[i].initialize(this,ButtonNS::WIDTH,ButtonNS::HEIGHT,ButtonNS::COLS,&buttonTex,0,1))
+		if(!buttons[i].initialize(this,ButtonNS::WIDTH,ButtonNS::HEIGHT,ButtonNS::COLS,&buttonTex,&iconTex))
 			throw GameError(-1*i,"FAILED TO MAKE button!");
+	}
+
+	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
+	{
+		if(!powerSupplies[i].initialize(this,0,0,0,&powerSupplyTex,&healthBarTex,&powerFieldTex))
+			throw GameError(-1*i,"FAILED TO MAKE powerSupply!");
+	}
+
+	for(int i = 0 ; i < MAX_MINERALS; i++)
+	{
+		if(!minerals[i].initialize(this,0,0,0,&mineralTex))
+			throw GameError(-1*i,"FAILED TO MAKE mineral!");
+	}
+	
+	for(int i = 0 ; i < MAX_EXTRACTORS; i++)
+	{
+		if(!extractors[i].initialize(this,0,0,0,&extractorTex,&healthBarTex))
+			throw GameError(-1*i,"FAILED TO MAKE extractor!");
 	}
 
 	currentState = Level1;
@@ -133,6 +177,7 @@ void SootNSickle::levelsUpdate()
 
 	if(paused) return;
 
+
 	VECTOR2 in(0,0);
 
 	if(input->isKeyDown(controls.up))
@@ -145,9 +190,9 @@ void SootNSickle::levelsUpdate()
 		in.x += 1;
 
 	if(input->wasKeyPressed(VK_UP))
-		base.damage(1);
+		base.damage(10);
 	if(input->wasKeyPressed(VK_DOWN))
-		base.heal(1);
+		base.heal(10);
 
 	D3DXVec2Normalize(&in,&in);
 	in*=SCREEN_SPEED*frameTime;
@@ -157,16 +202,32 @@ void SootNSickle::levelsUpdate()
 	
 	base.update(frameTime);
 
+	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
+	{
+		powerSupplies[i].update(frameTime);
+	}
+
+	for(int i = 0 ; i < MAX_EXTRACTORS; i++)
+	{
+		extractors[i].update(frameTime);
+	}
+
 	for(int i = 0 ; i < MAX_PARTICLES; i++)
 	{
 		particles[i].update(frameTime);
 	}
 
-	for(int i = 0; i < MAX_BUTTONS;i++)
+	//check fisrt click
+	if(!wasClickedLastFrame && input->getMouseLButton())
 	{
-		buttons[i].isClicked();
+		bool buttonClicked = false;
+		for(int i = 0; i < MAX_BUTTONS;i++)
+		{
+			buttonClicked = buttonClicked||buttons[i].checkClick();
+		}
+		if(!buttonClicked) checkClick();
 	}
-
+	wasClickedLastFrame = input->getMouseLButton();
 }
 
 //=============================================================================
@@ -214,12 +275,30 @@ void SootNSickle::levelsRender()
 {
 	background.draw(screenLoc);
 
-	base.draw(screenLoc);
+	base.getPowerField().draw(screenLoc);
+
+	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+	{
+		powerSupplies[i].getPowerField().draw(screenLoc);
+	}
 
 	for(int i = 0 ; i < MAX_PARTICLES; i++)
 	{
 		particles[i].draw(screenLoc);
 	}
+
+	base.draw(screenLoc);
+
+	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+	{
+		powerSupplies[i].draw(screenLoc);
+	}
+
+	for(int i = 0; i < MAX_MINERALS;i++)
+		minerals[i].draw(screenLoc);
+
+	for(int i = 0; i < MAX_EXTRACTORS;i++)
+		extractors[i].draw(screenLoc);
 
 	guiOverlay.draw(VECTOR2(0,0));
 	for(int i = 0 ; i < MAX_BUTTONS;i++)
@@ -227,6 +306,13 @@ void SootNSickle::levelsRender()
 		buttons[i].draw(VECTOR2(0,0));
 	}
 
+	if(cursorSelection >= 0 && cursorSelection < (int)ButtonNS::SIZE)
+	{
+		cursor.setCenter(getMouseInWorld());
+		cursor.draw(screenLoc);
+	}
+
+	infoText.print(std::to_string(mineralLevel),100,50);
 }
 
 //=============================================================================
@@ -263,7 +349,11 @@ void SootNSickle::level1Load()
 	currentState = Level1;
 	deactivateAll();
 	base.setCenter(getCurrentWorldSize()*0.5);
+	base.setActive(true);
 	guiLoad();
+
+	spawnMinerals(VECTOR2(100,100),1000);
+	spawnMinerals(VECTOR2(300,500),1000);
 }
 
 void SootNSickle::level2Load()
@@ -291,9 +381,14 @@ void SootNSickle::feelingLuckyLoad()
 
 void SootNSickle::guiLoad()
 {
-	for(float y = GAME_HEIGHT*0.75;y<GAME_HEIGHT-ButtonNS::HEIGHT;y+=ButtonNS::HEIGHT+10)
-		for(float x = GAME_WIDTH*0.8;x<GAME_WIDTH-ButtonNS::WIDTH;x+=ButtonNS::WIDTH+10)
-			spawnButton(VECTOR2(x,y));
+	int type = 0;
+	for(float y = GAME_HEIGHT*0.9;y<GAME_HEIGHT-ButtonNS::HEIGHT;y+=ButtonNS::HEIGHT+10)
+		for(float x = GAME_WIDTH*0.7;x<GAME_WIDTH-ButtonNS::WIDTH;x+=ButtonNS::WIDTH+10)
+		{
+			spawnButton(VECTOR2(x,y),(ButtonNS::ButtonType)type);
+			type++;
+			if(type >= (int)ButtonNS::ButtonType::SIZE) return;
+		}
 }
 
 void SootNSickle::updateScreen()
@@ -304,14 +399,26 @@ void SootNSickle::updateScreen()
 	if(screenLoc.y+GAME_HEIGHT>worldSizes[currentState].y)screenLoc.y=worldSizes[currentState].y-GAME_HEIGHT;
 }
 
+PowerSupply* SootNSickle::spawnPowerSupply(VECTOR2 loc)
+{
+	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
+	{
+		if(!powerSupplies[i].getActive())
+		{
+			powerSupplies[i].create(loc);
+			return &powerSupplies[i];
+		}
+	}
+	return nullptr;
+}
 
-Button * SootNSickle::spawnButton(VECTOR2 loc)
+Button * SootNSickle::spawnButton(VECTOR2 loc,ButtonNS::ButtonType t)
 {
 	for(int i = 0; i < MAX_BUTTONS; i++)
 	{
 		if(!buttons[i].getActive())
 		{
-			buttons[i].create(loc);
+			buttons[i].create(loc,t);
 			return &buttons[i];
 		}
 	}
@@ -334,11 +441,11 @@ Particle* SootNSickle::spawnParticle(VECTOR2 loc,VECTOR2 vel, COLOR_ARGB c,float
 
 
 
-void SootNSickle::spawnParticleCloud(VECTOR2 loc, COLOR_ARGB c)
+void SootNSickle::spawnParticleCloud(VECTOR2 loc, COLOR_ARGB c, int n)
 {
 	float dir,spd;
 	VECTOR2 v(1,0);
-	for(int i = 0; i < NUM_PARTICLES_IN_CLOUD_EFFECT; i++)
+	for(int i = 0; i < n; i++)
 	{
 		dir = rand01()*2*PI;
 		spd = rand01()*particleNS::CLOUD_VEL;
@@ -346,11 +453,11 @@ void SootNSickle::spawnParticleCloud(VECTOR2 loc, COLOR_ARGB c)
 	}
 }
 
-void SootNSickle::spawnParticleCone(VECTOR2 loc,float dir, COLOR_ARGB c)
+void SootNSickle::spawnParticleCone(VECTOR2 loc,float dir, COLOR_ARGB c, int n)
 {
 	float currentdir,spd;
 	VECTOR2 v(1,0);
-	for(int i = 0; i < NUM_PARTICLES_IN_CONE_EFFECT; i++)
+	for(int i = 0; i < n; i++)
 	{
 		currentdir = rand01()*PI/4-PI/8+dir;
 		spd = (rand01()/2+0.5)*particleNS::CONE_VEL;
@@ -358,17 +465,174 @@ void SootNSickle::spawnParticleCone(VECTOR2 loc,float dir, COLOR_ARGB c)
 	}
 }
 
+Extractor* SootNSickle::spawnExtractor(VECTOR2 loc)
+{
+	for(int i = 0; i < MAX_EXTRACTORS; i++)
+	{
+		if(!extractors[i].getActive())
+		{
+			extractors[i].create(loc);
+			return &extractors[i];
+		}
+	}
+
+	return nullptr;
+}
+MineralPatch* SootNSickle::spawnMinerals(VECTOR2 loc, float ammount)
+{
+	for(int i = 0; i < MAX_MINERALS; i++)
+	{
+		if(!minerals[i].getActive())
+		{
+			minerals[i].create(loc,ammount);
+			return &minerals[i];
+		}
+	}
+
+	return nullptr;
+}
 
 
 void SootNSickle::deactivateAll()
 {
+	cursorSelection = -1;
+	for(int i = 0 ; i < MAX_MINERALS; i++)
+		minerals[i].setActive(false);
+	for(int i = 0 ; i < MAX_EXTRACTORS; i++)
+		extractors[i].setActive(false);
+	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
+		powerSupplies[i].setActive(false);
 	for(int i = 0 ; i < MAX_PARTICLES; i++)
 		particles[i].setActive(false);
 	for(int i = 0 ; i < MAX_BUTTONS; i++)
 		buttons[i].setActive(false);
+	base.setActive(false);
 }
 
 void SootNSickle::onBaseDeath()
 {
 	
+}
+void SootNSickle::raiseAllButtons(){
+	for(int i = 0; i < MAX_BUTTONS;i++)
+	{
+		buttons[i].isPressed=false;
+	}
+}
+void SootNSickle::buttonOnClick(Button* caller){
+	raiseAllButtons();
+	caller->isPressed = true;
+	cursorSelection = (int) caller->getButtonType();
+	cursor.setCurrentFrame(cursorSelection);
+}
+
+
+void SootNSickle::checkClick()
+{
+	if(cursorSelection == ButtonNS::POWER_SUPPLY_SELECTION)
+	{
+		PowerSupply * p = spawnPowerSupply(getMouseInWorld());
+		if(!isBuildingLocationLegal(p)) p->setActive(false);
+		refreshPower();
+	}
+	else if(cursorSelection == ButtonNS::EXTRACTOR_SELECTION)
+	{
+		Extractor * p = spawnExtractor(getMouseInWorld());
+		if(!isBuildingLocationLegal(p)) p->setActive(false);
+		refreshPower();
+	}
+
+}
+
+bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
+{
+	VECTOR2 v;
+	if(newBuilding->collidesWith(base,v))return false;
+	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+	{
+		if((&powerSupplies[i]!=newBuilding)&&newBuilding->collidesWith(powerSupplies[i],v))
+			return false;
+	}
+	for(int i = 0; i < MAX_EXTRACTORS;i++)
+	{
+		if((&extractors[i]!=newBuilding)&&newBuilding->collidesWith(extractors[i],v))
+			return false;
+	}
+	for(int i = 0; i < MAX_MINERALS;i++)
+	{
+		if((&minerals[i]!=newBuilding)&&newBuilding->collidesWith(minerals[i],v))
+			return false;
+	}
+	return true;
+}
+
+
+void SootNSickle::refreshPower()
+{
+	VECTOR2 v;
+	std::stack<PowerSupply*> s;
+
+	for(int k = 0 ; k < MAX_EXTRACTORS; k++)
+	{
+		extractors[k].hasPower=extractors[k].collidesWith(base.getPowerField(),v);
+	}
+
+	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+	{
+		if(powerSupplies[i].getActive())
+		{
+			VECTOR2 disp = base.getCenter()-powerSupplies[i].getCenter(); 
+			float distSqrd = D3DXVec2LengthSq(&disp);
+
+			if(powerSupplies[i].collidesWith(base.getPowerField(),v)){
+				powerSupplies[i].setPower(true);
+				s.push(&powerSupplies[i]);
+			}
+				
+			else
+				powerSupplies[i].setPower(false);
+		}
+	}
+
+	while(!s.empty())
+	{
+		PowerSupply * currPwrSupp = s.top();
+		s.pop();
+
+		if(currPwrSupp->getPower())
+		{
+			for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+			{
+				if(powerSupplies[i].getActive()
+					&&!powerSupplies[i].getPower()
+					&&currPwrSupp->getPowerField().collidesWith(powerSupplies[i],v))
+					{
+						powerSupplies[i].setPower(true);
+						s.push(&powerSupplies[i]);
+					}
+			}
+			for(int k = 0 ; k < MAX_EXTRACTORS; k++)
+			{
+				if(!extractors[k].hasPower&&currPwrSupp->getPowerField().collidesWith(extractors[k],v))
+					extractors[k].hasPower = true;
+			}
+		}
+	}
+}
+
+MineralPatch* SootNSickle::findMineableMinerals(Extractor * caller)
+{
+	VECTOR2 v;
+	for(int i = 0 ; i < MAX_MINERALS;i++)
+	{
+		if(minerals[i].getActive())
+		{
+			VECTOR2 dist = caller->getCenter()-minerals[i].getCenter();
+			//close enough to mine
+			if(D3DXVec2LengthSq(&dist) < ExtractorNS::MINING_RANGE*ExtractorNS::MINING_RANGE)
+				return &minerals[i];
+		}
+			
+	}
+	return nullptr;
 }

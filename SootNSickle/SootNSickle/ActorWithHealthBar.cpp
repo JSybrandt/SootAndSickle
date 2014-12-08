@@ -16,16 +16,20 @@ bool ActorWithHealthBar::initialize(SootNSickle *gamePtr, int width, int height,
 
 void ActorWithHealthBar::draw(VECTOR2 screenLoc)
 {
-	Actor::draw(screenLoc);
-	if(isHealthBarVisible)
-		healthBar.draw(screenLoc);
+	if(getActive()){
+		Actor::draw(screenLoc);
+		if(isHealthBarVisible)
+			healthBar.draw(screenLoc);
+	}
 }
 
 
 void ActorWithHealthBar::update(float frameTime)
 {
-	healthBar.setCenter(VECTOR2(getCenterX(),getY()-BAR_OFFSET));
-	Actor::update(frameTime);
+	if(getActive()){
+		healthBar.setCenter(VECTOR2(getCenterX(),getY()-BAR_OFFSET));
+		Actor::update(frameTime);
+	}
 }
 
 void ActorWithHealthBar::damage(float ammount)
