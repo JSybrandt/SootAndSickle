@@ -4,7 +4,7 @@
 
 using namespace turretNS;
 
-Turret::Turret():Actor() {
+Turret::Turret(): ActorWithHealthBar() {
 	radius = TURRET_RADIUS;
 	collisionType = CIRCLE;
 	base.setRadians(PI/4);
@@ -12,16 +12,16 @@ Turret::Turret():Actor() {
 	target = false;
 	personalEngageDistanceSQRD = turretNS::ENGAGE_DISTANCE_SQRD;
 	targetEntity = nullptr;
-
-
-	setActive(false);
+	active = false;
 	weaponCooldown = 0;
 	rebootCooldown = 0;
 }
 
-bool Turret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM) {
+bool Turret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM) {
 	game = g;
-	bool result =  Actor::initialize(g,width,height,ncols,turretTM);
+	bool result = true;
+	result = result && healthBar.initialize(g,HealthBarNS::WIDTH,HealthBarNS::HEIGHT,1,hbTexM);
+	result = result && Actor::initialize(g,width,height,ncols,turretTM);
 	result = result && base.initialize(g,BASE_WIDTH,BASE_HEIGHT,0,baseTM);
 	return result;
 }

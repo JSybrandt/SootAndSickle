@@ -23,6 +23,7 @@ using std::string;
 #include "PowerField.h"
 #include "MineralPatch.h"
 #include "Extractor.h"
+#include "Turret.h"
 
 namespace SootNSickleNS
 {
@@ -81,6 +82,8 @@ private:
 	TextureManager powerSupplyTex;
 	TextureManager extractorTex;
 	TextureManager mineralTex;
+	TextureManager turretgTex;
+	TextureManager standTex;
 
 	Base base;
 
@@ -95,6 +98,8 @@ private:
 	PowerSupply powerSupplies[MAX_POWER_SUPPLIES];
 	Extractor extractors[MAX_EXTRACTORS];
 	MineralPatch minerals[MAX_MINERALS];
+	Turret turrets[MAX_GROUND_TURRETS];
+
 
 	VECTOR2 screenLoc;
 
@@ -138,6 +143,7 @@ public:
 	PowerSupply* spawnPowerSupply(VECTOR2 loc);
 	Extractor* spawnExtractor(VECTOR2 loc);
 	MineralPatch* spawnMinerals(VECTOR2 loc, float ammount);
+	Turret* SootNSickle::spawnTurret(VECTOR2 loc);
 
 	void menuLoad();
 	void menuUpdate(bool reset = false);

@@ -100,7 +100,10 @@ void SootNSickle::initialize(HWND hwnd)
 
 	if(!extractorTex.initialize(graphics,EXTRACTOR_IMAGE))
 		throw GameError(6,"Failed to init extractor tex");
-	
+	if(!turretgTex.initialize(graphics,TURRETG_IMAGE))
+		throw GameError(6,"Failed to init extractor tex");
+	if(!standTex.initialize(graphics,TURRETBASE_IMAGE))
+		throw GameError(6,"Failed to init extractor tex");	
 	if(!background.initialize(graphics,0,0,0,&backgroundTex))
 		throw GameError(9,"Failed to init background");
 
@@ -138,6 +141,11 @@ void SootNSickle::initialize(HWND hwnd)
 	{
 		if(!extractors[i].initialize(this,0,0,0,&extractorTex,&healthBarTex))
 			throw GameError(-1*i,"FAILED TO MAKE extractor!");
+	}
+
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		if(!turrets[i].initialize(this,0,0,0,&turretgTex,&standTex,&healthBarTex))
+			throw GameError(-1*i,"FAILED TO MAKE turret!");
 	}
 
 	currentState = Level1;
@@ -304,6 +312,10 @@ void SootNSickle::levelsRender()
 	for(int i = 0 ; i < MAX_BUTTONS;i++)
 	{
 		buttons[i].draw(VECTOR2(0,0));
+	}
+
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		turrets[i].draw(screenLoc);
 	}
 
 	if(cursorSelection >= 0 && cursorSelection < (int)ButtonNS::SIZE)
@@ -492,6 +504,19 @@ MineralPatch* SootNSickle::spawnMinerals(VECTOR2 loc, float ammount)
 	return nullptr;
 }
 
+Turret* SootNSickle::spawnTurret(VECTOR2 loc)
+{
+	for(int i = 0; i < MAX_MINERALS; i++)
+	{
+		if(!turrets[i].getActive())
+		{
+			turrets[i].create(loc, 0);
+			return &turrets[i];
+		}
+	}
+
+	return nullptr;
+}
 
 void SootNSickle::deactivateAll()
 {
@@ -541,7 +566,12 @@ void SootNSickle::checkClick()
 		if(!isBuildingLocationLegal(p)) p->setActive(false);
 		refreshPower();
 	}
-
+	else if(cursorSelection == ButtonNS::GROUND_TURRET_SELECTION)
+	{
+		Turret * p = spawnTurret(getMouseInWorld());
+		if(!isBuildingLocationLegal(p)) p->setActive(false);
+		refreshPower();
+	}
 }
 
 bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
@@ -561,6 +591,10 @@ bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
 	for(int i = 0; i < MAX_MINERALS;i++)
 	{
 		if((&minerals[i]!=newBuilding)&&newBuilding->collidesWith(minerals[i],v))
+			return false;
+	}
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		if((&turrets[i]!=newBuilding)&&newBuilding->collidesWith(turrets[i],v))
 			return false;
 	}
 	return true;

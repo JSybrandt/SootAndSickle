@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Actor.h"
+#include "ActorWithHealthBar.h"
 
 class SootNSickle;
 
 namespace turretNS{
-	const float ROTATION_SPEED = PI/4;
+	const float ROTATION_SPEED = PI;
 	const float ENGAGE_DISTANCE_SQRD = pow(512,2); // replace this with "line of sight"
 	const float ROTATION_WIDTH = PI/2;
 	const float ROT_EPSILON = 0.001;
@@ -21,7 +21,7 @@ class Turret:public ActorWithHealthBar
 protected:
 	SootNSickle * game;
 	Actor base;
-	ActorWithHealthBar* targetEntity;
+	Actor* targetEntity;
 	float minDir, maxDir,rotVel;
 	float weaponCooldown;
 	float rebootCooldown;
@@ -36,7 +36,7 @@ protected:
 public:
 	Turret();
 
-	bool initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM);
+	bool initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM);
 
 	void update(float frameTime);
 
