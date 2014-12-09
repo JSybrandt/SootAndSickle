@@ -1,14 +1,15 @@
 #pragma once
-#include "ActorWithHealthBar.h"
+#include "Building.h"
 #include "MineralPatch.h"
 
 namespace ExtractorNS{
 	const float DEFAULT_MINING_RATE = 10;
-	const float MINING_RANGE = 100;
+	const float MINING_RANGE = 150;
 	const float COLLISION_RADIUS = 50;
+	const int CAPACITY = 10;
 };
 
-class Extractor : public ActorWithHealthBar
+class Extractor : public Building
 {
 private:
 	MineralPatch* minerals;
@@ -17,5 +18,4 @@ public:
 	Extractor(){setActive(false); setCollisionRadius(ExtractorNS::COLLISION_RADIUS);}
 	void update(float frameTime);
 	void create(VECTOR2 loc);
-	bool hasPower;
 };

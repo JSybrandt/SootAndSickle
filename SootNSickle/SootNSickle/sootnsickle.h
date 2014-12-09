@@ -25,6 +25,8 @@ using std::string;
 #include "Extractor.h"
 #include "Turret.h"
 #include "Zombie.h"
+#include "Factory.h"
+#include "House.h"
 
 namespace SootNSickleNS
 {
@@ -35,9 +37,10 @@ namespace SootNSickleNS
 	const int MAX_POWER_SUPPLIES = 100;
 	const int MAX_EXTRACTORS = 100;
 	const int MAX_MINERALS = 100;
-
+	const int MAX_FACTORIES = 100;
+	const int MAX_HOUSES = 100;
 	const int MAX_PARTICLES = 10000;
-	const int MAX_BUTTONS = 5;
+	const int MAX_BUTTONS = 7;
 
 	const int NUM_PARTICLES_IN_CONE_EFFECT = 150;
 	const int NUM_PARTICLES_IN_CLOUD_EFFECT = 200;
@@ -85,10 +88,13 @@ private:
 	TextureManager mineralTex;
 	TextureManager turretgTex;
 	TextureManager standTex;
+	TextureManager factoryTex;
+	TextureManager houseTex;
 
 	Base base;
 
 	TextDX infoText;
+	TextDX buildingText;
 
 	Image background;
 	Image guiOverlay;
@@ -101,6 +107,8 @@ private:
 	MineralPatch minerals[MAX_MINERALS];
 	Turret turrets[MAX_GROUND_TURRETS];
 	Zombie zombies[MAX_GROUND_ENEMIES];
+	Factory factories[MAX_FACTORIES];
+	House houses[MAX_HOUSES];
 
 
 	VECTOR2 screenLoc;
@@ -116,6 +124,8 @@ private:
 	int cursorSelection;
 
 	float mineralLevel;
+	int population;
+	int idlePopulation;
 
 public:
 	// Constructor
@@ -145,7 +155,9 @@ public:
 	PowerSupply* spawnPowerSupply(VECTOR2 loc);
 	Extractor* spawnExtractor(VECTOR2 loc);
 	MineralPatch* spawnMinerals(VECTOR2 loc, float ammount);
-	Turret* SootNSickle::spawnTurret(VECTOR2 loc);
+	Turret* spawnTurret(VECTOR2 loc);
+	Factory* spawnFactory(VECTOR2 loc);
+	House* spawnHouse(VECTOR2 loc);
 
 	void menuLoad();
 	void menuUpdate(bool reset = false);
@@ -188,6 +200,11 @@ public:
 	MineralPatch* findMineableMinerals(Extractor * caller);
 
 	void addMinerals(float n){mineralLevel+=n;}
+	void addPopulation(int n){idlePopulation+=n;population+=n;}
+	void removePopulation(int n){population-=n;}
+	int getIdlePop(){return idlePopulation;}
+	void addIdlePop(int n){idlePopulation +=n;}
+	void removeIdlePop(int n){idlePopulation -=n;}
 };
 
 #endif

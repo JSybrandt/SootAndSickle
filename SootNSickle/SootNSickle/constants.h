@@ -42,6 +42,10 @@ const char MINERAL_IMAGE[] = "pictures\\minerals.png";
 const char EXTRACTOR_IMAGE[] = "pictures\\extractor.png";
 const char TURRETG_IMAGE[] = "pictures\\turretG.png";
 const char TURRETBASE_IMAGE[] = "pictures\\stand.png";
+const char FACTORY_IMAGE[] = "pictures\\factory.png";
+const char HOUSE_IMAGE[] = "pictures\\house.png";
+const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
+
 //Sound Locations
 const char WAVE_BANK[] = "audio\\Win\\Wave Bank.xwb";
 const char SOUND_BANK[] = "audio\\win\\Sound Bank.xsb";
