@@ -4,7 +4,7 @@
 
 using namespace turretNS;
 
-Turret::Turret(): ActorWithHealthBar() {
+Turret::Turret(): Building() {
 	radius = TURRET_RADIUS;
 	collisionType = CIRCLE;
 	base.setRadians(PI/4);
@@ -15,13 +15,13 @@ Turret::Turret(): ActorWithHealthBar() {
 	active = false;
 	weaponCooldown = 0;
 	rebootCooldown = 0;
+	setCapacity(CAPACITY);
 }
 
-bool Turret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM) {
+bool Turret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM, TextDX * text) {
 	game = g;
 	bool result = true;
-	result = result && healthBar.initialize(g,HealthBarNS::WIDTH,HealthBarNS::HEIGHT,1,hbTexM);
-	result = result && Actor::initialize(g,width,height,ncols,turretTM);
+	result = result && Building::initialize(g,width,height,ncols,turretTM,hbTexM,text);
 	result = result && base.initialize(g,BASE_WIDTH,BASE_HEIGHT,0,baseTM);
 	return result;
 }
@@ -29,86 +29,91 @@ bool Turret::initialize(SootNSickle * g, int width, int height, int ncols, Textu
 void Turret::update(float frametime) {
 	if(getActive())
 	{
-		checked = false;
-		if(rebootCooldown > 0) {
-			rebootCooldown -= frametime;
-		}
-		else if(targetEntity != nullptr) {
-			colorFilter = graphicsNS::WHITE;
+		Building::update(frametime);
 
-			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
-			float dirtoTarget = atan2(toTarget.y,toTarget.x);
-			float distSqrdtoTarget = D3DXVec2LengthSq(&toTarget);
-			float radians = getRadians();
-
-			//if the player is close and in view
-			if(distSqrdtoTarget < turretNS::ENGAGE_DISTANCE_SQRD)
-			{
-
-				//convert to principle arguments
-				dirtoTarget = toPincipleArgument(dirtoTarget);
-				radians = toPincipleArgument(radians);
-
-				float diff = dirtoTarget - radians;
-
-				diff = toPincipleArgument(diff);
-
-				//if we got um
-				if(abs(diff) <= turretNS::ROT_EPSILON)
-				{
-					setRadians(dirtoTarget);
-					radians = getRadians();
-				}
-				//rotate towards him
-				else 
-				{
-					if (diff < 0 )
-					{
-						rotVel = -turretNS::ROTATION_SPEED;
-					}
-					else if (diff > 0)
-					{
-						rotVel = turretNS::ROTATION_SPEED;
-					}
-					setRadians(radians+ rotVel*frametime);
-				}
-
-				//fire gun, he's nearby
-				weaponCooldown -= frametime;
-				if(weaponCooldown <= 0)
-				{
-					//VECTOR2 v1 = getCenter() + utilityNS::rotateVector(BULLET1_OFFSET,getRadians());
-					//VECTOR2 v2 = getCenter() + utilityNS::rotateVector(BULLET2_OFFSET,getRadians());
-					//game->spawnBullet(v1,radians,graphicsNS::RED,false);
-					//game->spawnBullet(v2,radians,graphicsNS::RED,false);
-					animComplete = false;
-					//targetEntity->doDamage(25);
-					setCurrentFrame(0);
-					//audio->playCue(TURRET_CUE);
-					weaponCooldown = turretNS::FIRE_RATE;
-				}
-			}
-		}
-		else
+		if(getPower() && getStaff()>0)
 		{
-			float radians = getRadians();
-			if(radians > maxDir)
-			{
-				rotVel = -turretNS::ROTATION_SPEED;
+
+			checked = false;
+			if(rebootCooldown > 0) {
+				rebootCooldown -= frametime;
 			}
-			if(radians < minDir)
-			{
-				setRadians(minDir);
-				rotVel = turretNS::ROTATION_SPEED;
+			else if(targetEntity != nullptr) {
+				colorFilter = graphicsNS::WHITE;
+
+				VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
+				float dirtoTarget = atan2(toTarget.y,toTarget.x);
+				float distSqrdtoTarget = D3DXVec2LengthSq(&toTarget);
+				float radians = getRadians();
+
+				//if the player is close and in view
+				if(distSqrdtoTarget < turretNS::ENGAGE_DISTANCE_SQRD)
+				{
+
+					//convert to principle arguments
+					dirtoTarget = toPincipleArgument(dirtoTarget);
+					radians = toPincipleArgument(radians);
+
+					float diff = dirtoTarget - radians;
+
+					diff = toPincipleArgument(diff);
+
+					//if we got um
+					if(abs(diff) <= turretNS::ROT_EPSILON)
+					{
+						setRadians(dirtoTarget);
+						radians = getRadians();
+					}
+					//rotate towards him
+					else 
+					{
+						if (diff < 0 )
+						{
+							rotVel = -turretNS::ROTATION_SPEED;
+						}
+						else if (diff > 0)
+						{
+							rotVel = turretNS::ROTATION_SPEED;
+						}
+						setRadians(radians+ rotVel*frametime);
+					}
+
+					//fire gun, he's nearby
+					weaponCooldown -= frametime;
+					if(weaponCooldown <= 0)
+					{
+						//VECTOR2 v1 = getCenter() + utilityNS::rotateVector(BULLET1_OFFSET,getRadians());
+						//VECTOR2 v2 = getCenter() + utilityNS::rotateVector(BULLET2_OFFSET,getRadians());
+						//game->spawnBullet(v1,radians,graphicsNS::RED,false);
+						//game->spawnBullet(v2,radians,graphicsNS::RED,false);
+						animComplete = false;
+						//targetEntity->doDamage(25);
+						setCurrentFrame(0);
+						//audio->playCue(TURRET_CUE);
+						weaponCooldown = turretNS::FIRE_RATE;
+					}
+				}
 			}
-			setRadians(radians+ rotVel*frametime);
+			else
+			{
+				float radians = getRadians();
+				if(radians > maxDir)
+				{
+					rotVel = -turretNS::ROTATION_SPEED;
+				}
+				if(radians < minDir)
+				{
+					setRadians(minDir);
+					rotVel = turretNS::ROTATION_SPEED;
+				}
+				setRadians(radians+ rotVel*frametime);
+			}
+
 		}
-
-
 	}
-	base.setCenter(getCenter());
-	base.update(frametime);
-	Image::update(frametime);
+	//base.setCenter(getCenter());
+	//base.update(frametime);
+	//Image::update(frametime);
 
 
 }
@@ -119,7 +124,7 @@ void Turret::draw(VECTOR2 screenLoc) {
 
 		base.draw(screenLoc);
 
-		ActorWithHealthBar::draw(screenLoc);
+		Building::draw(screenLoc);
 
 	}
 }

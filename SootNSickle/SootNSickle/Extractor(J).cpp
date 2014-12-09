@@ -34,13 +34,13 @@ void Extractor::update(float frameTime)
 			game->spawnParticleCloud(getCenter(),graphicsNS::GRAY,1);
 			if(anythingNearby)
 			{
-				if(minerals==nullptr)
+				if(minerals==nullptr||!minerals->getActive())
 					minerals=game->findMineableMinerals(this);
 					if(minerals==nullptr)
 						anythingNearby = false;
 				else
 				{
-					game->addMinerals(minerals->mine(ExtractorNS::DEFAULT_MINING_RATE*frameTime));
+					game->addMinerals(minerals->mine(ExtractorNS::DEFAULT_MINING_RATE*frameTime*getEffectiveness()));
 					game->spawnParticleCloud(getCenter(),graphicsNS::CYAN,1);
 				}
 			}

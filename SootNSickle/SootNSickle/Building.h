@@ -30,4 +30,8 @@ public:
 	void setCapacity(int n){capacity = max(0,n);}
 	void modifyStaff(int n){numStaff += n; min(capacity,max(0,numStaff));}
 	int getCapacity(){return capacity;}
+
+	float getEffectiveness(){return (getStaff()/((float)getCapacity()));}
+
+	
 };

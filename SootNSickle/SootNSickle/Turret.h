@@ -1,8 +1,7 @@
 #pragma once
 
-#include "ActorWithHealthBar.h"
+#include "Building.h"
 
-class SootNSickle;
 
 namespace turretNS{
 	const float ROTATION_SPEED = PI;
@@ -14,9 +13,10 @@ namespace turretNS{
 	const VECTOR2 BULLET1_OFFSET(30,-15);
 	const VECTOR2 BULLET2_OFFSET(30,15);
 	const float TURRET_RADIUS = 32;
+	const int CAPACITY = 1;
 };
 
-class Turret:public ActorWithHealthBar
+class Turret:public Building
 {
 protected:
 	SootNSickle * game;
@@ -36,7 +36,7 @@ protected:
 public:
 	Turret();
 
-	bool initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM);
+	bool initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM,TextDX * text);
 
 	void update(float frameTime);
 
@@ -50,5 +50,4 @@ public:
 
 	void hit();
 
-	bool hasPower;
 };

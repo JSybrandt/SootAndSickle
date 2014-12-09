@@ -26,6 +26,7 @@ using std::string;
 #include "Turret.h"
 #include "Factory.h"
 #include "House.h"
+#include "AirField.h"
 
 namespace SootNSickleNS
 {
@@ -38,6 +39,7 @@ namespace SootNSickleNS
 	const int MAX_MINERALS = 100;
 	const int MAX_FACTORIES = 100;
 	const int MAX_HOUSES = 100;
+	const int MAX_AIR_FIELDS = 100;
 	const int MAX_PARTICLES = 10000;
 	const int MAX_BUTTONS = 7;
 
@@ -48,6 +50,14 @@ namespace SootNSickleNS
 	const float SCREEN_SPEED = 500;
 
 	const float CURSOR_HEIGHT = 50;
+
+	const float POWER_SUPPLY_COST = 10;
+	const float GROUND_TURRET_COST = 50;
+	const float AIR_TURRET_COST = 75;
+	const float EXTRACTOR_COST = 25;
+	const float FACTORY_COST = 100;
+	const float HOUSE_COST = 80;
+	const float AIR_FIELD_COST = 150;
 }
 
 
@@ -89,6 +99,7 @@ private:
 	TextureManager standTex;
 	TextureManager factoryTex;
 	TextureManager houseTex;
+	TextureManager airFieldTex;
 
 	Base base;
 
@@ -107,7 +118,7 @@ private:
 	Turret turrets[MAX_GROUND_TURRETS];
 	Factory factories[MAX_FACTORIES];
 	House houses[MAX_HOUSES];
-
+	AirField airFields[MAX_AIR_FIELDS];
 
 	VECTOR2 screenLoc;
 
@@ -124,6 +135,7 @@ private:
 	float mineralLevel;
 	int population;
 	int idlePopulation;
+	int capacity;
 
 public:
 	// Constructor
@@ -156,6 +168,7 @@ public:
 	Turret* spawnTurret(VECTOR2 loc);
 	Factory* spawnFactory(VECTOR2 loc);
 	House* spawnHouse(VECTOR2 loc);
+	AirField* spawnAirField(VECTOR2 loc);
 
 	void menuLoad();
 	void menuUpdate(bool reset = false);

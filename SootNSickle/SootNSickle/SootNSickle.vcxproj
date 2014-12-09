@@ -89,6 +89,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="ActorWithHealthBar%28J%29.cpp" />
+    <ClCompile Include="AirField(J).cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="Base%28J%29.cpp" />
     <ClCompile Include="Building (J).cpp" />
@@ -115,6 +116,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="ActorWithHealthBar.h" />
+    <ClInclude Include="AirField.h" />
     <ClInclude Include="audio.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="Building.h" />

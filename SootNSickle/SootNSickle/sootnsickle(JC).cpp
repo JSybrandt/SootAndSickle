@@ -39,6 +39,7 @@ SootNSickle::SootNSickle()
 
 	population = 0;
 	idlePopulation = 0;
+	capacity = 0;
 }
 
 //=============================================================================
@@ -115,6 +116,8 @@ void SootNSickle::initialize(HWND hwnd)
 		throw GameError(6,"Failed to init extractor tex");	
 	if(!houseTex.initialize(graphics,HOUSE_IMAGE))
 		throw GameError(6,"Failed to init house tex");	
+	if(!airFieldTex.initialize(graphics,AIR_FIELD_IMAGE))
+		throw GameError(6,"Failed to init house tex");
 
 	if(!background.initialize(graphics,0,0,0,&backgroundTex))
 		throw GameError(9,"Failed to init background");
@@ -156,7 +159,7 @@ void SootNSickle::initialize(HWND hwnd)
 	}
 
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
-		if(!turrets[i].initialize(this,0,0,0,&turretgTex,&standTex,&healthBarTex))
+		if(!turrets[i].initialize(this,0,0,0,&turretgTex,&standTex,&healthBarTex,&buildingText))
 			throw GameError(-1*i,"FAILED TO MAKE turret!");
 	}
 
@@ -168,6 +171,10 @@ void SootNSickle::initialize(HWND hwnd)
 		if(!houses[i].initialize(this,0,0,0,&houseTex,&healthBarTex,&buildingText))
 				throw GameError(-1*i,"FAILED TO MAKE house!");
 	}
+
+	for(int i = 0; i < MAX_AIR_FIELDS; i++)
+		if(!airFields[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex,&buildingText))
+				throw GameError(-1*i,"FAILED TO MAKE air field!");
 
 	currentState = Level1;
 	level1Load();
@@ -198,6 +205,13 @@ void SootNSickle::menuUpdate(bool reset)
 
 void SootNSickle::levelsUpdate()
 {
+	if(input->wasKeyPressed('R'))
+	{
+		level1Load();
+	}
+
+	
+
 	if(input->wasKeyPressed(controls.pause))
 	{
 		paused = !paused;
@@ -229,7 +243,10 @@ void SootNSickle::levelsUpdate()
 	
 	updateScreen();
 	
+	int newCapacity = 0;
+
 	base.update(frameTime);
+	newCapacity += BaseNS::HOUSING;
 
 	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
 	{
@@ -252,7 +269,15 @@ void SootNSickle::levelsUpdate()
 	for(int i = 0; i < MAX_HOUSES; i++)
 	{
 		houses[i].update(frameTime);
+		if(houses[i].getActive()) newCapacity+=HouseNS::HOUSING;
 	}
+	for(int i = 0; i < MAX_AIR_FIELDS; i++)
+		airFields[i].update(frameTime);
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++)
+		turrets[i].update(frameTime);
+	capacity = newCapacity;
+	if(population > capacity) population = capacity;
+	if(idlePopulation > population) idlePopulation = population;
 
 	//check fisrt click
 	if(!wasClickedLastFrame && input->getMouseLButton())
@@ -343,14 +368,18 @@ void SootNSickle::levelsRender()
 	for(int i = 0; i < MAX_HOUSES; i++)
 		houses[i].draw(screenLoc);
 
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		turrets[i].draw(screenLoc);
+	}
+	for(int i = 0; i < MAX_AIR_FIELDS; i++) {
+		airFields[i].draw(screenLoc);
+	}
+
+
 	guiOverlay.draw(VECTOR2(0,0));
 	for(int i = 0 ; i < MAX_BUTTONS;i++)
 	{
 		buttons[i].draw(VECTOR2(0,0));
-	}
-
-	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
-		turrets[i].draw(screenLoc);
 	}
 
 	if(cursorSelection >= 0 && cursorSelection < (int)ButtonNS::SIZE)
@@ -359,8 +388,8 @@ void SootNSickle::levelsRender()
 		cursor.draw(screenLoc);
 	}
 
-	infoText.print(std::to_string(mineralLevel),100,25);
-	infoText.print(std::to_string(idlePopulation) + "/" + std::to_string(population),100,50);
+	infoText.print(std::to_string((int)mineralLevel),20,20);
+	infoText.print(std::to_string(idlePopulation) + "/" + std::to_string(population)+ "/" + std::to_string(capacity),100,20);
 }
 
 //=============================================================================
@@ -396,14 +425,14 @@ void SootNSickle::level1Load()
 {
 	currentState = Level1;
 	deactivateAll();
-	base.setCenter(getCurrentWorldSize()*0.5);
-	base.setActive(true);
+	base.create(getCurrentWorldSize()*0.5);
 	guiLoad();
 
 	spawnMinerals(VECTOR2(100,100),1000);
 	spawnMinerals(VECTOR2(300,500),1000);
 
 	addPopulation(10);
+	mineralLevel = 1000;
 }
 
 void SootNSickle::level2Load()
@@ -582,11 +611,24 @@ House* SootNSickle::spawnHouse(VECTOR2 loc)
 
 	return nullptr;
 }
+AirField* SootNSickle::spawnAirField(VECTOR2 loc)
+{
+	for(int i = 0; i < MAX_AIR_FIELDS; i++)
+	{
+		if(!airFields[i].getActive())
+		{
+			airFields[i].create(loc);
+			return &airFields[i];
+		}
+	}
 
+	return nullptr;
+}
 
 void SootNSickle::deactivateAll()
 {
-	population = idlePopulation = 0;
+	mineralLevel = population = idlePopulation = 0;
+
 	cursorSelection = -1;
 	for(int i = 0 ; i < MAX_FACTORIES;i++)
 		factories[i].setActive(false);
@@ -604,6 +646,10 @@ void SootNSickle::deactivateAll()
 		houses[i].setActive(false);
 	for(int i = 0 ; i < MAX_GROUND_TURRETS; i++)
 		turrets[i].setActive(false);
+	for(int i = 0 ; i < MAX_HOUSES;i++)
+		houses[i].setActive(false);
+	for(int i = 0 ; i < MAX_AIR_FIELDS;i++)
+		airFields[i].setActive(false);
 	base.setActive(false);
 }
 
@@ -627,35 +673,66 @@ void SootNSickle::buttonOnClick(Button* caller){
 
 void SootNSickle::checkClick()
 {
-	if(cursorSelection == ButtonNS::POWER_SUPPLY_SELECTION)
+	if(cursorSelection == ButtonNS::POWER_SUPPLY_SELECTION && mineralLevel > POWER_SUPPLY_COST)
 	{
+		
 		PowerSupply * p = spawnPowerSupply(getMouseInWorld());
 		if(!isBuildingLocationLegal(p)) p->setActive(false);
-		else refreshPower();
+		else
+		{
+			refreshPower();
+			mineralLevel-=POWER_SUPPLY_COST;
+		}
 	}
-	else if(cursorSelection == ButtonNS::EXTRACTOR_SELECTION)
+	else if(cursorSelection == ButtonNS::EXTRACTOR_SELECTION&& mineralLevel > EXTRACTOR_COST)
 	{
 		Extractor * p = spawnExtractor(getMouseInWorld());
 		if(!isBuildingLocationLegal(p)) p->setActive(false);
-		else refreshPower();
+		else
+		{
+			refreshPower();
+			mineralLevel-=EXTRACTOR_COST;
+		}
 	}
-	else if(cursorSelection == ButtonNS::GROUND_TURRET_SELECTION)
+	else if(cursorSelection == ButtonNS::GROUND_TURRET_SELECTION&& mineralLevel > GROUND_TURRET_COST)
 	{
 		Turret * p = spawnTurret(getMouseInWorld());
 		if(!isBuildingLocationLegal(p)) p->setActive(false);
-		else refreshPower();
+		else
+		{
+			refreshPower();
+			mineralLevel-=GROUND_TURRET_COST;
+		}
 	}
-	else if(cursorSelection == ButtonNS::FACTORY_SELECTION)
+	else if(cursorSelection == ButtonNS::FACTORY_SELECTION&& mineralLevel > FACTORY_COST)
 	{
 		Factory * p = spawnFactory(getMouseInWorld());
 		if(!isBuildingLocationLegal(p)) p->setActive(false);
-		else refreshPower();
+		else
+		{
+			refreshPower();
+			mineralLevel-=FACTORY_COST;
+		}
 	}
-	else if(cursorSelection == ButtonNS::HOUSE_SELECTION)
+	else if(cursorSelection == ButtonNS::HOUSE_SELECTION&& mineralLevel > HOUSE_COST)
 	{
 		House * p = spawnHouse(getMouseInWorld());
 		if(!isBuildingLocationLegal(p)) p->setActive(false);
-		else refreshPower();
+		else
+		{
+			refreshPower();
+			mineralLevel-=HOUSE_COST;
+		}
+	}
+	else if(cursorSelection == ButtonNS::AIR_FIELD_SELECTION&& mineralLevel > AIR_FIELD_COST)
+	{
+		AirField * p = spawnAirField(getMouseInWorld());
+		if(!isBuildingLocationLegal(p)) p->setActive(false);
+		else
+		{
+			refreshPower();
+			mineralLevel-=AIR_FIELD_COST;
+		}
 	}
 }
 
@@ -690,6 +767,10 @@ bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
 		if((&houses[i]!=newBuilding)&&newBuilding->collidesWith(houses[i],v))
 			return false;
 	}
+	for(int i = 0; i < MAX_AIR_FIELDS; i++){
+		if((&airFields[i]!=newBuilding)&&newBuilding->collidesWith(airFields[i],v))
+			return false;
+	}
 	return true;
 }
 
@@ -700,21 +781,15 @@ void SootNSickle::refreshPower()
 	std::stack<PowerSupply*> s;
 
 	for(int k = 0 ; k < MAX_EXTRACTORS; k++)
-	{
 		extractors[k].setPower(extractors[k].collidesWith(base.getPowerField(),v));
-	}
 	for(int i = 0; i < MAX_FACTORIES; i++) 
-	{
 		factories[i].setPower(factories[i].collidesWith(base.getPowerField(),v));
-	}
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) 
-	{
-		turrets[i].hasPower=turrets[i].collidesWith(base.getPowerField(),v);
-	}
+		turrets[i].setPower(turrets[i].collidesWith(base.getPowerField(),v));
 	for(int i = 0; i < MAX_HOUSES; i++)
-	{
 		houses[i].setPower(houses[i].collidesWith(base.getPowerField(),v));
-	}
+	for(int i = 0; i < MAX_AIR_FIELDS; i++)
+		airFields[i].setPower(airFields[i].collidesWith(base.getPowerField(),v));
 
 	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
 	{
@@ -762,13 +837,18 @@ void SootNSickle::refreshPower()
 			}
 			for(int i = 0; i < MAX_GROUND_TURRETS; i++) 
 			{
-				if(!turrets[i].hasPower&&currPwrSupp->getPowerField().collidesWith(turrets[i],v))
-					turrets[i].hasPower = true;
+				if(!turrets[i].getPower()&&currPwrSupp->getPowerField().collidesWith(turrets[i],v))
+					turrets[i].setPower(true);
 			}
 			for(int i = 0; i < MAX_HOUSES; i++) 
 			{
 				if(!houses[i].getPower()&&currPwrSupp->getPowerField().collidesWith(houses[i],v))
 					houses[i].setPower(true);
+			}
+			for(int i = 0; i < MAX_AIR_FIELDS; i++) 
+			{
+				if(!airFields[i].getPower()&&currPwrSupp->getPowerField().collidesWith(airFields[i],v))
+					airFields[i].setPower(true);
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ActorWithHealthBar.h"
+#include "Building.h"
 #include "PowerField.h"
 
 //justin 
@@ -14,11 +14,14 @@ namespace BaseNS{
 	const float EMBER_LIFETIME = 6;
 	const float BASE_POWER_RADIUS = 300;
 	const float BUILDING_RADIUS = 75;
+	const float TELEPORTER_COOLDOWN = 30;
+	const int PEOPLE_PER_DELIVERY = 5;
+	const int HOUSING = 25;
 };
 
-class Base:public ActorWithHealthBar{
+class Base:public Building{
 public:
-	Base(){maxHeath = 100;windDir = PI*1.3; setCollisionRadius(BaseNS::BUILDING_RADIUS);}
+	Base(){maxHeath = 100;windDir = PI*1.3; setCollisionRadius(BaseNS::BUILDING_RADIUS);setCapacity(0);}
 
 	void update(float frameTime);
 
@@ -26,12 +29,11 @@ public:
 
 	bool initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextureManager* pwrTex);
 
-	void setActive(bool b){field.setActive(b);ActorWithHealthBar::setActive(b);}
-	//void draw(VECTOR2 screenLoc);
+	void create(VECTOR2 loc){Building::create(loc);	field.setActive(true); field.setCenter(loc);cooldown = BaseNS::TELEPORTER_COOLDOWN;}
 
 private:
 	float windDir;
-
+	float cooldown;
 	PowerField field;
 
 };

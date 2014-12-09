@@ -6,7 +6,7 @@ void Base::update(float frameTime)
 {
 	if(getActive()){
 
-		field.setCenter(getCenter());
+		Building::update(frameTime);
 
 		for(int i = 0 ; i < SMOKE_PARTICLES_PER_FRAME;i++)
 		{
@@ -27,7 +27,13 @@ void Base::update(float frameTime)
 		}
 
 
-		ActorWithHealthBar::update(frameTime);
+		cooldown-=frameTime;
+		if(cooldown <= 0 )
+		{
+			cooldown = BaseNS::TELEPORTER_COOLDOWN;
+			game->addPopulation(BaseNS::PEOPLE_PER_DELIVERY);
+		}
+		
 	}
 }
 

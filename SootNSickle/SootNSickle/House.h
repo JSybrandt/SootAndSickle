@@ -1,8 +1,8 @@
 #include "Building.h"
 
-namespace BuildingNS
+namespace HouseNS
 {
-	const int POP_PER_HOUSE = 10;
+	const int HOUSING = 10;
 };
 
 class House : public Building

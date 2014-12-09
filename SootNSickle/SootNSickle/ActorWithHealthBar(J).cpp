@@ -37,7 +37,9 @@ void ActorWithHealthBar::damage(float ammount)
 	if(ammount > 0)
 	{
 		health -= ammount;
-		if(health < 0) health = 0;
+		if(health < 0) {health = 0;
+			setActive(false);
+		}
 	}
 	healthBar.setCurrentValue(health);
 }
