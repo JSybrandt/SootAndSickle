@@ -49,4 +49,6 @@ public:
 	void ai(float frameTime, Actor &ent);
 
 	void hit();
+
+	bool hasPower;
 };

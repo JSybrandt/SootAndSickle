@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actor.h"
+#include "textDX.h"
 
 
 
@@ -8,26 +9,14 @@ class MineralPatch : public Actor
 {
 private:
 	float mineralLevel;
+	TextDX* text;
 public:
-	MineralPatch(){setActive(false);}
-	void create(VECTOR2 loc, float ammount){
-		setActive(true);
-		setCenter(loc);
-		mineralLevel = ammount;
-	}
-	void setMineralLevel(float n){if(n>0)mineralLevel > n;}
-	float mine(float requestedAmmount){
-		if(mineralLevel > requestedAmmount) 
-		{
-			mineralLevel -= requestedAmmount;
-			return requestedAmmount;
-		}
-		else
-		{
-			float t = mineralLevel;
-			mineralLevel = 0;
-			setActive(false);
-			return t;
-		}
-	}
+	MineralPatch();
+	void setMineralLevel(float n);
+	float mine(float requestedAmmount);
+	void create(VECTOR2 loc, float ammount);
+	bool initialize(Game *gamePtr, int width, int height, int ncols,TextureManager *textureM, TextDX *text);
+	void draw(VECTOR2 screenLoc);
+
+	
 };

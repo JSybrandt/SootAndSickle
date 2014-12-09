@@ -88,24 +88,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="ActorWithHealthBar.cpp" />
+    <ClCompile Include="ActorWithHealthBar%28J%29.cpp" />
     <ClCompile Include="audio.cpp" />
-    <ClCompile Include="Base.cpp" />
-    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Base%28J%29.cpp" />
+    <ClCompile Include="Building (J).cpp" />
+    <ClCompile Include="Button%28J%29.cpp" />
     <ClCompile Include="constants.cpp" />
-    <ClCompile Include="Extractor.cpp" />
+    <ClCompile Include="Extractor%28J%29.cpp" />
+    <ClCompile Include="Factory%28J%29.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
-    <ClCompile Include="HealthBar.cpp" />
+    <ClCompile Include="HealthBar%28J%29.cpp" />
+    <ClCompile Include="House%28J%29.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
-    <ClCompile Include="PowerSupply.cpp" />
-    <ClCompile Include="sootnsickle.cpp" />
-    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="MineralPatch(J).cpp" />
+    <ClCompile Include="PowerSupply%28J%29.cpp" />
+    <ClCompile Include="sootnsickle%28JC%29.cpp" />
+    <ClCompile Include="Particle%28J%29.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
-    <ClCompile Include="Turret.cpp" />
-    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="Turret%28JC%29.cpp" />
+    <ClCompile Include="Utility%28J%29.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -113,14 +117,17 @@
     <ClInclude Include="ActorWithHealthBar.h" />
     <ClInclude Include="audio.h" />
     <ClInclude Include="Base.h" />
+    <ClInclude Include="Building.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Controls.h" />
     <ClInclude Include="Extractor.h" />
+    <ClInclude Include="Factory.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="HealthBar.h" />
+    <ClInclude Include="House.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="MineralPatch.h" />

@@ -4,26 +4,29 @@ using namespace PowerSupplyNS;
 
 PowerSupply::PowerSupply()
 {
+	Building::Building();
 	setActive(false);
 	setCollisionRadius(BUILDING_RADIUS);
 	setPower(false);
 	bootCooldown = 0;
+
+	setCapacity(0);
 }
 
 void PowerSupply::update(float frameTime)
 {
 	if(getActive())
 	{
-		ActorWithHealthBar::update(frameTime);
+		Building::update(frameTime);
 
-		if(hasPower&&bootCooldown>0){
+		if(getPower()&&bootCooldown>0){
 			bootCooldown -= frameTime;
 			if(bootCooldown<0)
 				bootCooldown=0;
 			field.setColorFilter(Graphics::calculateAlpha((BOOT_TIME-bootCooldown)/BOOT_TIME));
 		}
 
-		if(hasPower){
+		if(getPower()){
 			game->spawnParticleCloud(getCenter(),graphicsNS::CYAN,1);
 			game->spawnParticleCloud(getCenter(),graphicsNS::YELLOW,1);
 		}
@@ -39,17 +42,16 @@ void PowerSupply::update(float frameTime)
 //	}
 //}
 
-bool PowerSupply::initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextureManager* pwrTex)
+bool PowerSupply::initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextureManager* pwrTex, TextDX * text)
 {
 	bool res = field.initialize(gamePtr,0,0,0,pwrTex);
 	field.setFieldRadius(POWER_RADIUS);
-	return res&ActorWithHealthBar::initialize(gamePtr,width,height,ncols,textureM,hbTexM);
+	return res&Building::initialize(gamePtr,width,height,ncols,textureM,hbTexM,text);
 }
 
 void PowerSupply::create(VECTOR2 loc)
 {
-	setActive(true);
-	setCenter(loc);
+	Building::create(loc);
 	field.setCenter(loc);
 	setHealth(100);
 	bootCooldown = BOOT_TIME;

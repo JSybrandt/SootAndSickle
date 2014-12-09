@@ -119,7 +119,7 @@ void Turret::draw(VECTOR2 screenLoc) {
 
 		base.draw(screenLoc);
 
-		Actor::draw(screenLoc);
+		ActorWithHealthBar::draw(screenLoc);
 
 	}
 }

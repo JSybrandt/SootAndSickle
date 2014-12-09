@@ -57,34 +57,46 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Source Files\Background</Filter>
     </ClCompile>
-    <ClCompile Include="Particle.cpp">
+    <ClCompile Include="ActorWithHealthBar%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Utility.cpp">
+    <ClCompile Include="Base%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="sootnsickle.cpp">
+    <ClCompile Include="Button%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="Extractor%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Base.cpp">
+    <ClCompile Include="Factory%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="HealthBar.cpp">
+    <ClCompile Include="HealthBar%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="ActorWithHealthBar.cpp">
+    <ClCompile Include="Particle%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Turret.cpp">
+    <ClCompile Include="PowerSupply%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="PowerSupply.cpp">
+    <ClCompile Include="sootnsickle%28JC%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Extractor.cpp">
+    <ClCompile Include="Turret%28JC%29.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility%28J%29.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="MineralPatch(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Building (J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="House%28J%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,6 +168,15 @@
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
     <ClInclude Include="Extractor.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
   </ItemGroup>

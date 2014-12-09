@@ -3,19 +3,33 @@
 
 void Extractor::create(VECTOR2 loc)
 {
-	hasPower = false;
-	setCenter(loc);
-	setActive(true);
+	Building::create(loc);
 	minerals = nullptr;
 	anythingNearby = true;
+	setCapacity(ExtractorNS::CAPACITY);
 }
 
 void Extractor::update(float frameTime)
 {
 	if(getActive())
 	{
+		//i rewrite the building logic because i need to take into account minerals
 		ActorWithHealthBar::update(frameTime);
-		if(hasPower)
+		if(anythingNearby&&getPower())
+		{
+			if(game->getIdlePop() > 0 && getStaff() < getCapacity())
+			{
+				modifyStaff(1);
+				game->removeIdlePop(1);
+			}
+		}
+		else if(getStaff() > 0)
+		{
+			modifyStaff(-1);
+			game->addIdlePop(1);
+		}
+
+		if(getPower())
 		{
 			game->spawnParticleCloud(getCenter(),graphicsNS::GRAY,1);
 			if(anythingNearby)
