@@ -96,6 +96,7 @@
     <ClCompile Include="Extractor.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
@@ -120,6 +121,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="Zombie.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />

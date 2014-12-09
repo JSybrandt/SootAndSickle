@@ -24,6 +24,7 @@ using std::string;
 #include "MineralPatch.h"
 #include "Extractor.h"
 #include "Turret.h"
+#include "Zombie.h"
 
 namespace SootNSickleNS
 {
@@ -99,6 +100,7 @@ private:
 	Extractor extractors[MAX_EXTRACTORS];
 	MineralPatch minerals[MAX_MINERALS];
 	Turret turrets[MAX_GROUND_TURRETS];
+	Zombie zombies[MAX_GROUND_ENEMIES];
 
 
 	VECTOR2 screenLoc;
