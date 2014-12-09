@@ -734,6 +734,10 @@ void SootNSickle::checkClick()
 			mineralLevel-=AIR_FIELD_COST;
 		}
 	}
+	else if(cursorSelection == ButtonNS::SELL_SELECTION)
+	{
+		attemptToSellBuilding();
+	}
 }
 
 bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
@@ -774,6 +778,80 @@ bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
 	return true;
 }
 
+void SootNSickle::attemptToSellBuilding()
+{
+	VECTOR2 disp;
+	VECTOR2 mouse = getMouseInWorld();
+
+	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+	{
+		if(powerSupplies[i].getActive())
+		{
+			disp = mouse - powerSupplies[i].getCenter();
+			if(D3DXVec2LengthSq(&disp) < powerSupplies[i].getRadius())
+			{
+				powerSupplies[i].setActive(false);
+				mineralLevel += POWER_SUPPLY_COST*SELL_BACK_RATE;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_EXTRACTORS;i++)
+	{
+		if(extractors[i].getActive())
+		{
+			disp = mouse - extractors[i].getCenter();
+			if(D3DXVec2LengthSq(&disp) < extractors[i].getRadius())
+			{
+				extractors[i].setActive(false);
+				mineralLevel += EXTRACTOR_COST*SELL_BACK_RATE;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		if(turrets[i].getActive())
+		{
+			disp = mouse - turrets[i].getCenter();
+			if(D3DXVec2LengthSq(&disp) < turrets[i].getRadius())
+			{
+				turrets[i].setActive(false);
+				mineralLevel += GROUND_TURRET_COST*SELL_BACK_RATE;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_FACTORIES; i++) {
+		if(factories[i].getActive())
+		{
+			disp = mouse - factories[i].getCenter();
+			if(D3DXVec2LengthSq(&disp) < factories[i].getRadius())
+			{
+				factories[i].setActive(false);
+				mineralLevel += FACTORY_COST*SELL_BACK_RATE;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_HOUSES; i++){
+		if(houses[i].getActive())
+		{
+			disp = mouse - houses[i].getCenter();
+			if(D3DXVec2LengthSq(&disp) < houses[i].getRadius())
+			{
+				houses[i].setActive(false);
+				mineralLevel += HOUSE_COST*SELL_BACK_RATE;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_AIR_FIELDS; i++){
+		if(airFields[i].getActive())
+		{
+			disp = mouse - airFields[i].getCenter();
+			if(D3DXVec2LengthSq(&disp) < airFields[i].getRadius())
+			{
+				airFields[i].setActive(false);
+				mineralLevel += AIR_FIELD_COST*SELL_BACK_RATE;
+			}
+		}
+	}
+}
 
 void SootNSickle::refreshPower()
 {
