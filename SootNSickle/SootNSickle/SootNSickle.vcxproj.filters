@@ -57,46 +57,49 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Source Files\Background</Filter>
     </ClCompile>
-    <ClCompile Include="ActorWithHealthBar%28J%29.cpp">
+    <ClCompile Include="ActorWithHealthBar(J).cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Base%28J%29.cpp">
+    <ClCompile Include="Extractor(J).cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Button%28J%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Extractor%28J%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Factory%28J%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthBar%28J%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle%28J%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="PowerSupply%28J%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="sootnsickle%28JC%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Turret%28JC%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility%28J%29.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="MineralPatch(J).cpp">
+    <ClCompile Include="Base(J).cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
     <ClCompile Include="Building (J).cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="House%28J%29.cpp">
+    <ClCompile Include="Button(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthBar(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="House(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="MineralPatch(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerSupply(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="sootnsickle(JC).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Turret(JC).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility(J).cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie%28JC%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
     <ClCompile Include="AirField(J).cpp">
@@ -173,10 +176,13 @@
     <ClInclude Include="Extractor.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
-    <ClInclude Include="Factory.h">
+    <ClInclude Include="Zombie.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
     <ClInclude Include="Building.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
     <ClInclude Include="House.h">

@@ -88,29 +88,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="ActorWithHealthBar%28J%29.cpp" />
     <ClCompile Include="AirField(J).cpp" />
+    <ClCompile Include="ActorWithHealthBar(J).cpp" />
     <ClCompile Include="audio.cpp" />
-    <ClCompile Include="Base%28J%29.cpp" />
+    <ClCompile Include="Base(J).cpp" />
     <ClCompile Include="Building (J).cpp" />
-    <ClCompile Include="Button%28J%29.cpp" />
+    <ClCompile Include="Button(J).cpp" />
     <ClCompile Include="constants.cpp" />
-    <ClCompile Include="Extractor%28J%29.cpp" />
-    <ClCompile Include="Factory%28J%29.cpp" />
+    <ClCompile Include="Extractor(J).cpp" />
+    <ClCompile Include="Factory(J).cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
-    <ClCompile Include="HealthBar%28J%29.cpp" />
-    <ClCompile Include="House%28J%29.cpp" />
+    <ClCompile Include="HealthBar(J).cpp" />
+    <ClCompile Include="House(J).cpp" />
+    <ClCompile Include="MineralPatch(J).cpp" />
+    <ClCompile Include="Particle(J).cpp" />
+    <ClCompile Include="PowerSupply(J).cpp" />
+    <ClCompile Include="sootnsickle(JC).cpp" />
+    <ClCompile Include="Turret(JC).cpp" />
+    <ClCompile Include="Utility(J).cpp" />
+    <ClCompile Include="Zombie%28JC%29.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
-    <ClCompile Include="MineralPatch(J).cpp" />
-    <ClCompile Include="PowerSupply%28J%29.cpp" />
-    <ClCompile Include="sootnsickle%28JC%29.cpp" />
-    <ClCompile Include="Particle%28J%29.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
-    <ClCompile Include="Turret%28JC%29.cpp" />
-    <ClCompile Include="Utility%28J%29.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,8 +129,9 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="graphics.h" />
-    <ClInclude Include="HealthBar.h" />
     <ClInclude Include="House.h" />
+    <ClInclude Include="Zombie.h" />
+    <ClInclude Include="HealthBar.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="MineralPatch.h" />

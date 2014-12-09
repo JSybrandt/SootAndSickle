@@ -24,6 +24,7 @@ using std::string;
 #include "MineralPatch.h"
 #include "Extractor.h"
 #include "Turret.h"
+#include "Zombie.h"
 #include "Factory.h"
 #include "House.h"
 #include "AirField.h"
@@ -116,6 +117,7 @@ private:
 	Extractor extractors[MAX_EXTRACTORS];
 	MineralPatch minerals[MAX_MINERALS];
 	Turret turrets[MAX_GROUND_TURRETS];
+	Zombie zombies[MAX_GROUND_ENEMIES];
 	Factory factories[MAX_FACTORIES];
 	House houses[MAX_HOUSES];
 	AirField airFields[MAX_AIR_FIELDS];
