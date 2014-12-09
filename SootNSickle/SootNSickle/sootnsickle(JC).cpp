@@ -851,6 +851,7 @@ void SootNSickle::attemptToSellBuilding()
 			}
 		}
 	}
+	refreshPower();
 }
 
 void SootNSickle::refreshPower()
