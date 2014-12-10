@@ -142,7 +142,7 @@ void AGTurret::create(VECTOR2 loc, float dir) {
 	colorFilter = graphicsNS::WHITE;
 }
 
-void AGTurret::ai(float frameTime, Actor &t) {
+void AGTurret::ai(float frameTime, ActorWithHealthBar &t) {
 	if(active && t.getActive() && !checked) {
 		float rad = 0;
 		if(targetEntity != nullptr && target) { //If previous target is still active and within range

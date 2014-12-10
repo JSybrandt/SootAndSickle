@@ -33,7 +33,7 @@ public:
 
 	void create(VECTOR2 loc, float dir);
 
-	void ai(float frameTime, Actor &ent);
+	void ai(float frameTime, ActorWithHealthBar &ent);
 
 	void hit();
 

@@ -5,7 +5,7 @@
 
 namespace turretNS{
 	const float ROTATION_SPEED = PI;
-	const float ENGAGE_DISTANCE_SQRD = pow(512,2); // replace this with "line of sight"
+	const float ENGAGE_DISTANCE_SQRD = pow(1024,2); // replace this with "line of sight"
 	const float ROTATION_WIDTH = PI/2;
 	const float ROT_EPSILON = 0.001;
 	const float FIRE_RATE = 0.75;
@@ -21,7 +21,7 @@ class Turret:public Building
 protected:
 	SootNSickle * game;
 	Actor base;
-	Actor* targetEntity;
+	ActorWithHealthBar* targetEntity;
 	float minDir, maxDir,rotVel;
 	float weaponCooldown;
 	float rebootCooldown;
@@ -46,7 +46,7 @@ public:
 
 	void create(VECTOR2 loc, float dir);
 
-	void ai(float frameTime, Actor &ent);
+	void ai(float frameTime, ActorWithHealthBar &ent);
 
 	void hit();
 

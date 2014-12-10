@@ -8,7 +8,7 @@ Zombie::Zombie():ActorWithHealthBar(){
 	edge.right = 12;
 	collisionType = COLLISION_TYPE::BOX;
 	colorFilter = zombieNS::COLOR;
-	health = 100;
+	health = 500;
 	setActive(false);
 	target = false;
 	shoot = false;
@@ -33,41 +33,46 @@ void Zombie::update(float frameTime)
 			setActive(false);
 			//audio->playCue(KILL1_CUE);
 		}
-		vectorTrack(frameTime);
+		
 
 		VECTOR2 endLoc = getCenter()+(getVelocity()*zombieNS::SPEED*frameTime);
 		//endLoc = game->getRealEndLoc(getCenter(),endLoc);
 		setCenter(endLoc);
 		if(targetEntity != nullptr) {
+			
 			VECTOR2 aim(targetEntity->getCenterX() - endLoc.x,targetEntity->getCenterY() - endLoc.y);
 			float aimDir = atan2(aim.y,aim.x);
 
 			if(velocity != VECTOR2(0,0)) {
-				setRadians(atan2(velocity.y,velocity.x));
-				Actor::update(frameTime);
+				setRadians(atan2(velocity.y,velocity.x)+PI/2);
+				ActorWithHealthBar::update(frameTime);
 			}
 
 			if(shoot && weaponCooldown <= 0){
 				weaponCooldown  = zombieNS::WEAPON_COOLDOWN;
 				recoilCooldown = zombieNS::RECOIL_TIME;
 
-				targetEntity->damage(10);
+				targetEntity->damage(25);
 
 				animComplete = false;
 				setCurrentFrame(0);
 				//audio->playCue(PISTOL_CUE);
+				if(!targetEntity->getActive())
+					targetEntity = nullptr;
 			}
 			else
-				setRadians(aimDir);
+				setRadians(aimDir+PI/2);
 		}
 		else {
+			vectorTrack(frameTime);
 			VECTOR2 aim(path.getCenterX() - endLoc.x,path.getCenterY() - endLoc.y);
 			float aimDir = atan2(aim.y,aim.x);
 
 			if(velocity != VECTOR2(0,0)) {
-				setRadians(atan2(velocity.y,velocity.x));
-				Actor::update(frameTime);
+				setRadians(atan2(velocity.y,velocity.x)+PI/2);
+				ActorWithHealthBar::update(frameTime);
 			}
+			
 		}
 
 		weaponCooldown -= frameTime;
@@ -75,6 +80,8 @@ void Zombie::update(float frameTime)
 
 		recoilCooldown -= frameTime;
 		if(recoilCooldown < 0)recoilCooldown = 0;
+
+		if(targetEntity != nullptr && !targetEntity->getActive()) shoot = false;
 	}
 
 }
@@ -123,7 +130,11 @@ void Zombie::vectorTrack(float frametime)
 void Zombie::ai(float frameTime, ActorWithHealthBar &t)
 { 
 	if(active) {
-		if(targetEntity != nullptr && !targetEntity->getActive()) {
+		shoot = false;
+		if(targetEntity == nullptr || !targetEntity->getActive()) {
+			targetEntity = &t;
+		}
+		else {
 			VECTOR2 toTarget = t.getCenter() - getCenter();
 			float distSqrdToTarget = D3DXVec2LengthSq(&toTarget);
 
@@ -133,11 +144,10 @@ void Zombie::ai(float frameTime, ActorWithHealthBar &t)
 				return;
 			}
 			else if(distSqrdToTarget < personalChaseDistanceSQRD) {
+				vectorTrack(frameTime);
 				target = true;
 				shoot = false;
-				targetEntity = &t;
 			}
-
 		}
 	}
 	return;

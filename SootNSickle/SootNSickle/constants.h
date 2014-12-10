@@ -45,6 +45,7 @@ const char TURRETBASE_IMAGE[] = "pictures\\stand.png";
 const char FACTORY_IMAGE[] = "pictures\\factory.png";
 const char HOUSE_IMAGE[] = "pictures\\house.png";
 const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
+const char ZOMBIE_IMAGE[] = "pictures\\zombie.png";
 
 //Sound Locations
 const char WAVE_BANK[] = "audio\\Win\\Wave Bank.xwb";
