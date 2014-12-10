@@ -1,12 +1,13 @@
 #pragma once
 
 #include "ActorWithHealthBar.h"
+#include "Waypoint.h"
 
 class SootNSickle;
 
 namespace zombieNS
 {
-	const float SPEED=500;
+	const float SPEED=200;
 	const float LOSE_DISTANCE_SQRD = pow(600,2);
 	const float CHASE_DISTANCE_SQRD = pow(500,2);
 	const float ENGAGE_DISTANCE_SQRD = pow(200,2);
@@ -20,8 +21,9 @@ class Zombie: public ActorWithHealthBar
 {
 public:
 	SootNSickle *game;
-	Actor targetEntity;
-	bool target, shoot;
+	Actor* targetEntity;
+	Waypoint path;
+	WEAPON type;
 	int numBullets;
 	float weaponCooldown;
 	float recoilCooldown;
@@ -29,19 +31,27 @@ public:
 	float personalChaseDistanceSQRD;
 	float personalEngageDistanceSQRD;
 
+	bool target, shoot;
+
 public:
 	Zombie();
 	~Zombie();
 
-	bool initialize(SootNSickle * game, int width, int height, int ncols, TextureManager *textureM);
+	bool initialize(SootNSickle * game, int width, int height, int ncols, TextureManager *textureM, TextureManager* hbTexM);
 
 	void update(float frametime);
 
-	void ai(float time, Actor &t);
+	void ai(float time, ActorWithHealthBar &t);
 
 	void create(VECTOR2 loc);
 
 	bool getHunting() {return target;}
+
+	void nextWaypoint();
+
+	Waypoint* getWaypoint();
+
+	void setWaypoint(Waypoint* wp);
 
 	void vectorTrack(float time);
 	void deltaTrack(float time);

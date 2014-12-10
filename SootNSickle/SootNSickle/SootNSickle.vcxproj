@@ -87,7 +87,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AATurret.cpp" />
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="AGTurret.cpp" />
     <ClCompile Include="AirField(J).cpp" />
     <ClCompile Include="ActorWithHealthBar(J).cpp" />
     <ClCompile Include="audio.cpp" />
@@ -107,6 +109,8 @@
     <ClCompile Include="sootnsickle(JC).cpp" />
     <ClCompile Include="Turret(JC).cpp" />
     <ClCompile Include="Utility(J).cpp" />
+    <ClCompile Include="Waypoint%28C%29.cpp" />
+    <ClCompile Include="WPManager%28C%29.cpp" />
     <ClCompile Include="Zombie%28JC%29.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
@@ -115,8 +119,10 @@
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AATurret.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="ActorWithHealthBar.h" />
+    <ClInclude Include="AGTurret.h" />
     <ClInclude Include="AirField.h" />
     <ClInclude Include="audio.h" />
     <ClInclude Include="Base.h" />
@@ -130,6 +136,8 @@
     <ClInclude Include="gameError.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="House.h" />
+    <ClInclude Include="Waypoint.h" />
+    <ClInclude Include="WPManager.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="image.h" />

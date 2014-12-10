@@ -175,6 +175,9 @@ void SootNSickle::initialize(HWND hwnd)
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
 		if(!airFields[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex,&buildingText))
 				throw GameError(-1*i,"FAILED TO MAKE air field!");
+	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
+		if(!zombies[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex))
+				throw GameError(-1*i,"FAILED TO MAKE zombie!");
 
 	currentState = Level1;
 	level1Load();
@@ -281,6 +284,9 @@ void SootNSickle::levelsUpdate()
 	{
 		turrets[i].update(frameTime);
 	}
+	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
+		zombies[i].update(frameTime);
+
 	capacity = newCapacity;
 	if(population > capacity) population = capacity;
 
@@ -302,6 +308,8 @@ void SootNSickle::levelsUpdate()
 //=============================================================================
 void SootNSickle::ai()
 {
+	/*for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
+	}*/
 }
 
 //=============================================================================
@@ -309,6 +317,11 @@ void SootNSickle::ai()
 //=============================================================================
 void SootNSickle::collisions()
 {
+	VECTOR2 collision;
+	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
+		if(zombies[i].getActive() && zombies[i].collidesWith(*zombies[i].getWaypoint(), collision))
+			zombies[i].nextWaypoint();
+	}
 }
 
 //=============================================================================
@@ -379,6 +392,9 @@ void SootNSickle::levelsRender()
 	for(int i = 0; i < MAX_AIR_FIELDS; i++) {
 		airFields[i].draw(screenLoc);
 	}
+	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
+		zombies[i].draw(screenLoc);
+	}
 
 
 	guiOverlay.draw(VECTOR2(0,0));
@@ -431,10 +447,16 @@ void SootNSickle::level1Load()
 	currentState = Level1;
 	deactivateAll();
 	base.create(getCurrentWorldSize()*0.5);
+	path1.add(VECTOR2(1000,200));
+	path1.add(base.getCenter());
+	Zombie* z = spawnZombie(VECTOR2(GAME_WIDTH*2,GAME_HEIGHT));
+	z->setWaypoint(path1.get());
 	guiLoad();
 
 	spawnMinerals(VECTOR2(100,100),1000);
 	spawnMinerals(VECTOR2(300,500),1000);
+
+	
 
 	addPopulation(10);
 	mineralLevel = 1000;
@@ -597,6 +619,20 @@ Turret* SootNSickle::spawnTurret(VECTOR2 loc)
 		{
 			turrets[i].create(loc, 0);
 			return &turrets[i];
+		}
+	}
+
+	return nullptr;
+}
+
+Zombie* SootNSickle::spawnZombie(VECTOR2 loc)
+{
+	for(int i = 0; i < MAX_MINERALS; i++)
+	{
+		if(!zombies[i].getActive())
+		{
+			zombies[i].create(loc);
+			return &zombies[i];
 		}
 	}
 
