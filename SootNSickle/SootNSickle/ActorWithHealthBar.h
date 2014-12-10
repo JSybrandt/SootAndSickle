@@ -19,6 +19,7 @@ public:
 	void heal(float ammount);
 	void setMaxHealth(float val);
 	float getMaxHealth(){return maxHealth;};
+	void  setHealth(float n){health = min(maxHealth,max(0,n)); healthBar.setCurrentValue(health);}
 	void update(float frameTime);
 	bool isHealthBarVisible;
 private:

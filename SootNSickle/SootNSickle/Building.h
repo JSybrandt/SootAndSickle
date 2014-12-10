@@ -34,7 +34,11 @@ public:
 
 	float getEffectiveness(){return (getStaff()/((float)getCapacity()));}
 
-	virtual void upgrade(){level++;setMaxHealth(getMaxHealth()*1.2);setHealth(getMaxHealth());}
+	virtual void upgrade(){
+		level++;
+		setMaxHealth(getMaxHealth()*1.2);
+		setHealth(getMaxHealth());
+	}
 
 	void onDeath();
 };
