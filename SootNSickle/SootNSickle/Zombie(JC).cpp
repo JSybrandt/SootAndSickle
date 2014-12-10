@@ -13,6 +13,7 @@ Zombie::Zombie():ActorWithHealthBar(){
 	target = false;
 	shoot = false;
 	type = GROUND;
+	checked = false;
 	targetEntity = nullptr;
 }
 Zombie::~Zombie(){}
@@ -29,39 +30,55 @@ void Zombie::update(float frameTime)
 {
 	if(getActive())
 	{
+		ActorWithHealthBar::update(frameTime);
 		if(health <= 0) {
 			setActive(false);
 			//audio->playCue(KILL1_CUE);
 		}
-		
 
+		checked = false;
 		VECTOR2 endLoc = getCenter()+(getVelocity()*zombieNS::SPEED*frameTime);
 		//endLoc = game->getRealEndLoc(getCenter(),endLoc);
 		setCenter(endLoc);
 		if(targetEntity != nullptr) {
-			
-			VECTOR2 aim(targetEntity->getCenterX() - endLoc.x,targetEntity->getCenterY() - endLoc.y);
-			float aimDir = atan2(aim.y,aim.x);
+			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
+			float dirtoTarget = atan2(toTarget.y,toTarget.x);
+			float distSqrdtoTarget = D3DXVec2LengthSq(&toTarget);		
 
-			if(velocity != VECTOR2(0,0)) {
-				setRadians(atan2(velocity.y,velocity.x)+PI/2);
-				ActorWithHealthBar::update(frameTime);
+			if(distSqrdtoTarget < zombieNS::ENGAGE_DISTANCE_SQRD) {
+				setVelocity(VECTOR2(0,0));
+				if(weaponCooldown <= 0){
+					weaponCooldown  = zombieNS::WEAPON_COOLDOWN;
+					recoilCooldown = zombieNS::RECOIL_TIME;
+
+					targetEntity->damage(25);
+
+					animComplete = false;
+					setCurrentFrame(0);
+					//audio->playCue(PISTOL_CUE);
+					if(!targetEntity->getActive())
+						targetEntity = nullptr;
+				}
+			}
+			else if(distSqrdtoTarget < zombieNS::CHASE_DISTANCE_SQRD) {
+				vectorTrack(frameTime);
+				VECTOR2 aim(targetEntity->getCenterX() - endLoc.x,targetEntity->getCenterY() - endLoc.y);
+				float aimDir = atan2(aim.y,aim.x);
+				
+				if(velocity != VECTOR2(0,0)) {
+					setRadians(atan2(velocity.y,velocity.x));
+					ActorWithHealthBar::update(frameTime);
+				}
+				else
+					setRadians(aimDir);
+
 			}
 
-			if(shoot && weaponCooldown <= 0){
-				weaponCooldown  = zombieNS::WEAPON_COOLDOWN;
-				recoilCooldown = zombieNS::RECOIL_TIME;
-
-				targetEntity->damage(25);
-
-				animComplete = false;
-				setCurrentFrame(0);
-				//audio->playCue(PISTOL_CUE);
-				if(!targetEntity->getActive())
-					targetEntity = nullptr;
-			}
-			else
-				setRadians(aimDir+PI/2);
+			//else {
+			//	VECTOR2 aim(targetEntity->getCenterX() - endLoc.x,targetEntity->getCenterY() - endLoc.y);
+			//	float aimDir = atan2(aim.y,aim.x);
+			//	setRadians(aimDir+PI/2);
+			//}
 		}
 		else {
 			vectorTrack(frameTime);
@@ -69,10 +86,10 @@ void Zombie::update(float frameTime)
 			float aimDir = atan2(aim.y,aim.x);
 
 			if(velocity != VECTOR2(0,0)) {
-				setRadians(atan2(velocity.y,velocity.x)+PI/2);
+				setRadians(atan2(velocity.y,velocity.x));
 				ActorWithHealthBar::update(frameTime);
 			}
-			
+
 		}
 
 		weaponCooldown -= frameTime;
@@ -129,27 +146,34 @@ void Zombie::vectorTrack(float frametime)
 
 void Zombie::ai(float frameTime, ActorWithHealthBar &t)
 { 
-	if(active) {
-		shoot = false;
-		if(targetEntity == nullptr || !targetEntity->getActive()) {
-			targetEntity = &t;
-		}
-		else {
-			VECTOR2 toTarget = t.getCenter() - getCenter();
-			float distSqrdToTarget = D3DXVec2LengthSq(&toTarget);
+	if(active && t.getActive() && !checked) {
+		float rad = 0;
+		if(targetEntity != nullptr && target) { //If previous target is still active and within range
+			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
+			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
 
-			if(distSqrdToTarget < personalEngageDistanceSQRD) {
-				shoot = true;
-				setVelocity(VECTOR2(0,0));								//STOP AND POKE
-				return;
-			}
-			else if(distSqrdToTarget < personalChaseDistanceSQRD) {
-				vectorTrack(frameTime);
-				target = true;
+			if(distSqrdToOldTarget > personalEngageDistanceSQRD || !targetEntity->getActive()) {
 				shoot = false;
+				target = false;
+			}
+			else {
+				checked = true;
+				return;							//No need to switch targets, continue firing
+
+			}
+		}
+		if(!target) {
+			VECTOR2 toTarget = t.getCenter() - getCenter();
+			float distSqrdToNewTarget = D3DXVec2LengthSq(&toTarget);
+
+			if(distSqrdToNewTarget < personalChaseDistanceSQRD) {
+				targetEntity = &t;
+				checked = true;
+				return;
 			}
 		}
 	}
+
 	return;
 }
 
@@ -158,6 +182,8 @@ void Zombie::create(VECTOR2 loc)
 	target = false;
 	shoot = false;
 	velocity = VECTOR2(0,0);
+	targetEntity = nullptr;
+
 	setActive(true);
 	setCenter(loc);
 	setHealth(100);
@@ -172,7 +198,7 @@ void Zombie::nextWaypoint() {
 }
 
 Waypoint* Zombie::getWaypoint() {
-		return &path;
+	return &path;
 }
 
 void Zombie::setWaypoint(Waypoint* wp) {

@@ -63,10 +63,10 @@ void SootNSickle::initialize(HWND hwnd)
 
 	if(!mainMenuButtonTex.initialize(graphics,MAIN_MENU_BUTTON_IMAGE))
 		throw GameError(1,"Failed to init menu button tex");
-	
+
 	if(!mainMenuBackground.initialize(graphics,0,0,0,&mainMenuBackgroundTex))
 		throw GameError(1,"failed to make menu background");
-	
+
 	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
 	{
 		if(!mainMenuOptions[i].initialize(graphics,0,120,1,&mainMenuButtonTex))
@@ -79,12 +79,12 @@ void SootNSickle::initialize(HWND hwnd)
 	//
 	if(!backgroundTex.initialize(graphics,BACKGROUND_IMAGE))
 		throw GameError(1,"Failed to init background tex");
-	
+
 
 	if(!particleTex.initialize(graphics,PARTICLE_IMAGE))
 		throw GameError(6,"Failed to init particle tex");
-	
-	
+
+
 	if(!buttonTex.initialize(graphics,BUTTON_IMAGE))
 		throw GameError(2,"Failed to init button text");
 
@@ -174,7 +174,7 @@ void SootNSickle::initialize(HWND hwnd)
 		if(!minerals[i].initialize(this,0,0,0,&mineralTex,&buildingText))
 			throw GameError(-1*i,"FAILED TO MAKE mineral!");
 	}
-	
+
 	for(int i = 0 ; i < MAX_EXTRACTORS; i++)
 	{
 		if(!extractors[i].initialize(this,0,0,0,&extractorTex,&healthBarTex,&buildingText))
@@ -192,15 +192,15 @@ void SootNSickle::initialize(HWND hwnd)
 	}
 	for(int i = 0; i < MAX_HOUSES; i++){
 		if(!houses[i].initialize(this,0,0,0,&houseTex,&healthBarTex,&buildingText))
-				throw GameError(-1*i,"FAILED TO MAKE house!");
+			throw GameError(-1*i,"FAILED TO MAKE house!");
 	}
 
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
 		if(!airFields[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex,&buildingText))
-				throw GameError(-1*i,"FAILED TO MAKE air field!");
+			throw GameError(-1*i,"FAILED TO MAKE air field!");
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
 		if(!zombies[i].initialize(this,0,0,0,&zombieTex,&healthBarTex))
-				throw GameError(-1*i,"FAILED TO MAKE zombie!");
+			throw GameError(-1*i,"FAILED TO MAKE zombie!");
 
 	menuLoad();
 
@@ -220,7 +220,7 @@ void SootNSickle::update()
 	default:
 		levelsUpdate();
 	}
-	
+
 }
 
 void SootNSickle::menuUpdate(bool reset)
@@ -292,15 +292,15 @@ void SootNSickle::levelsUpdate()
 	D3DXVec2Normalize(&in,&in);
 	in*=SCREEN_SPEED*frameTime;
 	screenLoc += in;
-	
+
 	updateScreen();
-	
+
 	int newCapacity = 0;
 
 	base.update(frameTime);
 	newCapacity += BaseNS::HOUSING;
 
-	
+
 	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
 	{
 		powerSupplies[i].update(frameTime);
@@ -359,17 +359,17 @@ void SootNSickle::ai()
 {
 	VECTOR2 collision;
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
-		if(zombies[i].getActive() && zombies[i].collidesWith(base, collision))
+		if(zombies[i].getActive())
 			zombies[i].ai(frameTime, base);
 		for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
-			if(turrets[j].getActive() && zombies[i].collidesWith(turrets[j], collision))
+			if(turrets[j].getActive())
 				zombies[i].ai(frameTime, turrets[j]);
 		}
 	}
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
 		if(turrets[i].getActive())
 			for(int j = 0; j < MAX_GROUND_ENEMIES; j++)
-				if(zombies[j].getActive() && turrets[i].collidesWith(zombies[j], collision))
+				if(zombies[j].getActive())
 					turrets[i].ai(frameTime, zombies[j]);
 	}
 }
@@ -527,17 +527,20 @@ void SootNSickle::level1Load()
 	base.create(getCurrentWorldSize()*0.5);
 	path1.add(VECTOR2(1000,200));
 	path1.add(base.getCenter());
-	Zombie* z = spawnZombie(VECTOR2(GAME_WIDTH*2,GAME_HEIGHT));
-	z->setWaypoint(path1.get());
-	guiLoad();
+	for(int i = 0; i < 10; i++) {
+		Zombie* z = spawnZombie(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
+		z->setWaypoint(path1.get());
+	}
 
-	spawnMinerals(VECTOR2(100,100),1000);
-	spawnMinerals(VECTOR2(300,500),1000);
+guiLoad();
 
-	
+spawnMinerals(VECTOR2(100,100),1000);
+spawnMinerals(VECTOR2(300,500),1000);
 
-	addPopulation(10);
-	mineralLevel = 1000;
+
+
+addPopulation(10);
+mineralLevel = 1000;
 }
 
 void SootNSickle::level2Load()
@@ -545,7 +548,7 @@ void SootNSickle::level2Load()
 	currentState = Level2;
 	deactivateAll();
 
-	
+
 }
 
 void SootNSickle::level3Load()
@@ -553,7 +556,7 @@ void SootNSickle::level3Load()
 	currentState = Level3;
 	deactivateAll();
 
-	
+
 }
 
 void SootNSickle::feelingLuckyLoad()
@@ -774,7 +777,7 @@ void SootNSickle::deactivateAll()
 
 void SootNSickle::onBaseDeath()
 {
-	
+
 }
 void SootNSickle::raiseAllButtons(){
 	for(int i = 0; i < MAX_BUTTONS;i++)
@@ -795,7 +798,7 @@ void SootNSickle::checkClick()
 {
 	if(cursorSelection == ButtonNS::POWER_SUPPLY_SELECTION && mineralLevel > POWER_SUPPLY_COST)
 	{
-		
+
 		PowerSupply * p = spawnPowerSupply(getMouseInWorld());
 		if(!isBuildingLocationLegal(p)) p->setActive(false);
 		else
@@ -1006,7 +1009,7 @@ void SootNSickle::refreshPower()
 				powerSupplies[i].setPower(true);
 				s.push(&powerSupplies[i]);
 			}
-				
+
 			else
 				powerSupplies[i].setPower(false);
 		}
@@ -1024,10 +1027,10 @@ void SootNSickle::refreshPower()
 				if(powerSupplies[i].getActive()
 					&&!powerSupplies[i].getPower()
 					&&currPwrSupp->getPowerField().collidesWith(powerSupplies[i],v))
-					{
-						powerSupplies[i].setPower(true);
-						s.push(&powerSupplies[i]);
-					}
+				{
+					powerSupplies[i].setPower(true);
+					s.push(&powerSupplies[i]);
+				}
 			}
 			for(int k = 0 ; k < MAX_EXTRACTORS; k++)
 			{
@@ -1070,7 +1073,7 @@ MineralPatch* SootNSickle::findMineableMinerals(Extractor * caller)
 			if(D3DXVec2LengthSq(&dist) < ExtractorNS::MINING_RANGE*ExtractorNS::MINING_RANGE)
 				return &minerals[i];
 		}
-			
+
 	}
 	return nullptr;
 }
