@@ -105,6 +105,18 @@
     <ClCompile Include="AirField(J).cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
+    <ClCompile Include="AGTurret.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="AATurret.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Waypoint%28C%29.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="WPManager%28C%29.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -189,6 +201,18 @@
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
     <ClInclude Include="AirField.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="AATurret.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="AGTurret.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Waypoint.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="WPManager.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
   </ItemGroup>

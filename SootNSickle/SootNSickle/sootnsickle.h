@@ -28,6 +28,7 @@ using std::string;
 #include "Factory.h"
 #include "House.h"
 #include "AirField.h"
+#include "WPManager.h"
 
 namespace SootNSickleNS
 {
@@ -121,6 +122,8 @@ private:
 	Factory factories[MAX_FACTORIES];
 	House houses[MAX_HOUSES];
 	AirField airFields[MAX_AIR_FIELDS];
+	WPManager path1;
+	WPManager path2;
 
 	VECTOR2 screenLoc;
 
@@ -171,6 +174,7 @@ public:
 	Factory* spawnFactory(VECTOR2 loc);
 	House* spawnHouse(VECTOR2 loc);
 	AirField* spawnAirField(VECTOR2 loc);
+	Zombie* spawnZombie(VECTOR2 loc);
 
 	void menuLoad();
 	void menuUpdate(bool reset = false);

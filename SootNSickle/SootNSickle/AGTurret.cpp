@@ -1,16 +1,16 @@
-#include "Turret.h"
+#include "AGTurret.h"
 
 #include "SootNSickle.h"
 
-using namespace turretNS;
+using namespace agturretNS;
 
-Turret::Turret(): Building() {
+AGTurret::AGTurret(): Turret() {
 	radius = TURRET_RADIUS;
 	collisionType = CIRCLE;
 	base.setRadians(PI/4);
 	checked = false;
 	target = false;
-	personalEngageDistanceSQRD = turretNS::ENGAGE_DISTANCE_SQRD;
+	personalEngageDistanceSQRD = ENGAGE_DISTANCE_SQRD;
 	targetEntity = nullptr;
 	active = false;
 	weaponCooldown = 0;
@@ -18,15 +18,15 @@ Turret::Turret(): Building() {
 	setCapacity(CAPACITY);
 }
 
-bool Turret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM, TextDX * text) {
+bool AGTurret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *AGTurretTM, TextureManager *baseTM, TextureManager* hbTexM, TextDX * text) {
 	game = g;
 	bool result = true;
-	result = result && Building::initialize(g,width,height,ncols,turretTM,hbTexM,text);
+	result = result && Building::initialize(g,width,height,ncols,AGTurretTM,hbTexM,text);
 	result = result && base.initialize(g,BASE_WIDTH,BASE_HEIGHT,0,baseTM);
 	return result;
 }
 
-void Turret::update(float frametime) {
+void AGTurret::update(float frametime) {
 	if(getActive())
 	{
 		Building::update(frametime);
@@ -47,7 +47,7 @@ void Turret::update(float frametime) {
 				float radians = getRadians();
 
 				//if the player is close and in view
-				if(distSqrdtoTarget < turretNS::ENGAGE_DISTANCE_SQRD)
+				if(distSqrdtoTarget < ENGAGE_DISTANCE_SQRD)
 				{
 
 					//convert to principle arguments
@@ -59,7 +59,7 @@ void Turret::update(float frametime) {
 					diff = toPincipleArgument(diff);
 
 					//if we got um
-					if(abs(diff) <= turretNS::ROT_EPSILON)
+					if(abs(diff) <= ROT_EPSILON)
 					{
 						setRadians(dirtoTarget);
 						radians = getRadians();
@@ -69,11 +69,11 @@ void Turret::update(float frametime) {
 					{
 						if (diff < 0 )
 						{
-							rotVel = -turretNS::ROTATION_SPEED;
+							rotVel = -ROTATION_SPEED;
 						}
 						else if (diff > 0)
 						{
-							rotVel = turretNS::ROTATION_SPEED;
+							rotVel = ROTATION_SPEED;
 						}
 						setRadians(radians+ rotVel*frametime);
 					}
@@ -87,10 +87,10 @@ void Turret::update(float frametime) {
 						//game->spawnBullet(v1,radians,graphicsNS::RED,false);
 						//game->spawnBullet(v2,radians,graphicsNS::RED,false);
 						animComplete = false;
-						targetEntity->damage(25);
+						//targetEntity->doDamage(25);
 						setCurrentFrame(0);
-						//audio->playCue(TURRET_CUE);
-						weaponCooldown = turretNS::FIRE_RATE;
+						//audio->playCue(AGTurret_CUE);
+						weaponCooldown = FIRE_RATE;
 					}
 				}
 			}
@@ -99,12 +99,12 @@ void Turret::update(float frametime) {
 				float radians = getRadians();
 				if(radians > maxDir)
 				{
-					rotVel = -turretNS::ROTATION_SPEED;
+					rotVel = -ROTATION_SPEED;
 				}
 				if(radians < minDir)
 				{
 					setRadians(minDir);
-					rotVel = turretNS::ROTATION_SPEED;
+					rotVel = ROTATION_SPEED;
 				}
 				setRadians(radians+ rotVel*frametime);
 			}
@@ -118,7 +118,7 @@ void Turret::update(float frametime) {
 
 }
 
-void Turret::draw(VECTOR2 screenLoc) {
+void AGTurret::draw(VECTOR2 screenLoc) {
 	if(getActive())
 	{
 
@@ -129,12 +129,12 @@ void Turret::draw(VECTOR2 screenLoc) {
 	}
 }
 
-void Turret::create(VECTOR2 loc, float dir) {
+void AGTurret::create(VECTOR2 loc, float dir) {
 	setActive(true);
 	setRadians(dir);
-	minDir = dir - turretNS::ROTATION_WIDTH;
-	maxDir = dir + turretNS::ROTATION_WIDTH;
-	rotVel = turretNS::ROTATION_SPEED;
+	minDir = dir - ROTATION_WIDTH;
+	maxDir = dir + ROTATION_WIDTH;
+	rotVel = ROTATION_SPEED;
 	setCenter(loc);
 	base.setCenter(loc);
 	weaponCooldown = 0;
@@ -142,7 +142,7 @@ void Turret::create(VECTOR2 loc, float dir) {
 	colorFilter = graphicsNS::WHITE;
 }
 
-void Turret::ai(float frameTime, Actor &t) {
+void AGTurret::ai(float frameTime, Actor &t) {
 	if(active && t.getActive() && !checked) {
 		float rad = 0;
 		if(targetEntity != nullptr && target) { //If previous target is still active and within range
@@ -173,7 +173,7 @@ void Turret::ai(float frameTime, Actor &t) {
 	return;
 }
 
-void Turret::hit() {
+void AGTurret::hit() {
 	rebootCooldown = REBOOT_TIME;
 	weaponCooldown = FIRE_RATE;
 	colorFilter = graphicsNS::GRAY;

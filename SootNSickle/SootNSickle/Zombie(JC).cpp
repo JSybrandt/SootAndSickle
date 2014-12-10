@@ -8,16 +8,20 @@ Zombie::Zombie():ActorWithHealthBar(){
 	edge.right = 12;
 	collisionType = COLLISION_TYPE::BOX;
 	colorFilter = zombieNS::COLOR;
+	health = 100;
 	setActive(false);
 	target = false;
 	shoot = false;
+	type = GROUND;
+	targetEntity = nullptr;
 }
 Zombie::~Zombie(){}
 
-bool Zombie::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *textureM)
-{
+bool Zombie::initialize(SootNSickle * g, int width, int height, int ncols,TextureManager *turretTM, TextureManager* hbTexM) {
 	game = g;
-	return Actor::initialize(game,width,height,ncols,textureM);
+	bool result = true;
+	result = result && ActorWithHealthBar::initialize(g,width,height,ncols,turretTM,hbTexM);
+	return result;
 }
 
 
@@ -29,35 +33,42 @@ void Zombie::update(float frameTime)
 			setActive(false);
 			//audio->playCue(KILL1_CUE);
 		}
+		vectorTrack(frameTime);
 
 		VECTOR2 endLoc = getCenter()+(getVelocity()*zombieNS::SPEED*frameTime);
 		//endLoc = game->getRealEndLoc(getCenter(),endLoc);
 		setCenter(endLoc);
-		VECTOR2 aim(targetEntity.getCenterX() - endLoc.x,targetEntity.getCenterY() - endLoc.y);
-		float aimDir = atan2(aim.y,aim.x);
+		if(targetEntity != nullptr) {
+			VECTOR2 aim(targetEntity->getCenterX() - endLoc.x,targetEntity->getCenterY() - endLoc.y);
+			float aimDir = atan2(aim.y,aim.x);
 
-		if(velocity != VECTOR2(0,0)) {
-			setRadians(atan2(velocity.y,velocity.x));
-			Actor::update(frameTime);
+			if(velocity != VECTOR2(0,0)) {
+				setRadians(atan2(velocity.y,velocity.x));
+				Actor::update(frameTime);
+			}
+
+			if(shoot && weaponCooldown <= 0){
+				weaponCooldown  = zombieNS::WEAPON_COOLDOWN;
+				recoilCooldown = zombieNS::RECOIL_TIME;
+
+				targetEntity->damage(10);
+
+				animComplete = false;
+				setCurrentFrame(0);
+				//audio->playCue(PISTOL_CUE);
+			}
+			else
+				setRadians(aimDir);
 		}
+		else {
+			VECTOR2 aim(path.getCenterX() - endLoc.x,path.getCenterY() - endLoc.y);
+			float aimDir = atan2(aim.y,aim.x);
 
-		if(shoot && weaponCooldown <= 0){
-			//because we dont want to use the angle form player center
-			//VECTOR2 bulletLoc = getCenter()+utilityNS::rotateVector(zombieNS::bulletDisplacement,aimDir); //
-			//VECTOR2 bulletPath = jiggleVector(game->getPlayerLoc()) - bulletLoc;
-			//float bulletAngle = atan2(bulletPath.y,bulletPath.x);
-
-			//game->spawnBullet(bulletLoc,bulletAngle,getColorFilter(),false);
-			//setRadians(bulletAngle);
-			//weaponCooldown  = guardNS::WEAPON_COOLDOWN;
-			//recoilCooldown = guardNS::RECOIL_TIME;
-
-			animComplete = false;
-			setCurrentFrame(0);
-			//audio->playCue(PISTOL_CUE);
+			if(velocity != VECTOR2(0,0)) {
+				setRadians(atan2(velocity.y,velocity.x));
+				Actor::update(frameTime);
+			}
 		}
-		else
-			setRadians(aimDir);
 
 		weaponCooldown -= frameTime;
 		if(weaponCooldown < 0) weaponCooldown =0;
@@ -70,7 +81,7 @@ void Zombie::update(float frameTime)
 
 void Zombie::evade(float frameTime)
 {
-	VECTOR2 disp = targetEntity.getCenter()-getCenter();
+	VECTOR2 disp = targetEntity->getCenter()-getCenter();
 	D3DXVec2Normalize(&disp,&disp);
 	setVelocity(-disp);
 }
@@ -80,14 +91,14 @@ void Zombie::deltaTrack(float frametime)
 
 	VECTOR2 v(0,0);
 
-	if(targetEntity.getCenterX() < getCenterX())
+	if(targetEntity->getCenterX() < getCenterX())
 		v.x = -1;
-	if(targetEntity.getCenterX() > getCenterX())
+	if(targetEntity->getCenterX() > getCenterX())
 		v.x = 1;
 
-	if(targetEntity.getCenterY() < getCenterY())
+	if(targetEntity->getCenterY() < getCenterY())
 		v.y = -1;
-	if(targetEntity.getCenterY() > getCenterY())
+	if(targetEntity->getCenterY() > getCenterY())
 		v.y = 1;
 
 	D3DXVec2Normalize(&v, &v);
@@ -96,38 +107,38 @@ void Zombie::deltaTrack(float frametime)
 }
 void Zombie::vectorTrack(float frametime)
 {
-	VECTOR2 disp = targetEntity.getCenter()-getCenter();
-	D3DXVec2Normalize(&disp,&disp);
-	setVelocity(disp);
+	if(targetEntity != nullptr && targetEntity->getActive()) {
+		VECTOR2 disp = targetEntity->getCenter()-getCenter();
+		D3DXVec2Normalize(&disp,&disp);
+		setVelocity(disp);
+	}
+	else {
+		VECTOR2 disp = path.getCenter()-getCenter();
+		D3DXVec2Normalize(&disp,&disp);
+		setVelocity(disp);
+	}
+
 }
 
-void Zombie::ai(float time, Actor &t)
+void Zombie::ai(float frameTime, ActorWithHealthBar &t)
 { 
 	if(active) {
-		VECTOR2 toPlayer = targetEntity.getCenter() - getCenter();
-		float distSqrdToPlayer = D3DXVec2LengthSq(&toPlayer);
+		if(targetEntity != nullptr && !targetEntity->getActive()) {
+			VECTOR2 toTarget = t.getCenter() - getCenter();
+			float distSqrdToTarget = D3DXVec2LengthSq(&toTarget);
 
-		if(distSqrdToPlayer > zombieNS::LOSE_DISTANCE_SQRD) {
-			target = false;
-			shoot = false;
-			setVelocity(VECTOR2(0,0));
-		}
-		else if(distSqrdToPlayer < personalChaseDistanceSQRD) {
-			target = true;
-			//shoot = false;
-		}
+			if(distSqrdToTarget < personalEngageDistanceSQRD) {
+				shoot = true;
+				setVelocity(VECTOR2(0,0));								//STOP AND POKE
+				return;
+			}
+			else if(distSqrdToTarget < personalChaseDistanceSQRD) {
+				target = true;
+				shoot = false;
+				targetEntity = &t;
+			}
 
-		if(target && distSqrdToPlayer < zombieNS::LOSE_DISTANCE_SQRD && distSqrdToPlayer > personalEngageDistanceSQRD) {
-			shoot = true;
-			targetEntity = t;
-			vectorTrack(time);
-			//setVelocity(VECTOR2(0,0));
 		}
-		else if(target && distSqrdToPlayer < zombieNS::LOSE_DISTANCE_SQRD) {
-			shoot = true;
-			setVelocity(VECTOR2(0,0));
-		}
-		
 	}
 	return;
 }
@@ -141,7 +152,19 @@ void Zombie::create(VECTOR2 loc)
 	setCenter(loc);
 	setHealth(100);
 
+	personalChaseDistanceSQRD = /*(rand01()+0.5) *  */zombieNS::CHASE_DISTANCE_SQRD;
+	personalEngageDistanceSQRD =/* (rand01()+0.5) * */zombieNS::ENGAGE_DISTANCE_SQRD;
+}
 
-	personalChaseDistanceSQRD = (rand01()+0.5) * zombieNS::CHASE_DISTANCE_SQRD;
-	personalEngageDistanceSQRD = (rand01()+0.5) * zombieNS::ENGAGE_DISTANCE_SQRD;
+void Zombie::nextWaypoint() {
+	if(path.getChild() != nullptr)
+		setWaypoint(path.getChild());
+}
+
+Waypoint* Zombie::getWaypoint() {
+		return &path;
+}
+
+void Zombie::setWaypoint(Waypoint* wp) {
+	path = *wp;
 }
