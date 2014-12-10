@@ -17,11 +17,12 @@ public:
 	void damage(float ammount);
 	void heal(float ammount);
 	void setMaxHealth(float val);
+	float getMaxHealth(){return maxHealth;};
 	void update(float frameTime);
 	bool isHealthBarVisible;
 private:
 	HealthBar healthBar;
-	float maxHeath;
+	float maxHealth;
 	virtual void onDeath(){};
 protected:
 	SootNSickle* game;

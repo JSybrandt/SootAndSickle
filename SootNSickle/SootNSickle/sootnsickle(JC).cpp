@@ -40,6 +40,7 @@ SootNSickle::SootNSickle()
 	population = 0;
 	idlePopulation = 0;
 	capacity = 0;
+	upgradePoints = 0;
 }
 
 //=============================================================================
@@ -234,24 +235,37 @@ void SootNSickle::menuUpdate(bool reset)
 	if(selection < 0) selection = MAIN_MENU_OPTION_COUNT-1;
 	if(selection >= MAIN_MENU_OPTION_COUNT) selection = 0;
 
+	int choice = -1;
+
 	if(input->wasKeyPressed(VK_RETURN))
 	{
-		if(selection == 0)
-			level1Load();
-		else if (selection == 3)
-			exitGame();
+		choice = selection;
 	}
 
 	VECTOR2 initPosit(866,313);
 	VECTOR2 verticalDisp(0,120);
-	VECTOR2 selectedDisp(-75,0);
+	VECTOR2 selectedDisp(-50,0);
 	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
 	{
+		if(input->getMouseX()> mainMenuOptions[i].getX() && input->getMouseX() < mainMenuOptions[i].getX()+mainMenuOptions[i].getWidth()
+			&&input->getMouseY()> mainMenuOptions[i].getY() && input->getMouseY() < mainMenuOptions[i].getY()+mainMenuOptions[i].getHeight())
+		{
+			selection = i;
+			if(input->getMouseLButton())
+				choice = i;
+		}
+
 		VECTOR2 currLoc = initPosit + i*verticalDisp;
 		if(i==selection) currLoc+= selectedDisp;
 		mainMenuOptions[i].setX(currLoc.x);
 		mainMenuOptions[i].setY(currLoc.y);
+
 	}
+
+	if(choice == 0)
+		level1Load();
+	else if (choice == 3)
+		exitGame();
 
 }
 
@@ -263,7 +277,9 @@ void SootNSickle::levelsUpdate()
 	}
 
 	if(input->getMouseRButton())
+	{
 		raiseAllButtons();
+	}
 
 	if(input->wasKeyPressed(controls.pause))
 	{
@@ -476,8 +492,13 @@ void SootNSickle::levelsRender()
 		cursor.draw(screenLoc);
 	}
 
-	infoText.print(std::to_string((int)mineralLevel),20,20);
-	infoText.print(std::to_string(idlePopulation) + "/" + std::to_string(population)+ "/" + std::to_string(capacity),100,20);
+	infoText.print("MINERALS",20,5);
+	infoText.print("IDLE/TOTAL/MAX",150,5);
+	infoText.print("UPGRADE",400,5);
+
+	infoText.print(std::to_string((int)mineralLevel),20,25);
+	infoText.print(std::to_string(idlePopulation) + "/" + std::to_string(population)+ "/" + std::to_string(capacity),150,25);
+	infoText.print(std::to_string((int)upgradePoints),400,25);
 }
 
 //=============================================================================
@@ -535,8 +556,9 @@ void SootNSickle::level1Load()
 	spawnMinerals(VECTOR2(300,500),1000);
 
 	
-
+	capacity = 25;
 	addPopulation(10);
+
 	mineralLevel = 1000;
 }
 
@@ -566,8 +588,8 @@ void SootNSickle::feelingLuckyLoad()
 void SootNSickle::guiLoad()
 {
 	int type = 0;
-	for(float y = GAME_HEIGHT*0.8;y<GAME_HEIGHT-ButtonNS::HEIGHT;y+=ButtonNS::HEIGHT+10)
-		for(float x = GAME_WIDTH*0.8;x<GAME_WIDTH-ButtonNS::WIDTH;x+=ButtonNS::WIDTH+10)
+	for(float y = GAME_HEIGHT*0.75;y<GAME_HEIGHT-ButtonNS::HEIGHT;y+=ButtonNS::HEIGHT+10)
+		for(float x = GAME_WIDTH*0.85;x<GAME_WIDTH-ButtonNS::WIDTH;x+=ButtonNS::WIDTH+10)
 		{
 			spawnButton(VECTOR2(x,y),(ButtonNS::ButtonType)type);
 			type++;
@@ -858,6 +880,10 @@ void SootNSickle::checkClick()
 	{
 		attemptToSellBuilding();
 	}
+	else if(cursorSelection == ButtonNS::UPGRADE_SELECTION && upgradePoints > 1)
+	{
+		attemptToUpgradeBuilding();
+	}
 }
 
 bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
@@ -977,6 +1003,88 @@ void SootNSickle::attemptToSellBuilding()
 		}
 	}
 	refreshPower();
+}
+
+void SootNSickle::attemptToUpgradeBuilding()
+{
+	VECTOR2 disp;
+	VECTOR2 mouse = getMouseInWorld();
+
+	disp = mouse - base.getCenter();
+	if(D3DXVec2Length(&disp) < base.getRadius())
+	{
+		upgradePoints-=1;
+		base.upgrade();
+	}
+
+	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+	{
+		if(powerSupplies[i].getActive())
+		{
+			disp = mouse - powerSupplies[i].getCenter();
+			if(D3DXVec2Length(&disp) < powerSupplies[i].getRadius())
+			{
+				upgradePoints-=1;
+				powerSupplies[i].upgrade();
+			}
+		}
+	}
+	for(int i = 0; i < MAX_EXTRACTORS;i++)
+	{
+		if(extractors[i].getActive())
+		{
+			disp = mouse - extractors[i].getCenter();
+			if(D3DXVec2Length(&disp) < extractors[i].getRadius())
+			{
+				upgradePoints-=1;
+				extractors[i].upgrade();
+			}
+		}
+	}
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		if(turrets[i].getActive())
+		{
+			disp = mouse - turrets[i].getCenter();
+			if(D3DXVec2Length(&disp) < turrets[i].getRadius())
+			{
+				upgradePoints-=1;
+				turrets[i].upgrade();
+			}
+		}
+	}
+	for(int i = 0; i < MAX_FACTORIES; i++) {
+		if(factories[i].getActive())
+		{
+			disp = mouse - factories[i].getCenter();
+			if(D3DXVec2Length(&disp) < factories[i].getRadius())
+			{
+				upgradePoints-=1;
+				factories[i].upgrade();
+			}
+		}
+	}
+	for(int i = 0; i < MAX_HOUSES; i++){
+		if(houses[i].getActive())
+		{
+			disp = mouse - houses[i].getCenter();
+			if(D3DXVec2Length(&disp) < houses[i].getRadius())
+			{
+				upgradePoints-=1;
+				houses[i].upgrade();
+			}
+		}
+	}
+	for(int i = 0; i < MAX_AIR_FIELDS; i++){
+		if(airFields[i].getActive())
+		{
+			disp = mouse - airFields[i].getCenter();
+			if(D3DXVec2Length(&disp) < airFields[i].getRadius())
+			{
+				upgradePoints-=1;
+				airFields[i].upgrade();
+			}
+		}
+	}
 }
 
 void SootNSickle::refreshPower()

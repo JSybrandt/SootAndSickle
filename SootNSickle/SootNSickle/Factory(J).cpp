@@ -8,7 +8,7 @@ void Factory::update(float frameTime)
 	{
 		Building::update(frameTime);
 
-		
+		game->upgradePoints+=(frameTime/FactoryNS::SECONDS_PER_POINT)*getEffectiveness();
 		//TODO:link into stuff
 	}
 }

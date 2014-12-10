@@ -24,6 +24,7 @@ namespace ButtonNS
 		HOUSE_SELECTION,
 		AIR_FIELD_SELECTION,
 		SELL_SELECTION,
+		UPGRADE_SELECTION,
 		SIZE//must be last
 	};
 

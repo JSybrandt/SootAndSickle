@@ -16,6 +16,7 @@ Turret::Turret(): Building() {
 	weaponCooldown = 0;
 	rebootCooldown = 0;
 	setCapacity(CAPACITY);
+	setMaxHealth(HEALTH);
 }
 
 bool Turret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM, TextDX * text) {
