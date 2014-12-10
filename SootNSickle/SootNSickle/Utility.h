@@ -8,6 +8,7 @@ namespace utilityNS{
 	VECTOR2 rotateVector(VECTOR2 v, float d);
 
 	float rand01();
+	float randhalf();
 
 	float randmax(int max);
 
