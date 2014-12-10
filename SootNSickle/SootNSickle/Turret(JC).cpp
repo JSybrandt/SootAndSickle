@@ -109,7 +109,8 @@ void Turret::update(float frametime) {
 					setRadians(minDir);
 					rotVel = turretNS::ROTATION_SPEED;
 				}
-				setRadians(radians+ rotVel*frametime);
+				else
+					setRadians(radians+ rotVel*frametime);
 			}
 
 		}
@@ -133,8 +134,10 @@ void Turret::draw(VECTOR2 screenLoc) {
 }
 
 void Turret::create(VECTOR2 loc, float dir) {
+	Building::create(loc);
 	setActive(true);
-	setRadians(dir);
+	setRadians(PI/2);
+	targetEntity = nullptr;
 	minDir = dir - turretNS::ROTATION_WIDTH;
 	maxDir = dir + turretNS::ROTATION_WIDTH;
 	rotVel = turretNS::ROTATION_SPEED;
@@ -143,6 +146,8 @@ void Turret::create(VECTOR2 loc, float dir) {
 	weaponCooldown = 0;
 	rebootCooldown = 0;
 	colorFilter = graphicsNS::WHITE;
+	heal(turretNS::HEALTH);
+
 }
 
 void Turret::ai(float frameTime, ActorWithHealthBar &t) {

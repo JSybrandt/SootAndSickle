@@ -9,6 +9,8 @@ namespace utilityNS{
 
 	float rand01();
 
+	float randmax(int max);
+
 	float toPincipleArgument(float angle);
 
 	float getSign(float n);

@@ -5,7 +5,8 @@
 
 namespace turretNS{
 	const float ROTATION_SPEED = PI;
-	const float ENGAGE_DISTANCE_SQRD = pow(1024,2); // replace this with "line of sight"
+	const float ENGAGE_DISTANCE_SQRD = pow(512,2); // replace this with "line of sight"
+	const float CHASE_DISTANCE_SQRD = pow(256,2);
 	const float ROTATION_WIDTH = PI/2;
 	const float ROT_EPSILON = 0.001;
 	const float FIRE_RATE = 0.75;
