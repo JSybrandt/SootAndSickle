@@ -58,6 +58,9 @@ void SootNSickle::initialize(HWND hwnd)
 {
 	Game::initialize(hwnd); // throws GameError
 
+	zs1.initialize(this);
+	zs2.initialize(this);
+
 	if(!mainMenuBackgroundTex.initialize(graphics,MENU_BACKGROUND_IMAGE))
 		throw GameError(1,"Failed to init menu background tex");
 
@@ -335,6 +338,8 @@ void SootNSickle::levelsUpdate()
 	}
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
 		zombies[i].update(frameTime);
+	zs1.update(frameTime);
+
 
 	capacity = newCapacity;
 	if(population > capacity) population = capacity;
@@ -525,12 +530,16 @@ void SootNSickle::level1Load()
 	currentState = Level1;
 	deactivateAll();
 	base.create(getCurrentWorldSize()*0.5);
-	path1.add(VECTOR2(1000,200));
+	path1.add(VECTOR2(1200,200));
+	path1.add(VECTOR2(800,200));
+	path1.add(VECTOR2(600,600));
 	path1.add(base.getCenter());
-	for(int i = 0; i < 10; i++) {
-		Zombie* z = spawnZombie(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
-		z->setWaypoint(path1.get());
-	}
+
+	zs1.setCenter(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
+	zs1.setManager(&path1);
+	zs1.addWave(2,1);
+	zs1.addWave(5,10);
+	zs1.addWave(20,20);
 
 guiLoad();
 

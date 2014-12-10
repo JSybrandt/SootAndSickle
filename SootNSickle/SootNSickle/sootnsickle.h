@@ -29,6 +29,7 @@ using std::string;
 #include "House.h"
 #include "AirField.h"
 #include "WPManager.h"
+#include "ZombieSpawner.h"
 
 namespace SootNSickleNS
 {
@@ -134,6 +135,8 @@ private:
 	AirField airFields[MAX_AIR_FIELDS];
 	WPManager path1;
 	WPManager path2;
+	ZombieSpawner zs1;
+	ZombieSpawner zs2;
 
 	VECTOR2 screenLoc;
 

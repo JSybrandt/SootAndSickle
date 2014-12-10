@@ -51,7 +51,7 @@ void Zombie::update(float frameTime)
 					weaponCooldown  = zombieNS::WEAPON_COOLDOWN;
 					recoilCooldown = zombieNS::RECOIL_TIME;
 
-					targetEntity->damage(25);
+					targetEntity->damage(zombieNS::DAMAGE);
 
 					animComplete = false;
 					setCurrentFrame(0);
