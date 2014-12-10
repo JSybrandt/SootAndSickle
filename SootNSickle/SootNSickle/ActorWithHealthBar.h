@@ -12,6 +12,7 @@ namespace ActorWithHealthBarNS{
 class ActorWithHealthBar:public Actor
 {
 public:
+	ActorWithHealthBar():Actor(){maxHealth=100;healthBar.setMaxValue(100);}
 	bool initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM);
 	void draw(VECTOR2 screenLoc);
 	void damage(float ammount);

@@ -17,7 +17,7 @@ private:
 	bool hasPower;
 	int level;
 public:
-	Building(){setActive(false); setCapacity(BuildingNS::DEFAULT_CAPACITY);setStaff(0);setPower(false);setCollisionRadius(BuildingNS::RADIUS);level = 1;}
+	Building():ActorWithHealthBar(){setActive(false); setCapacity(BuildingNS::DEFAULT_CAPACITY);setStaff(0);setPower(false);setCollisionRadius(BuildingNS::RADIUS);level = 1;}
 	bool initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextDX* infoText);
 	void draw(VECTOR2 screenLoc);
 	void update(float frameTime);
