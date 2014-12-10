@@ -45,7 +45,7 @@ const char TURRETBASE_IMAGE[] = "pictures\\stand.png";
 const char FACTORY_IMAGE[] = "pictures\\factory.png";
 const char HOUSE_IMAGE[] = "pictures\\house.png";
 const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
-const char ZOMBIE_IMAGE[] = "pictures\\zombie.png";
+const char ZOMBIE_IMAGE[] = "pictures\\zombieAni.png";
 const char MENU_BACKGROUND_IMAGE[] = "pictures\\menuBackground.png";
 const char MAIN_MENU_BUTTON_IMAGE[] = "pictures\\mainMenuButtons.png";
 
@@ -72,6 +72,12 @@ const int  TURRET_HEIGHT = 128;
 const float TURRET_DELAY = 0.15f;
 const int  BASE_WIDTH = 128;
 const int  BASE_HEIGHT = 128;
+
+//Zombie Cells
+const int ZOMBIE_COL = 2;
+const int ZOMBIE_WIDTH = 128;
+const int ZOMBIE_HEIGHT = 128;
+const float ZOMBIE_DELAY = 0.15f;
 
 // game
 const double PI = 3.14159265;

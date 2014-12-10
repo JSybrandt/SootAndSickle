@@ -188,3 +188,9 @@ void Turret::hit() {
 	weaponCooldown = FIRE_RATE;
 	colorFilter = graphicsNS::GRAY;
 }
+
+/*
+BUGLIST:
+Needs to properly lose target if it reactivates after target dies
+
+*/
