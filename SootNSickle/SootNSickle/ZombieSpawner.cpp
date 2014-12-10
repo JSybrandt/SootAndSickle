@@ -3,7 +3,7 @@
 #include "sootnsickle.h"
 
 ZombieSpawner::ZombieSpawner(){
-	spawnTimer = 10;
+	spawnTimer = 0;
 	resetTimer = 10;
 	alive = true;
 }
@@ -25,6 +25,8 @@ void ZombieSpawner::create(int zombies) {
 }
 
 void ZombieSpawner::addWave(int zombies, float time) {
+	if(spawnTimer == 0)
+		spawnTimer = time;
 	auto it = waves.begin();
 	waves.insert(it, std::pair<int, float>(zombies,time));
 	alive = true;

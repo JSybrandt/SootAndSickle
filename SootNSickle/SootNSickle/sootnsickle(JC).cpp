@@ -559,9 +559,9 @@ void SootNSickle::level1Load()
 
 	zs1.setCenter(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
 	zs1.setManager(&path1);
-	zs1.addWave(2,1);
+	zs1.addWave(2,20);
 	zs1.addWave(5,10);
-	zs1.addWave(20,20);
+	zs1.addWave(30,30);
 
 	guiLoad();
 
