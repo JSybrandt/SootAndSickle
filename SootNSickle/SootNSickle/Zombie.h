@@ -7,12 +7,13 @@ class SootNSickle;
 
 namespace zombieNS
 {
-	const float SPEED=200;
+	const float SPEED=100;
 	const float LOSE_DISTANCE_SQRD = pow(600,2);
 	const float CHASE_DISTANCE_SQRD = pow(200,2);
 	const float ENGAGE_DISTANCE_SQRD = pow(100,2);
 	const float WEAPON_COOLDOWN = 1;
 	const float RECOIL_TIME = 0.25;
+	const float DAMAGE = 1;
 	const COLOR_ARGB COLOR = graphicsNS::RED;
 	const VECTOR2 bulletDisplacement(28,18);
 };
