@@ -20,4 +20,5 @@ public:
 	void create(VECTOR2 loc);
 	PowerField& getPowerField(){return field;}
 	void setActive(bool b){field.setActive(b);ActorWithHealthBar::setActive(b);}
+	void setPower(bool b){Building::setPower(b);field.setActive(b);}
 };

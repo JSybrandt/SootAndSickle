@@ -12,8 +12,12 @@ Button::Button()
 void Button::draw(VECTOR2 screenLoc)
 {
 	if(getActive()){
-		if(isPressed) setCurrentFrame(PRESSED_FRAME);
-		else setCurrentFrame(RAISED_FRAME);
+		if(isPressed) {
+			setCurrentFrame(PRESSED_FRAME);
+		}
+		else {
+			setCurrentFrame(RAISED_FRAME);
+		}
 		Actor::draw(screenLoc);
 		icon.draw(screenLoc);
 	}

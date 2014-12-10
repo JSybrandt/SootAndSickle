@@ -23,6 +23,7 @@ namespace ButtonNS
 		EXTRACTOR_SELECTION,
 		HOUSE_SELECTION,
 		AIR_FIELD_SELECTION,
+		SELL_SELECTION,
 		SIZE//must be last
 	};
 

@@ -43,7 +43,7 @@ namespace SootNSickleNS
 	const int MAX_HOUSES = 100;
 	const int MAX_AIR_FIELDS = 100;
 	const int MAX_PARTICLES = 10000;
-	const int MAX_BUTTONS = 7;
+	const int MAX_BUTTONS = 8;
 
 	const int NUM_PARTICLES_IN_CONE_EFFECT = 150;
 	const int NUM_PARTICLES_IN_CLOUD_EFFECT = 200;
@@ -60,6 +60,8 @@ namespace SootNSickleNS
 	const float FACTORY_COST = 100;
 	const float HOUSE_COST = 80;
 	const float AIR_FIELD_COST = 150;
+
+	const float SELL_BACK_RATE = 0.8;
 }
 
 
@@ -141,6 +143,8 @@ private:
 	int population;
 	int idlePopulation;
 	int capacity;
+
+	void attemptToSellBuilding();
 
 public:
 	// Constructor
