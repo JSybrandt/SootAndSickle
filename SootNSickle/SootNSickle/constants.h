@@ -45,6 +45,8 @@ const char TURRETBASE_IMAGE[] = "pictures\\stand.png";
 const char FACTORY_IMAGE[] = "pictures\\factory.png";
 const char HOUSE_IMAGE[] = "pictures\\house.png";
 const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
+const char MENU_BACKGROUND_IMAGE[] = "pictures\\menuBackground.png";
+const char MAIN_MENU_BUTTON_IMAGE[] = "pictures\\mainMenuButtons.png";
 
 //Sound Locations
 const char WAVE_BANK[] = "audio\\Win\\Wave Bank.xwb";
@@ -60,7 +62,7 @@ const char CLASS_NAME[] = "Soot & Sickle";
 const char GAME_TITLE[] = "Soot & Sickle";
 const bool FULLSCREEN = false;              // windowed or fullscreen DO NOT RUN FULLSCREEN IN DEBUG MODE
 const UINT GAME_WIDTH =  1280;               // width of screen in pixels
-const UINT GAME_HEIGHT = 730;               // height of screen in pixels
+const UINT GAME_HEIGHT = 800;               // height of screen in pixels
 
 //Turret Cells
 const int  TURRET_COL = 0;

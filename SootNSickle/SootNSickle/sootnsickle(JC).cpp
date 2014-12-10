@@ -58,6 +58,21 @@ void SootNSickle::initialize(HWND hwnd)
 {
 	Game::initialize(hwnd); // throws GameError
 
+	if(!mainMenuBackgroundTex.initialize(graphics,MENU_BACKGROUND_IMAGE))
+		throw GameError(1,"Failed to init menu background tex");
+
+	if(!mainMenuButtonTex.initialize(graphics,MAIN_MENU_BUTTON_IMAGE))
+		throw GameError(1,"Failed to init menu button tex");
+	
+	if(!mainMenuBackground.initialize(graphics,0,0,0,&mainMenuBackgroundTex))
+		throw GameError(1,"failed to make menu background");
+	
+	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	{
+		if(!mainMenuOptions[i].initialize(graphics,0,120,1,&mainMenuButtonTex))
+			throw GameError(1,"failed to make menu button");
+		mainMenuOptions[i].setCurrentFrame(i);
+	}
 
 	if(!backgroundTex.initialize(graphics,BACKGROUND_IMAGE))
 		throw GameError(1,"Failed to init background tex");
@@ -179,8 +194,7 @@ void SootNSickle::initialize(HWND hwnd)
 		if(!zombies[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex))
 				throw GameError(-1*i,"FAILED TO MAKE zombie!");
 
-	currentState = Level1;
-	level1Load();
+	menuLoad();
 
 	return;
 }
@@ -203,7 +217,34 @@ void SootNSickle::update()
 
 void SootNSickle::menuUpdate(bool reset)
 {
-	
+	static int selection = 0;
+	if(input->wasKeyPressed(controls.up))
+		selection--;
+	if(input->wasKeyPressed(controls.down))
+		selection++;
+
+	if(selection < 0) selection = MAIN_MENU_OPTION_COUNT-1;
+	if(selection >= MAIN_MENU_OPTION_COUNT) selection = 0;
+
+	if(input->wasKeyPressed(VK_RETURN))
+	{
+		if(selection == 0)
+			level1Load();
+		else if (selection == 3)
+			exitGame();
+	}
+
+	VECTOR2 initPosit(866,313);
+	VECTOR2 verticalDisp(0,120);
+	VECTOR2 selectedDisp(-75,0);
+	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	{
+		VECTOR2 currLoc = initPosit + i*verticalDisp;
+		if(i==selection) currLoc+= selectedDisp;
+		mainMenuOptions[i].setX(currLoc.x);
+		mainMenuOptions[i].setY(currLoc.y);
+	}
+
 }
 
 void SootNSickle::levelsUpdate()
@@ -348,6 +389,11 @@ void SootNSickle::menuRender()
 {
 	VECTOR2 UIScreenLoc(0,0);
 
+	mainMenuBackground.draw(UIScreenLoc);
+	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	{
+		mainMenuOptions[i].draw(UIScreenLoc);
+	}
 
 }
 
@@ -437,8 +483,19 @@ void SootNSickle::resetAll()
 
 void SootNSickle::menuLoad()
 {
+
 	currentState = TitleScreen;
 	deactivateAll();
+
+	mainMenuBackground.setVisible(true);
+	mainMenuBackground.setX(0);
+	mainMenuBackground.setY(0);
+
+	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	{
+		mainMenuOptions[i].setVisible(true);
+
+	}
 
 }
 
