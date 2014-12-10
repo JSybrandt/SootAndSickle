@@ -38,6 +38,7 @@ void ActorWithHealthBar::damage(float ammount)
 	{
 		health -= ammount;
 		if(health < 0) {health = 0;
+			onDeath();
 			setActive(false);
 		}
 	}

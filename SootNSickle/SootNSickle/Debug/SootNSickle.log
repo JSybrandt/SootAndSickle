@@ -1,20 +1,7 @@
-﻿Build started 12/9/2014 11:30:41 AM.
+﻿Build started 12/9/2014 8:01:33 PM.
      1>Project "C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\SootNSickle.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "ActorWithHealthBar(J).cpp" "AirField(J).cpp" "Base(J).cpp" "Building (J).cpp" "Button(J).cpp" "Extractor(J).cpp" "Factory(J).cpp" "PowerSupply(J).cpp" "Turret(JC).cpp" "Zombie(JC).cpp" "sootnsickle(JC).cpp" winmain.cpp
-         ActorWithHealthBar(J).cpp
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(63): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(197): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-         Generating Code...
-         Compiling...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "sootnsickle(JC).cpp"
          sootnsickle(JC).cpp
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
@@ -32,32 +19,10 @@
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(22): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(23): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(94): warning C4244: 'argument' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(542): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(554): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(555): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(630): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-         PowerSupply(J).cpp
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(63): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(197): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         winmain.cpp
-         Zombie(JC).cpp
-         Turret(JC).cpp
-         Factory(J).cpp
-         Extractor(J).cpp
-         Button(J).cpp
-         Building (J).cpp
-         Base(J).cpp
-         AirField(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(547): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(559): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(560): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(635): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.exe" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Lib\x86" d3d9.lib d3dx9.lib winmm.lib xinput.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.lib" /MACHINE:X86 /SAFESEH Debug\Actor.obj
          "Debug\AirField(J).obj"
@@ -90,4 +55,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.55
+Time Elapsed 00:00:01.63

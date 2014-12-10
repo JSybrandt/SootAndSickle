@@ -210,12 +210,12 @@ void SootNSickle::levelsUpdate()
 		level1Load();
 	}
 
-	
+	if(input->getMouseRButton())
+		raiseAllButtons();
 
 	if(input->wasKeyPressed(controls.pause))
 	{
 		paused = !paused;
-		ShowCursor(paused);
 	}
 
 	if(paused) return;
@@ -248,6 +248,7 @@ void SootNSickle::levelsUpdate()
 	base.update(frameTime);
 	newCapacity += BaseNS::HOUSING;
 
+	
 	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
 	{
 		powerSupplies[i].update(frameTime);
@@ -269,15 +270,19 @@ void SootNSickle::levelsUpdate()
 	for(int i = 0; i < MAX_HOUSES; i++)
 	{
 		houses[i].update(frameTime);
-		if(houses[i].getActive()) newCapacity+=HouseNS::HOUSING;
+		if(houses[i].getActive() && houses[i].getPower())
+			newCapacity+=HouseNS::HOUSING;
 	}
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
+	{
 		airFields[i].update(frameTime);
+	}
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++)
+	{
 		turrets[i].update(frameTime);
+	}
 	capacity = newCapacity;
 	if(population > capacity) population = capacity;
-	if(idlePopulation > population) idlePopulation = population;
 
 	//check fisrt click
 	if(!wasClickedLastFrame && input->getMouseLButton())
@@ -662,6 +667,7 @@ void SootNSickle::raiseAllButtons(){
 	{
 		buttons[i].isPressed=false;
 	}
+	cursorSelection = -1;
 }
 void SootNSickle::buttonOnClick(Button* caller){
 	raiseAllButtons();
@@ -788,9 +794,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(powerSupplies[i].getActive())
 		{
 			disp = mouse - powerSupplies[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < powerSupplies[i].getRadius())
+			if(D3DXVec2Length(&disp) < powerSupplies[i].getRadius())
 			{
 				powerSupplies[i].setActive(false);
+				idlePopulation += powerSupplies[i].getStaff();
 				mineralLevel += POWER_SUPPLY_COST*SELL_BACK_RATE;
 			}
 		}
@@ -800,9 +807,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(extractors[i].getActive())
 		{
 			disp = mouse - extractors[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < extractors[i].getRadius())
+			if(D3DXVec2Length(&disp) < extractors[i].getRadius())
 			{
 				extractors[i].setActive(false);
+				idlePopulation += extractors[i].getStaff();
 				mineralLevel += EXTRACTOR_COST*SELL_BACK_RATE;
 			}
 		}
@@ -811,9 +819,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(turrets[i].getActive())
 		{
 			disp = mouse - turrets[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < turrets[i].getRadius())
+			if(D3DXVec2Length(&disp) < turrets[i].getRadius())
 			{
 				turrets[i].setActive(false);
+				idlePopulation += turrets[i].getStaff();
 				mineralLevel += GROUND_TURRET_COST*SELL_BACK_RATE;
 			}
 		}
@@ -822,9 +831,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(factories[i].getActive())
 		{
 			disp = mouse - factories[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < factories[i].getRadius())
+			if(D3DXVec2Length(&disp) < factories[i].getRadius())
 			{
 				factories[i].setActive(false);
+				idlePopulation += factories[i].getStaff();
 				mineralLevel += FACTORY_COST*SELL_BACK_RATE;
 			}
 		}
@@ -833,7 +843,7 @@ void SootNSickle::attemptToSellBuilding()
 		if(houses[i].getActive())
 		{
 			disp = mouse - houses[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < houses[i].getRadius())
+			if(D3DXVec2Length(&disp) < houses[i].getRadius())
 			{
 				houses[i].setActive(false);
 				mineralLevel += HOUSE_COST*SELL_BACK_RATE;
@@ -844,9 +854,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(airFields[i].getActive())
 		{
 			disp = mouse - airFields[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < airFields[i].getRadius())
+			if(D3DXVec2Length(&disp) < airFields[i].getRadius())
 			{
 				airFields[i].setActive(false);
+				idlePopulation += airFields[i].getStaff();
 				mineralLevel += AIR_FIELD_COST*SELL_BACK_RATE;
 			}
 		}
