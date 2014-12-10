@@ -15,7 +15,7 @@ namespace turretNS{
 	const VECTOR2 BULLET2_OFFSET(30,15);
 	const float TURRET_RADIUS = 32;
 	const int CAPACITY = 1;
-	const int TURRET_HEALTH = 50;
+	const float HEALTH = 50;
 };
 
 class Turret:public Building

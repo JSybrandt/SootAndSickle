@@ -8,6 +8,7 @@ namespace AirFieldNS
 	const int TIME_PER_TRIP = 20;
 	const int CAPACITY = 15;
 	const float RADIUS = 75;
+	const float HEALTH = 60;
 };
 
 
@@ -16,7 +17,7 @@ class AirField : public Building
 private:
 	float coolDown;
 public:
-	AirField():Building(){coolDown = 0; setCapacity(AirFieldNS::CAPACITY);setCollisionRadius(AirFieldNS::RADIUS);}
+	AirField():Building(){coolDown = 0; setCapacity(AirFieldNS::CAPACITY);setCollisionRadius(AirFieldNS::RADIUS); setMaxHealth(AirFieldNS::HEALTH);}
 	void create(VECTOR2 loc){Building::create(loc); coolDown = AirFieldNS::TIME_PER_TRIP;}
 	void update(float frameTime);
 };

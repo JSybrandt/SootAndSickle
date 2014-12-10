@@ -11,6 +11,8 @@ PowerSupply::PowerSupply()
 	bootCooldown = 0;
 
 	setCapacity(0);
+
+	setMaxHealth(HEALTH);
 }
 
 void PowerSupply::update(float frameTime)

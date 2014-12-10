@@ -16,6 +16,7 @@ Turret::Turret(): Building() {
 	weaponCooldown = 0;
 	rebootCooldown = 0;
 	setCapacity(CAPACITY);
+	setMaxHealth(HEALTH);
 }
 
 bool Turret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM, TextDX * text) {
@@ -133,6 +134,7 @@ void Turret::draw(VECTOR2 screenLoc) {
 }
 
 void Turret::create(VECTOR2 loc, float dir) {
+	Building::create(loc);
 	setActive(true);
 	setRadians(PI/2);
 	targetEntity = nullptr;
@@ -144,7 +146,8 @@ void Turret::create(VECTOR2 loc, float dir) {
 	weaponCooldown = 0;
 	rebootCooldown = 0;
 	colorFilter = graphicsNS::WHITE;
-	heal(turretNS::TURRET_HEALTH);
+	heal(turretNS::HEALTH);
+
 }
 
 void Turret::ai(float frameTime, ActorWithHealthBar &t) {

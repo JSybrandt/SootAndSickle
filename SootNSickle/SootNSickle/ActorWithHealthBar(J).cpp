@@ -34,7 +34,7 @@ void ActorWithHealthBar::update(float frameTime)
 
 void ActorWithHealthBar::damage(float ammount)
 {
-	if(ammount > 0)
+	if(getActive()&& ammount > 0)
 	{
 		health -= ammount;
 		if(health < 0) {health = 0;
@@ -50,7 +50,7 @@ void ActorWithHealthBar::heal(float ammount)
 	if(ammount > 0)
 	{
 		health += ammount;
-		if(health > maxHeath) health = maxHeath;
+		if(health > maxHealth) health = maxHealth;
 	}
 	healthBar.setCurrentValue(health);
 }
@@ -59,9 +59,9 @@ void ActorWithHealthBar::setMaxHealth(float val)
 {
 	if(val > 0)
 	{
-		maxHeath = val;
-		if(health > maxHeath) health = maxHeath;
-		healthBar.setMaxValue(maxHeath);
+		maxHealth = val;
+		if(health > maxHealth) health = maxHealth;
+		healthBar.setMaxValue(maxHealth);
 		healthBar.setCurrentValue(health);
 	}
 }

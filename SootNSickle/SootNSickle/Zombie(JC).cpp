@@ -40,7 +40,7 @@ void Zombie::update(float frameTime)
 		VECTOR2 endLoc = getCenter()+(getVelocity()*zombieNS::SPEED*frameTime);
 		//endLoc = game->getRealEndLoc(getCenter(),endLoc);
 		setCenter(endLoc);
-		if(targetEntity != nullptr) {
+		if(targetEntity != nullptr && targetEntity->getActive()) {
 			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
 			float dirtoTarget = atan2(toTarget.y,toTarget.x);
 			float distSqrdtoTarget = D3DXVec2LengthSq(&toTarget);		

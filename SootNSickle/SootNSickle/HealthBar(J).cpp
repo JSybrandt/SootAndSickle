@@ -46,8 +46,8 @@ bool HealthBar::initialize(Game *gamePtr, int width, int height, int ncols,Textu
 	activeImg.setCurrentFrame(ACTIVE_FRAME);
 	setCurrentFrame(BASE_FRAME);
 
-	maxValue = DEFAULT_MAX;
-	currentValue = DEFAULT_MAX;
+	//maxValue = DEFAULT_MAX;
+	//currentValue = DEFAULT_MAX;
 
 	return result;
 }

@@ -6,6 +6,7 @@ namespace PowerSupplyNS{
 	const float POWER_RADIUS = 350;
 	const float BUILDING_RADIUS = 50;
 	const float BOOT_TIME = 1;
+	const float HEALTH = 5;
 };
 
 class PowerSupply : public Building
