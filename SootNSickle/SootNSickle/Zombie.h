@@ -21,7 +21,7 @@ class Zombie: public ActorWithHealthBar
 {
 public:
 	SootNSickle *game;
-	Actor* targetEntity;
+	ActorWithHealthBar* targetEntity;
 	Waypoint path;
 	WEAPON type;
 	int numBullets;

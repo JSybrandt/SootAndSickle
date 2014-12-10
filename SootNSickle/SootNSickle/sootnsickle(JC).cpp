@@ -74,6 +74,9 @@ void SootNSickle::initialize(HWND hwnd)
 		mainMenuOptions[i].setCurrentFrame(i);
 	}
 
+	//
+	//Initializing Textures
+	//
 	if(!backgroundTex.initialize(graphics,BACKGROUND_IMAGE))
 		throw GameError(1,"Failed to init background tex");
 	
@@ -133,7 +136,12 @@ void SootNSickle::initialize(HWND hwnd)
 		throw GameError(6,"Failed to init house tex");	
 	if(!airFieldTex.initialize(graphics,AIR_FIELD_IMAGE))
 		throw GameError(6,"Failed to init house tex");
+	if(!zombieTex.initialize(graphics,ZOMBIE_IMAGE))
+		throw GameError(6,"Failed to init zombie tex");
 
+	//
+	//Initializing actors
+	//
 	if(!background.initialize(graphics,0,0,0,&backgroundTex))
 		throw GameError(9,"Failed to init background");
 
@@ -191,7 +199,7 @@ void SootNSickle::initialize(HWND hwnd)
 		if(!airFields[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex,&buildingText))
 				throw GameError(-1*i,"FAILED TO MAKE air field!");
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
-		if(!zombies[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex))
+		if(!zombies[i].initialize(this,0,0,0,&zombieTex,&healthBarTex))
 				throw GameError(-1*i,"FAILED TO MAKE zombie!");
 
 	menuLoad();
@@ -349,8 +357,21 @@ void SootNSickle::levelsUpdate()
 //=============================================================================
 void SootNSickle::ai()
 {
-	/*for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
-	}*/
+	VECTOR2 collision;
+	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
+		if(zombies[i].getActive() && zombies[i].collidesWith(base, collision))
+			zombies[i].ai(frameTime, base);
+		for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
+			if(turrets[j].getActive() && zombies[i].collidesWith(turrets[j], collision))
+				zombies[i].ai(frameTime, turrets[j]);
+		}
+	}
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		if(turrets[i].getActive())
+			for(int j = 0; j < MAX_GROUND_ENEMIES; j++)
+				if(zombies[j].getActive() && turrets[i].collidesWith(zombies[j], collision))
+					turrets[i].ai(frameTime, zombies[j]);
+	}
 }
 
 //=============================================================================

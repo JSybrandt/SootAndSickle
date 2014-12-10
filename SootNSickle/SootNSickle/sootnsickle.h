@@ -106,6 +106,7 @@ private:
 	TextureManager factoryTex;
 	TextureManager houseTex;
 	TextureManager airFieldTex;
+	TextureManager zombieTex;
 	TextureManager mainMenuBackgroundTex;
 	TextureManager mainMenuButtonTex;
 

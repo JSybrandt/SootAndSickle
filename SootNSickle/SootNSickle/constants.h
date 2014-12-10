@@ -45,6 +45,7 @@ const char TURRETBASE_IMAGE[] = "pictures\\stand.png";
 const char FACTORY_IMAGE[] = "pictures\\factory.png";
 const char HOUSE_IMAGE[] = "pictures\\house.png";
 const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
+const char ZOMBIE_IMAGE[] = "pictures\\zombie.png";
 const char MENU_BACKGROUND_IMAGE[] = "pictures\\menuBackground.png";
 const char MAIN_MENU_BUTTON_IMAGE[] = "pictures\\mainMenuButtons.png";
 
