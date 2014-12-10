@@ -548,11 +548,11 @@ void SootNSickle::level1Load()
 	base.create(getCurrentWorldSize()*0.5);
 	path1.add(VECTOR2(1000,200));
 	path1.add(base.getCenter());
-	for(int i = 0; i < 10; i++) {
+	/*for(int i = 0; i < 10; i++) {
 		Zombie* z = spawnZombie(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
 		z->setWaypoint(path1.get());
 	}
-
+*/
 	guiLoad();
 
 	spawnMinerals(VECTOR2(100,100),1000);
