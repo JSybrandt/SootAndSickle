@@ -567,12 +567,15 @@ void SootNSickle::level1Load()
 
 	spawnMinerals(VECTOR2(100,100),1000);
 	spawnMinerals(VECTOR2(300,500),1000);
-
+	spawnMinerals(VECTOR2(1500,800),2000);
 
 	capacity = 25;
 	addPopulation(10);
 
 	mineralLevel = 1000;
+
+	screenLoc = base.getCenter() - VECTOR2(GAME_WIDTH/2,GAME_HEIGHT/2);
+	updateScreen();
 }
 
 void SootNSickle::level2Load()
@@ -804,6 +807,8 @@ void SootNSickle::deactivateAll()
 		houses[i].setActive(false);
 	for(int i = 0 ; i < MAX_AIR_FIELDS;i++)
 		airFields[i].setActive(false);
+	for(int i = 0 ; i < MAX_GROUND_ENEMIES;i++)
+		zombies[i].setActive(false);
 	base.setActive(false);
 }
 
