@@ -88,6 +88,8 @@ void Turret::update(float frametime) {
 						//game->spawnBullet(v1,radians,graphicsNS::RED,false);
 						//game->spawnBullet(v2,radians,graphicsNS::RED,false);
 						animComplete = false;
+						game->spawnParticleCone(getCenter(),radians,graphicsNS::BLUE, 50);
+						//game->spawnParticleCone(getCenter()+turretNS::BULLET2_OFFSET,radians,graphicsNS::RED);
 						targetEntity->damage(25);
 						setCurrentFrame(0);
 						//audio->playCue(TURRET_CUE);

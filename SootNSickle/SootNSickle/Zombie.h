@@ -13,7 +13,7 @@ namespace zombieNS
 	const float ENGAGE_DISTANCE_SQRD = pow(100,2);
 	const float WEAPON_COOLDOWN = 1;
 	const float RECOIL_TIME = 0.25;
-	const float DAMAGE = 1;
+	const float DAMAGE = 2;
 	const COLOR_ARGB COLOR = graphicsNS::RED;
 	const VECTOR2 bulletDisplacement(28,18);
 };
