@@ -62,6 +62,8 @@ namespace SootNSickleNS
 	const float AIR_FIELD_COST = 150;
 
 	const float SELL_BACK_RATE = 0.8;
+
+	const int MAIN_MENU_OPTION_COUNT = 4;
 }
 
 
@@ -105,6 +107,8 @@ private:
 	TextureManager houseTex;
 	TextureManager airFieldTex;
 	TextureManager zombieTex;
+	TextureManager mainMenuBackgroundTex;
+	TextureManager mainMenuButtonTex;
 
 	Base base;
 
@@ -114,6 +118,9 @@ private:
 	Image background;
 	Image guiOverlay;
 	Image cursor;
+
+	Image mainMenuBackground;
+	Image mainMenuOptions[MAIN_MENU_OPTION_COUNT];
 
 	Button buttons[MAX_BUTTONS];
 	Particle particles[MAX_PARTICLES];

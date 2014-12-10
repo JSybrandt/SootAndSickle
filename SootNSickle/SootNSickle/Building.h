@@ -33,5 +33,5 @@ public:
 
 	float getEffectiveness(){return (getStaff()/((float)getCapacity()));}
 
-	
+	void onDeath();
 };

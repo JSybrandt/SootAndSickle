@@ -19,10 +19,11 @@ public:
 	void setMaxHealth(float val);
 	void update(float frameTime);
 	bool isHealthBarVisible;
-protected:
+private:
 	HealthBar healthBar;
 	float maxHeath;
-
+	virtual void onDeath(){};
+protected:
 	SootNSickle* game;
 	
 };

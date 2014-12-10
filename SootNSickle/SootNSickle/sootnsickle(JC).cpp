@@ -58,6 +58,21 @@ void SootNSickle::initialize(HWND hwnd)
 {
 	Game::initialize(hwnd); // throws GameError
 
+	if(!mainMenuBackgroundTex.initialize(graphics,MENU_BACKGROUND_IMAGE))
+		throw GameError(1,"Failed to init menu background tex");
+
+	if(!mainMenuButtonTex.initialize(graphics,MAIN_MENU_BUTTON_IMAGE))
+		throw GameError(1,"Failed to init menu button tex");
+	
+	if(!mainMenuBackground.initialize(graphics,0,0,0,&mainMenuBackgroundTex))
+		throw GameError(1,"failed to make menu background");
+	
+	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	{
+		if(!mainMenuOptions[i].initialize(graphics,0,120,1,&mainMenuButtonTex))
+			throw GameError(1,"failed to make menu button");
+		mainMenuOptions[i].setCurrentFrame(i);
+	}
 
 	//
 	//Initializing Textures
@@ -187,8 +202,7 @@ void SootNSickle::initialize(HWND hwnd)
 		if(!zombies[i].initialize(this,0,0,0,&zombieTex,&healthBarTex))
 				throw GameError(-1*i,"FAILED TO MAKE zombie!");
 
-	currentState = Level1;
-	level1Load();
+	menuLoad();
 
 	return;
 }
@@ -211,7 +225,34 @@ void SootNSickle::update()
 
 void SootNSickle::menuUpdate(bool reset)
 {
-	
+	static int selection = 0;
+	if(input->wasKeyPressed(controls.up))
+		selection--;
+	if(input->wasKeyPressed(controls.down))
+		selection++;
+
+	if(selection < 0) selection = MAIN_MENU_OPTION_COUNT-1;
+	if(selection >= MAIN_MENU_OPTION_COUNT) selection = 0;
+
+	if(input->wasKeyPressed(VK_RETURN))
+	{
+		if(selection == 0)
+			level1Load();
+		else if (selection == 3)
+			exitGame();
+	}
+
+	VECTOR2 initPosit(866,313);
+	VECTOR2 verticalDisp(0,120);
+	VECTOR2 selectedDisp(-75,0);
+	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	{
+		VECTOR2 currLoc = initPosit + i*verticalDisp;
+		if(i==selection) currLoc+= selectedDisp;
+		mainMenuOptions[i].setX(currLoc.x);
+		mainMenuOptions[i].setY(currLoc.y);
+	}
+
 }
 
 void SootNSickle::levelsUpdate()
@@ -221,12 +262,12 @@ void SootNSickle::levelsUpdate()
 		level1Load();
 	}
 
-	
+	if(input->getMouseRButton())
+		raiseAllButtons();
 
 	if(input->wasKeyPressed(controls.pause))
 	{
 		paused = !paused;
-		ShowCursor(paused);
 	}
 
 	if(paused) return;
@@ -259,6 +300,7 @@ void SootNSickle::levelsUpdate()
 	base.update(frameTime);
 	newCapacity += BaseNS::HOUSING;
 
+	
 	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
 	{
 		powerSupplies[i].update(frameTime);
@@ -280,17 +322,22 @@ void SootNSickle::levelsUpdate()
 	for(int i = 0; i < MAX_HOUSES; i++)
 	{
 		houses[i].update(frameTime);
-		if(houses[i].getActive()) newCapacity+=HouseNS::HOUSING;
+		if(houses[i].getActive() && houses[i].getPower())
+			newCapacity+=HouseNS::HOUSING;
 	}
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
+	{
 		airFields[i].update(frameTime);
+	}
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++)
+	{
 		turrets[i].update(frameTime);
+	}
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
 		zombies[i].update(frameTime);
+
 	capacity = newCapacity;
 	if(population > capacity) population = capacity;
-	if(idlePopulation > population) idlePopulation = population;
 
 	//check fisrt click
 	if(!wasClickedLastFrame && input->getMouseLButton())
@@ -363,6 +410,11 @@ void SootNSickle::menuRender()
 {
 	VECTOR2 UIScreenLoc(0,0);
 
+	mainMenuBackground.draw(UIScreenLoc);
+	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	{
+		mainMenuOptions[i].draw(UIScreenLoc);
+	}
 
 }
 
@@ -452,8 +504,19 @@ void SootNSickle::resetAll()
 
 void SootNSickle::menuLoad()
 {
+
 	currentState = TitleScreen;
 	deactivateAll();
+
+	mainMenuBackground.setVisible(true);
+	mainMenuBackground.setX(0);
+	mainMenuBackground.setY(0);
+
+	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	{
+		mainMenuOptions[i].setVisible(true);
+
+	}
 
 }
 
@@ -718,6 +781,7 @@ void SootNSickle::raiseAllButtons(){
 	{
 		buttons[i].isPressed=false;
 	}
+	cursorSelection = -1;
 }
 void SootNSickle::buttonOnClick(Button* caller){
 	raiseAllButtons();
@@ -844,9 +908,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(powerSupplies[i].getActive())
 		{
 			disp = mouse - powerSupplies[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < powerSupplies[i].getRadius())
+			if(D3DXVec2Length(&disp) < powerSupplies[i].getRadius())
 			{
 				powerSupplies[i].setActive(false);
+				idlePopulation += powerSupplies[i].getStaff();
 				mineralLevel += POWER_SUPPLY_COST*SELL_BACK_RATE;
 			}
 		}
@@ -856,9 +921,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(extractors[i].getActive())
 		{
 			disp = mouse - extractors[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < extractors[i].getRadius())
+			if(D3DXVec2Length(&disp) < extractors[i].getRadius())
 			{
 				extractors[i].setActive(false);
+				idlePopulation += extractors[i].getStaff();
 				mineralLevel += EXTRACTOR_COST*SELL_BACK_RATE;
 			}
 		}
@@ -867,9 +933,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(turrets[i].getActive())
 		{
 			disp = mouse - turrets[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < turrets[i].getRadius())
+			if(D3DXVec2Length(&disp) < turrets[i].getRadius())
 			{
 				turrets[i].setActive(false);
+				idlePopulation += turrets[i].getStaff();
 				mineralLevel += GROUND_TURRET_COST*SELL_BACK_RATE;
 			}
 		}
@@ -878,9 +945,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(factories[i].getActive())
 		{
 			disp = mouse - factories[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < factories[i].getRadius())
+			if(D3DXVec2Length(&disp) < factories[i].getRadius())
 			{
 				factories[i].setActive(false);
+				idlePopulation += factories[i].getStaff();
 				mineralLevel += FACTORY_COST*SELL_BACK_RATE;
 			}
 		}
@@ -889,7 +957,7 @@ void SootNSickle::attemptToSellBuilding()
 		if(houses[i].getActive())
 		{
 			disp = mouse - houses[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < houses[i].getRadius())
+			if(D3DXVec2Length(&disp) < houses[i].getRadius())
 			{
 				houses[i].setActive(false);
 				mineralLevel += HOUSE_COST*SELL_BACK_RATE;
@@ -900,9 +968,10 @@ void SootNSickle::attemptToSellBuilding()
 		if(airFields[i].getActive())
 		{
 			disp = mouse - airFields[i].getCenter();
-			if(D3DXVec2LengthSq(&disp) < airFields[i].getRadius())
+			if(D3DXVec2Length(&disp) < airFields[i].getRadius())
 			{
 				airFields[i].setActive(false);
+				idlePopulation += airFields[i].getStaff();
 				mineralLevel += AIR_FIELD_COST*SELL_BACK_RATE;
 			}
 		}

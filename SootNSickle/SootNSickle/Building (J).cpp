@@ -52,3 +52,8 @@ void Building::create(VECTOR2 loc)
 	setPower(false);
 	setCenter(loc);
 }
+
+void Building::onDeath()
+{
+	game->removePopulation(getStaff());
+}

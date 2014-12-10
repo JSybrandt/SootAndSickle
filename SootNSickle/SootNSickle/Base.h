@@ -21,7 +21,7 @@ namespace BaseNS{
 
 class Base:public Building{
 public:
-	Base(){maxHeath = 100;windDir = PI*1.3; setCollisionRadius(BaseNS::BUILDING_RADIUS);setCapacity(0);}
+	Base(){setMaxHealth(100);windDir = PI*1.3; setCollisionRadius(BaseNS::BUILDING_RADIUS);setCapacity(0);}
 
 	void update(float frameTime);
 
