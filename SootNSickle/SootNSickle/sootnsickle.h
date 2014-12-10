@@ -229,10 +229,12 @@ public:
 	MineralPatch* findMineableMinerals(Extractor * caller);
 
 	void addMinerals(float n){mineralLevel+=n;}
-	void addPopulation(int n){idlePopulation+=n;population+=n;}
+
+
+	void addPopulation(int n){n = min(n,capacity-population);idlePopulation+=n;population+=n;}
 	void removePopulation(int n){population-=n;}
 	int getIdlePop(){return idlePopulation;}
-	void addIdlePop(int n){idlePopulation +=n;}
+	void addIdlePop(int n){n=min(n,population-idlePopulation);idlePopulation +=n;}
 	void removeIdlePop(int n){idlePopulation -=n;}
 };
 

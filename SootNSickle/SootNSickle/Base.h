@@ -12,7 +12,7 @@ namespace BaseNS{
 	const float EMBER_SPEEED = 40;
 	const float SMOKE_LIFETIME = 5;
 	const float EMBER_LIFETIME = 6;
-	const float BASE_POWER_RADIUS = 300;
+	const float BASE_POWER_RADIUS = 400;
 	const float BUILDING_RADIUS = 75;
 	const float TELEPORTER_COOLDOWN = 30;
 	const int PEOPLE_PER_DELIVERY = 5;
