@@ -35,7 +35,7 @@ void ZombieSpawner::addWave(int zombies, float time) {
 void ZombieSpawner::update(float frameTime) {
 	if(alive) {
 		spawnTimer -= frameTime;
-		if(spawnTimer <= 0 && waves.size()-1 <= 0)
+		if(spawnTimer <= 0 && waves.size()-1 < 0)
 			alive = false;
 		else if(spawnTimer <= 0 && alive) {
 			int zombies = waves.at(waves.size()-1).first;
