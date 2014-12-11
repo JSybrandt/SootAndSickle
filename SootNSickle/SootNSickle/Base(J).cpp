@@ -27,7 +27,7 @@ void Base::update(float frameTime)
 		}
 
 
-		cooldown-=frameTime;
+		cooldown-=frameTime*getEffectiveness();
 		if(cooldown <= 0 )
 		{
 			cooldown = BaseNS::TELEPORTER_COOLDOWN;
@@ -46,9 +46,9 @@ void Base::update(float frameTime)
 //	}
 //}
 
-bool Base::initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextureManager* pwrTex)
+bool Base::initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextureManager* pwrTex, TextDX * infoText)
 {
 	bool res = field.initialize(gamePtr,0,0,0,pwrTex);
 	field.setFieldRadius(BASE_POWER_RADIUS);
-	return res&ActorWithHealthBar::initialize(gamePtr,width,height,ncols,textureM,hbTexM);
+	return res&Building::initialize(gamePtr,width,height,ncols,textureM,hbTexM,infoText);
 }

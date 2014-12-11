@@ -43,6 +43,10 @@ SootNSickle::SootNSickle()
 	upgradePoints = 0;
 	tutorialSelection = 0;
 	showTutorial = false;
+
+	audioIntroCountdown = AUDIO_INTRO_TIME;
+	playingIntro = true;
+
 }
 
 //=============================================================================
@@ -163,7 +167,7 @@ void SootNSickle::initialize(HWND hwnd)
 	if(!guiOverlay.initialize(graphics,0,0,0,&guiOverlayTex))
 		throw GameError(9,"Failed to init gui overlay");
 
-	if(!base.initialize(this,0,0,0,&baseTex,&healthBarTex,&powerFieldTex))
+	if(!base.initialize(this,0,0,0,&baseTex,&healthBarTex,&powerFieldTex,&infoText))
 		throw GameError(6,"Failed to init base");
 
 	for(int i = 0 ; i < MAX_PARTICLES; i++)
@@ -223,6 +227,8 @@ void SootNSickle::initialize(HWND hwnd)
 
 	menuLoad();
 
+	audio->playCue(SC_OPENING);
+
 	return;
 }
 
@@ -231,6 +237,16 @@ void SootNSickle::initialize(HWND hwnd)
 //=============================================================================
 void SootNSickle::update()
 {
+
+	if(playingIntro)
+	{
+		audioIntroCountdown-=frameTime;
+		if(audioIntroCountdown <= 0)
+		{
+			audio->playCue(SC_MAIN_LOOP);
+			playingIntro = false;
+		}
+	}
 
 	switch (currentState){
 	case TitleScreen:
@@ -917,6 +933,7 @@ void SootNSickle::checkClick()
 		{
 			refreshPower();
 			mineralLevel-=POWER_SUPPLY_COST;
+			audio->playCue(SC_BUILDING);
 		}
 	}
 	//custom for extractors (only build on mineral patch)
@@ -949,6 +966,7 @@ void SootNSickle::checkClick()
 						spawnExtractor(minerals[i].getCenter());
 						refreshPower();
 						mineralLevel-=EXTRACTOR_COST;
+						audio->playCue(SC_BUILDING);
 					}
 				}
 			}
@@ -963,6 +981,7 @@ void SootNSickle::checkClick()
 		{
 			refreshPower();
 			mineralLevel-=GROUND_TURRET_COST;
+			audio->playCue(SC_BUILDING);
 		}
 	}
 	else if(cursorSelection == ButtonNS::FACTORY_SELECTION&& mineralLevel > FACTORY_COST)
@@ -973,6 +992,7 @@ void SootNSickle::checkClick()
 		{
 			refreshPower();
 			mineralLevel-=FACTORY_COST;
+			audio->playCue(SC_BUILDING);
 		}
 	}
 	else if(cursorSelection == ButtonNS::HOUSE_SELECTION&& mineralLevel > HOUSE_COST)
@@ -983,6 +1003,7 @@ void SootNSickle::checkClick()
 		{
 			refreshPower();
 			mineralLevel-=HOUSE_COST;
+			audio->playCue(SC_BUILDING);
 		}
 	}
 	else if(cursorSelection == ButtonNS::AIR_FIELD_SELECTION&& mineralLevel > AIR_FIELD_COST)
@@ -993,6 +1014,7 @@ void SootNSickle::checkClick()
 		{
 			refreshPower();
 			mineralLevel-=AIR_FIELD_COST;
+			audio->playCue(SC_BUILDING);
 		}
 	}
 	else if(cursorSelection == ButtonNS::SELL_SELECTION)
@@ -1058,6 +1080,7 @@ void SootNSickle::attemptToSellBuilding()
 				powerSupplies[i].setActive(false);
 				idlePopulation += powerSupplies[i].getStaff();
 				mineralLevel += POWER_SUPPLY_COST*SELL_BACK_RATE;
+				audio->playCue(SC_SELL);
 			}
 		}
 	}
@@ -1071,6 +1094,7 @@ void SootNSickle::attemptToSellBuilding()
 				extractors[i].setActive(false);
 				idlePopulation += extractors[i].getStaff();
 				mineralLevel += EXTRACTOR_COST*SELL_BACK_RATE;
+				audio->playCue(SC_SELL);
 			}
 		}
 	}
@@ -1083,6 +1107,7 @@ void SootNSickle::attemptToSellBuilding()
 				turrets[i].setActive(false);
 				idlePopulation += turrets[i].getStaff();
 				mineralLevel += GROUND_TURRET_COST*SELL_BACK_RATE;
+				audio->playCue(SC_SELL);
 			}
 		}
 	}
@@ -1095,6 +1120,7 @@ void SootNSickle::attemptToSellBuilding()
 				factories[i].setActive(false);
 				idlePopulation += factories[i].getStaff();
 				mineralLevel += FACTORY_COST*SELL_BACK_RATE;
+				audio->playCue(SC_SELL);
 			}
 		}
 	}
@@ -1106,6 +1132,7 @@ void SootNSickle::attemptToSellBuilding()
 			{
 				houses[i].setActive(false);
 				mineralLevel += HOUSE_COST*SELL_BACK_RATE;
+				audio->playCue(SC_SELL);
 			}
 		}
 	}
@@ -1118,6 +1145,7 @@ void SootNSickle::attemptToSellBuilding()
 				airFields[i].setActive(false);
 				idlePopulation += airFields[i].getStaff();
 				mineralLevel += AIR_FIELD_COST*SELL_BACK_RATE;
+				audio->playCue(SC_SELL);
 			}
 		}
 	}
@@ -1134,73 +1162,80 @@ void SootNSickle::attemptToUpgradeBuilding()
 	{
 		upgradePoints-=1;
 		base.upgrade();
+		audio->playCue(SC_UPGRADE);
 	}
 
 	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
 	{
-		if(powerSupplies[i].getActive())
+		if(powerSupplies[i].getActive()&&powerSupplies[i].getLevel()<3)
 		{
 			disp = mouse - powerSupplies[i].getCenter();
 			if(D3DXVec2Length(&disp) < powerSupplies[i].getRadius())
 			{
 				upgradePoints-=1;
 				powerSupplies[i].upgrade();
+				audio->playCue(SC_UPGRADE);
 			}
 		}
 	}
 	for(int i = 0; i < MAX_EXTRACTORS;i++)
 	{
-		if(extractors[i].getActive())
+		if(extractors[i].getActive()&&extractors[i].getLevel()<3)
 		{
 			disp = mouse - extractors[i].getCenter();
 			if(D3DXVec2Length(&disp) < extractors[i].getRadius())
 			{
 				upgradePoints-=1;
 				extractors[i].upgrade();
+				audio->playCue(SC_UPGRADE);
 			}
 		}
 	}
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
-		if(turrets[i].getActive())
+		if(turrets[i].getActive()&&turrets[i].getLevel()<3)
 		{
 			disp = mouse - turrets[i].getCenter();
 			if(D3DXVec2Length(&disp) < turrets[i].getRadius())
 			{
 				upgradePoints-=1;
 				turrets[i].upgrade();
+				audio->playCue(SC_UPGRADE);
 			}
 		}
 	}
 	for(int i = 0; i < MAX_FACTORIES; i++) {
-		if(factories[i].getActive())
+		if(factories[i].getActive()&&factories[i].getLevel()<3)
 		{
 			disp = mouse - factories[i].getCenter();
 			if(D3DXVec2Length(&disp) < factories[i].getRadius())
 			{
 				upgradePoints-=1;
 				factories[i].upgrade();
+				audio->playCue(SC_UPGRADE);
 			}
 		}
 	}
 	for(int i = 0; i < MAX_HOUSES; i++){
-		if(houses[i].getActive())
+		if(houses[i].getActive()&&houses[i].getLevel()<3)
 		{
 			disp = mouse - houses[i].getCenter();
 			if(D3DXVec2Length(&disp) < houses[i].getRadius())
 			{
 				upgradePoints-=1;
 				houses[i].upgrade();
+				audio->playCue(SC_UPGRADE);
 			}
 		}
 	}
 	for(int i = 0; i < MAX_AIR_FIELDS; i++){
-		if(airFields[i].getActive())
+		if(airFields[i].getActive()&&airFields[i].getLevel()<3)
 		{
 			disp = mouse - airFields[i].getCenter();
 			if(D3DXVec2Length(&disp) < airFields[i].getRadius())
 			{
 				upgradePoints-=1;
 				airFields[i].upgrade();
+				audio->playCue(SC_UPGRADE);
 			}
 		}
 	}

@@ -22,6 +22,17 @@ void Building::draw(VECTOR2 screenLoc)
 
 			text->print(std::to_string(numStaff)+"/"+std::to_string(capacity),textRect,DT_CENTER|DT_VCENTER);
 		}
+		if(level>1)
+		{
+			RECT textRect;
+			//set text rect to be below the image
+			textRect.top = getY()+getHeight()-screenLoc.y;
+			textRect.left = getX()-screenLoc.x;
+			textRect.right = textRect.left + getWidth();
+			textRect.bottom = textRect.top +15;
+
+			text->print("<"+std::to_string(level)+">",textRect,DT_CENTER|DT_VCENTER);
+		}
 	}
 }
 void Building::update(float frameTime)
@@ -51,9 +62,11 @@ void Building::create(VECTOR2 loc)
 	setStaff(0);
 	setPower(false);
 	setCenter(loc);
+	level = 1;
 }
 
 void Building::onDeath()
 {
 	game->removePopulation(getStaff());
+	audio->playCue(SC_BUILDING_COLLAPSE);
 }
