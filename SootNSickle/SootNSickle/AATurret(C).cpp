@@ -89,7 +89,8 @@ void AATurret::update(float frametime) {
 						//game->spawnBullet(v1,radians,graphicsNS::RED,false);
 						//game->spawnBullet(v2,radians,graphicsNS::RED,false);
 						animComplete = false;
-						game->spawnParticleCone(getCenter(),radians-PI,graphicsNS::GRAY, 50);
+						game->spawnParticleCone(getCenter(),radians-PI,graphicsNS::GRAY, 25);
+						//game->spawnParticleCone(getCenter()+BULLET2_OFFSET,radians-PI,graphicsNS::GRAY, 25);
 						//game->spawnParticleCone(getCenter()+turretNS::BULLET2_OFFSET,radians,graphicsNS::RED);
 						targetEntity->damage(25);
 						setCurrentFrame(0);
@@ -97,8 +98,10 @@ void AATurret::update(float frametime) {
 						weaponCooldown = turretNS::FIRE_RATE;
 					}
 				}
-				//if(targetEntity->getActive())
-				//	targetEntity = nullptr;
+				if(!targetEntity->getActive()) {
+					targetEntity = nullptr;
+					target = false;
+				}
 			}
 			else
 			{

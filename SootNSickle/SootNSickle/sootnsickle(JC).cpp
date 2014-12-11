@@ -1239,6 +1239,19 @@ void SootNSickle::attemptToSellBuilding()
 			}
 		}
 	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		if(aaturrets[i].getActive())
+		{
+			disp = mouse - aaturrets[i].getCenter();
+			if(D3DXVec2Length(&disp) < aaturrets[i].getRadius())
+			{
+				aaturrets[i].setActive(false);
+				idlePopulation += aaturrets[i].getStaff();
+				mineralLevel += AIR_TURRET_COST*SELL_BACK_RATE;
+				audio->playCue(SC_SELL);
+			}
+		}
+	}
 	for(int i = 0; i < MAX_FACTORIES; i++) {
 		if(factories[i].getActive())
 		{
@@ -1327,6 +1340,18 @@ void SootNSickle::attemptToUpgradeBuilding()
 			{
 				upgradePoints-=1;
 				turrets[i].upgrade();
+				audio->playCue(SC_UPGRADE);
+			}
+		}
+	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		if(aaturrets[i].getActive()&&aaturrets[i].getLevel()<3)
+		{
+			disp = mouse - aaturrets[i].getCenter();
+			if(D3DXVec2Length(&disp) < aaturrets[i].getRadius())
+			{
+				upgradePoints-=1;
+				aaturrets[i].upgrade();
 				audio->playCue(SC_UPGRADE);
 			}
 		}
