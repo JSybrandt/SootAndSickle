@@ -46,7 +46,7 @@ SootNSickle::SootNSickle()
 
 	audioIntroCountdown = AUDIO_INTRO_TIME;
 	playingIntro = true;
-
+	levelTextCooldown = 0;
 }
 
 //=============================================================================
@@ -138,6 +138,8 @@ void SootNSickle::initialize(HWND hwnd)
 	if(!buildingText.initialize(graphics,20,false,false,"Verdana"))
 		throw GameError(9,"Failed to init mine text");
 
+	if(!levelText.initialize(graphics,80,true,true,"Copperplate Gothic"))
+		throw GameError(9,"Failed to init level text");
 
 	if(!mineralTex.initialize(graphics,MINERAL_IMAGE))
 		throw GameError(6,"Failed to init mineral tex");
@@ -327,6 +329,7 @@ void SootNSickle::menuUpdate(bool reset)
 
 void SootNSickle::levelsUpdate()
 {
+
 	if(input->wasKeyPressed('R'))
 	{
 		level1Load();
@@ -344,7 +347,8 @@ void SootNSickle::levelsUpdate()
 
 	if(paused) return;
 
-
+	levelTextCooldown = max(levelTextCooldown-frameTime,0);
+	
 	VECTOR2 in(0,0);
 
 	if(input->isKeyDown(controls.up))
@@ -641,6 +645,20 @@ void SootNSickle::levelsRender()
 	infoText.print(std::to_string((int)mineralLevel),20,25);
 	infoText.print(std::to_string(idlePopulation) + "/" + std::to_string(population)+ "/" + std::to_string(capacity),150,25);
 	infoText.print(std::to_string((int)upgradePoints),400,25);
+
+	if(levelTextCooldown>0)
+	{
+		float ex = 1-levelTextCooldown/SHOW_TEXT_TIME;
+		float alpha = (1-pow(4*ex-1,4)); //dont ask
+		levelText.setFontColor(Graphics::calculateAlpha(alpha));
+	
+		RECT screen;
+		screen.left = 0;
+		screen.top = -alpha*20;
+		screen.right = GAME_WIDTH;
+		screen.bottom = GAME_HEIGHT;
+		levelText.print(levelString,screen,DT_CENTER|DT_VCENTER);
+	}
 }
 
 //=============================================================================
@@ -716,6 +734,9 @@ void SootNSickle::level1Load()
 
 	screenLoc = base.getCenter() - VECTOR2(GAME_WIDTH/2,GAME_HEIGHT/2);
 	updateScreen();
+
+	levelTextCooldown = SHOW_TEXT_TIME;
+	levelString = "SURVIVE";
 }
 
 void SootNSickle::level2Load()

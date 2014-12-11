@@ -71,6 +71,8 @@ namespace SootNSickleNS
 	const int NUM_TUTORIAL_IMAGES = 3;
 
 	const float AUDIO_INTRO_TIME = 17.5;
+
+	const float SHOW_TEXT_TIME = 2.5;
 }
 
 
@@ -124,6 +126,7 @@ private:
 
 	TextDX infoText;
 	TextDX buildingText;
+	TextDX levelText; 
 
 	Image background;
 	Image guiOverlay;
@@ -177,6 +180,8 @@ private:
 	float audioIntroCountdown;
 	float playingIntro;
 
+	float levelTextCooldown;
+	string levelString;
 
 public:
 	// Constructor
