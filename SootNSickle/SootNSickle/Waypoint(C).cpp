@@ -5,6 +5,7 @@ Waypoint::Waypoint():Actor()
 	parent = nullptr;
 	child = nullptr;
 	setActive(false);
+
 }
 
 void Waypoint::update(float frametime)

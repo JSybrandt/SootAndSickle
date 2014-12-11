@@ -35,7 +35,6 @@ void Turret::update(float frametime) {
 
 		if(getPower() && getStaff()>0)
 		{
-
 			checked = false;
 			if(rebootCooldown > 0) {
 				rebootCooldown -= frametime;
@@ -97,8 +96,10 @@ void Turret::update(float frametime) {
 						weaponCooldown = turretNS::FIRE_RATE;
 					}
 				}
-				//if(targetEntity->getActive())
-				//	targetEntity = nullptr;
+				if(!targetEntity->getActive()) {
+					targetEntity = nullptr;
+					target = false;
+				}
 			}
 			else
 			{
