@@ -68,5 +68,7 @@ void Building::create(VECTOR2 loc)
 void Building::onDeath()
 {
 	game->removePopulation(getStaff());
+	active = false;
+	game->refreshPower();
 	audio->playCue(SC_BUILDING_COLLAPSE);
 }
