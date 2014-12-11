@@ -46,6 +46,7 @@ const char FACTORY_IMAGE[] = "pictures\\factory.png";
 const char HOUSE_IMAGE[] = "pictures\\house.png";
 const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
 const char ZOMBIE_IMAGE[] = "pictures\\zombieAni.png";
+const char ZOMBIEBAT_IMAGE[] = "pictures\\zombieBat.png";
 const char MENU_BACKGROUND_IMAGE[] = "pictures\\menuBackground.png";
 const char MAIN_MENU_BUTTON_IMAGE[] = "pictures\\mainMenuButtons.png";
 const char TUTORIAL_IMAGE[] = "pictures\\tutorial.png";
