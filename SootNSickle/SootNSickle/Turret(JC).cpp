@@ -119,11 +119,6 @@ void Turret::update(float frametime) {
 
 		}
 	}
-	//base.setCenter(getCenter());
-	//base.update(frametime);
-	//Image::update(frametime);
-
-
 }
 
 void Turret::draw(VECTOR2 screenLoc) {
@@ -157,7 +152,7 @@ void Turret::create(VECTOR2 loc, float dir) {
 void Turret::ai(float frameTime, ActorWithHealthBar &t) {
 	if(active && t.getActive() && !checked) {
 		float rad = 0;
-		if(targetEntity != nullptr && target) { //If previous target is still active and within range
+		if(targetEntity != nullptr && targetEntity->getActive()) { //If previous target is still active and within range
 			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
 			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
 

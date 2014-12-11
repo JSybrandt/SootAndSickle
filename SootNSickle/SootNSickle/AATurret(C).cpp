@@ -160,7 +160,7 @@ void AATurret::create(VECTOR2 loc, float dir) {
 void AATurret::ai(float frameTime, ActorWithHealthBar &t) {
 	if(active && t.getActive() && !checked) {
 		float rad = 0;
-		if(targetEntity != nullptr && target) { //If previous target is still active and within range
+		if(targetEntity != nullptr && targetEntity->getActive()) { //If previous target is still active and within range
 			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
 			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
 
