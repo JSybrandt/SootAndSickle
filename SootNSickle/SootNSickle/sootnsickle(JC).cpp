@@ -762,7 +762,7 @@ void SootNSickle::level1Load()
 	path1.add(base.getCenter());
 
 
-	zs1.setCenter(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
+	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
 	zs1.setManager(&path1);
 	zs1.addWave(2, GROUND, 15);
 	zs1.addWave(1, AIR, 0);
@@ -1245,6 +1245,10 @@ bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
 	}
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
 		if((&turrets[i]!=newBuilding)&&newBuilding->collidesWith(turrets[i],v))
+			return false;
+	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		if((&aaturrets[i]!=newBuilding)&&newBuilding->collidesWith(aaturrets[i],v))
 			return false;
 	}
 	for(int i = 0; i < MAX_FACTORIES; i++) {

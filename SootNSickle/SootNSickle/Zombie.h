@@ -29,6 +29,7 @@ protected:
 	float weaponCooldown;
 	float recoilCooldown;
 	float personalSpeed;
+	float moan;
 
 	float personalChaseDistanceSQRD;
 	float personalEngageDistanceSQRD;

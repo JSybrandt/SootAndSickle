@@ -50,6 +50,8 @@ public:
 
 	void ai(float frameTime, ActorWithHealthBar &ent);
 
+	void onDeath();
+
 	void hit();
 
 };

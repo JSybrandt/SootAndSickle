@@ -7,9 +7,9 @@ ZombieBat::ZombieBat():ActorWithHealthBar(){
 	edge.left = -12;
 	edge.right = 12;
 	collisionType = COLLISION_TYPE::BOX;
-	colorFilter = zombieNS::COLOR;
+	colorFilter = zombiebatNS::COLOR;
 	setHealth(250);
-	personalSpeed = zombieNS::SPEED;
+	personalSpeed = zombiebatNS::SPEED;
 	setActive(false);
 	target = false;
 	shoot = false;
@@ -49,10 +49,10 @@ void ZombieBat::update(float frameTime)
 			if(distSqrdtoTarget < personalEngageDistanceSQRD) {
 				setVelocity(VECTOR2(0,0));
 				if(weaponCooldown <= 0){
-					weaponCooldown  = zombieNS::WEAPON_COOLDOWN;
-					recoilCooldown = zombieNS::RECOIL_TIME;
+					weaponCooldown  = zombiebatNS::WEAPON_COOLDOWN;
+					recoilCooldown = zombiebatNS::RECOIL_TIME;
 
-					targetEntity->damage(zombieNS::DAMAGE);
+					targetEntity->damage(zombiebatNS::DAMAGE);
 
 					animComplete = false;
 					setCurrentFrame(0);
@@ -175,9 +175,9 @@ void ZombieBat::create(VECTOR2 loc)
 	setCenter(loc);
 	setHealth(100);
 
-	personalChaseDistanceSQRD = randmax(2000)+zombieNS::CHASE_DISTANCE_SQRD;
-	personalEngageDistanceSQRD = randmax(5000)+zombieNS::ENGAGE_DISTANCE_SQRD;
-	personalSpeed = randmax(25)+zombieNS::SPEED;
+	personalChaseDistanceSQRD = randmax(2000)+zombiebatNS::CHASE_DISTANCE_SQRD;
+	personalEngageDistanceSQRD = randmax(5000)+zombiebatNS::ENGAGE_DISTANCE_SQRD;
+	personalSpeed = randmax(25)+zombiebatNS::SPEED;
 }
 
 void ZombieBat::nextWaypoint() {

@@ -92,7 +92,7 @@ void Turret::update(float frametime) {
 						//game->spawnParticleCone(getCenter()+turretNS::BULLET2_OFFSET,radians,graphicsNS::RED);
 						targetEntity->damage(25);
 						setCurrentFrame(0);
-						//audio->playCue(TURRET_CUE);
+						audio->playCue(SC_CANNON);
 						weaponCooldown = turretNS::FIRE_RATE;
 					}
 				}
@@ -190,6 +190,10 @@ void Turret::hit() {
 	rebootCooldown = REBOOT_TIME;
 	weaponCooldown = FIRE_RATE;
 	colorFilter = graphicsNS::GRAY;
+}
+
+void Turret::onDeath() {
+	Building::onDeath();
 }
 
 /*

@@ -94,7 +94,7 @@ void AATurret::update(float frametime) {
 						//game->spawnParticleCone(getCenter()+turretNS::BULLET2_OFFSET,radians,graphicsNS::RED);
 						targetEntity->damage(25);
 						setCurrentFrame(0);
-						//audio->playCue(TURRET_CUE);
+						audio->playCue(SC_CANNON);
 						weaponCooldown = turretNS::FIRE_RATE;
 						//BLUB BLUB!============================================================================
 					}
