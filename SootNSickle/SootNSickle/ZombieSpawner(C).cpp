@@ -67,6 +67,11 @@ void ZombieSpawner::update(float frameTime) {
 	}
 }
 
+void ZombieSpawner::clear() {
+	wpm = nullptr;
+	waves.clear();
+}
+
 /*
 BUGLIST:
 

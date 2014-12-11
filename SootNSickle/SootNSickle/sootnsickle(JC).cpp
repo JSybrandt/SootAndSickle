@@ -746,7 +746,8 @@ void SootNSickle::level1Load()
 	zs1.addWave(1, AIR, 0);
 	zs1.addWave(5, GROUND, 10);
 	zs1.addWave(3, AIR, 0);
-	zs1.addWave(30, GROUND, 30);
+	zs1.addWave(20, GROUND, 30);
+	zs1.addWave(9, AIR, 0);
 
 	guiLoad();
 
@@ -771,7 +772,32 @@ void SootNSickle::level2Load()
 	currentState = Level2;
 	deactivateAll();
 
+	path1.add(VECTOR2(1200,200));
+	path1.add(VECTOR2(800,200));
+	path1.add(VECTOR2(600,600));
+	path1.add(base.getCenter());
 
+	zs1.setCenter(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
+	zs1.setManager(&path1);
+	zs1.addWave(5, GROUND, 15);
+	zs1.addWave(3, AIR, 0);
+	zs1.addWave(15, GROUND, 10);
+	zs1.addWave(9, AIR, 0);
+	zs1.addWave(50, GROUND, 30);
+	zs1.addWave(18, AIR, 0);
+
+	path2.add(VECTOR2(600,GAME_HEIGHT*3/4));
+	path2.add(VECTOR2(1000, GAME_HEIGHT/2));
+	path2.add(base.getCenter());
+
+	zs2.setCenter(VECTOR2(0,GAME_HEIGHT+(randmax(200))));
+	zs2.setManager(&path2);
+	zs2.addWave(1, GROUND, 15);
+	zs2.addWave(2, AIR, 0);
+	zs2.addWave(2, GROUND, 10);
+	zs2.addWave(5, AIR, 0);
+	zs2.addWave(10, GROUND, 30);
+	zs2.addWave(20, AIR, 0);
 }
 
 void SootNSickle::level3Load()
@@ -1038,6 +1064,10 @@ void SootNSickle::deactivateAll()
 	for(int i = 0 ; i < MAX_AIR_ENEMIES;i++)
 		zombieBats[i].setActive(false);
 	base.setActive(false);
+	path1.clear();
+	path2.clear();
+	zs1.clear();
+	zs2.clear();
 }
 
 void SootNSickle::onBaseDeath()
