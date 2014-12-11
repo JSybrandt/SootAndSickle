@@ -11,6 +11,8 @@ float utilityNS::rand01(){return ((rand()%100)/100.0);}
 
 float utilityNS::randmax(int max){return rand()%max;}
 
+float utilityNS::randhalf() {return (rand()%100)/100;}
+
 float utilityNS::toPincipleArgument(float angle)
 {
 	while(angle <= -1*PI)angle+=2*PI;

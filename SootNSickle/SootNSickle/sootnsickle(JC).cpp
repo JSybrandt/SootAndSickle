@@ -202,9 +202,13 @@ void SootNSickle::initialize(HWND hwnd)
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
 		if(!airFields[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex,&buildingText))
 			throw GameError(-1*i,"FAILED TO MAKE air field!");
-	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
-		if(!zombies[i].initialize(this,0,0,0,&zombieTex,&healthBarTex))
+	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
+		if(!zombies[i].initialize(this,ZOMBIE_WIDTH,ZOMBIE_HEIGHT,ZOMBIE_COL,&zombieTex,&healthBarTex))
 			throw GameError(-1*i,"FAILED TO MAKE zombie!");
+		zombies[i].setFrames(0, 3);   // animation frames
+		zombies[i].setCurrentFrame(0);     // starting frame
+		zombies[i].setFrameDelay(0.25f); //0.08 seems appriopriate
+	}
 
 	menuLoad();
 
@@ -559,7 +563,7 @@ void SootNSickle::level1Load()
 
 	zs1.setCenter(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
 	zs1.setManager(&path1);
-	zs1.addWave(2,20);
+	zs1.addWave(2,5);
 	zs1.addWave(5,10);
 	zs1.addWave(30,30);
 

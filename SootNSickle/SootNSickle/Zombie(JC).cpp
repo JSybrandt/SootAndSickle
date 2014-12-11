@@ -9,6 +9,7 @@ Zombie::Zombie():ActorWithHealthBar(){
 	collisionType = COLLISION_TYPE::BOX;
 	colorFilter = zombieNS::COLOR;
 	health = 500;
+	personalSpeed = zombieNS::SPEED;
 	setActive(false);
 	target = false;
 	shoot = false;
@@ -37,7 +38,7 @@ void Zombie::update(float frameTime)
 		}
 
 		checked = false;
-		VECTOR2 endLoc = getCenter()+(getVelocity()*zombieNS::SPEED*frameTime);
+		VECTOR2 endLoc = getCenter()+(getVelocity()*personalSpeed*frameTime);
 		//endLoc = game->getRealEndLoc(getCenter(),endLoc);
 		setCenter(endLoc);
 		if(targetEntity != nullptr && targetEntity->getActive()) {
@@ -45,7 +46,7 @@ void Zombie::update(float frameTime)
 			float dirtoTarget = atan2(toTarget.y,toTarget.x);
 			float distSqrdtoTarget = D3DXVec2LengthSq(&toTarget);		
 
-			if(distSqrdtoTarget < zombieNS::ENGAGE_DISTANCE_SQRD) {
+			if(distSqrdtoTarget < personalEngageDistanceSQRD) {
 				setVelocity(VECTOR2(0,0));
 				if(weaponCooldown <= 0){
 					weaponCooldown  = zombieNS::WEAPON_COOLDOWN;
@@ -60,7 +61,7 @@ void Zombie::update(float frameTime)
 						targetEntity = nullptr;
 				}
 			}
-			else if(distSqrdtoTarget < zombieNS::CHASE_DISTANCE_SQRD) {
+			else if(distSqrdtoTarget < personalChaseDistanceSQRD) {
 				vectorTrack(frameTime);
 				VECTOR2 aim(targetEntity->getCenterX() - endLoc.x,targetEntity->getCenterY() - endLoc.y);
 				float aimDir = atan2(aim.y,aim.x);
@@ -188,8 +189,9 @@ void Zombie::create(VECTOR2 loc)
 	setCenter(loc);
 	setHealth(100);
 
-	personalChaseDistanceSQRD = /*(rand01()+0.5) *  */zombieNS::CHASE_DISTANCE_SQRD;
-	personalEngageDistanceSQRD =/* (rand01()+0.5) * */zombieNS::ENGAGE_DISTANCE_SQRD;
+	personalChaseDistanceSQRD = randmax(2000)+zombieNS::CHASE_DISTANCE_SQRD;
+	personalEngageDistanceSQRD = randmax(5000)+zombieNS::ENGAGE_DISTANCE_SQRD;
+	personalSpeed = randmax(25)+zombieNS::SPEED;
 }
 
 void Zombie::nextWaypoint() {
