@@ -26,12 +26,12 @@ void Building::draw(VECTOR2 screenLoc)
 		{
 			RECT textRect;
 			//set text rect to be below the image
-			textRect.top = getY()+getHeight()-screenLoc.y;
-			textRect.left = getX()-screenLoc.x;
-			textRect.right = textRect.left + getWidth();
-			textRect.bottom = textRect.top +15;
+			textRect.top = getY()-screenLoc.y;
+			textRect.right = getX()-screenLoc.x;
+			textRect.left = textRect.right - 20;
+			textRect.bottom = textRect.top + getHeight();
 
-			text->print("<"+std::to_string(level)+">",textRect,DT_CENTER|DT_VCENTER);
+			text->print(std::to_string(level),textRect,DT_CENTER|DT_VCENTER);
 		}
 	}
 }
