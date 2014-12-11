@@ -41,6 +41,7 @@ const char POWER_FIELD_IMAGE[] = "pictures\\powerField.png";
 const char MINERAL_IMAGE[] = "pictures\\minerals.png";
 const char EXTRACTOR_IMAGE[] = "pictures\\extractor.png";
 const char TURRETG_IMAGE[] = "pictures\\turretG.png";
+const char TURRETA_IMAGE[] = "pictures\\turretA.png";
 const char TURRETBASE_IMAGE[] = "pictures\\stand.png";
 const char FACTORY_IMAGE[] = "pictures\\factory.png";
 const char HOUSE_IMAGE[] = "pictures\\house.png";

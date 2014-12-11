@@ -109,6 +109,7 @@ private:
 	TextureManager extractorTex;
 	TextureManager mineralTex;
 	TextureManager turretgTex;
+	TextureManager turretaTex;
 	TextureManager standTex;
 	TextureManager factoryTex;
 	TextureManager houseTex;
@@ -207,6 +208,7 @@ public:
 	Extractor* spawnExtractor(VECTOR2 loc);
 	MineralPatch* spawnMinerals(VECTOR2 loc, float ammount);
 	Turret* spawnTurret(VECTOR2 loc);
+	Turret* spawnAATurret(VECTOR2 loc);
 	Factory* spawnFactory(VECTOR2 loc);
 	House* spawnHouse(VECTOR2 loc);
 	AirField* spawnAirField(VECTOR2 loc);

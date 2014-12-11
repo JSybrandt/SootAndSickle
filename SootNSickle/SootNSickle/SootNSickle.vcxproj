@@ -87,7 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AATurret.cpp" />
+    <ClCompile Include="AATurret%28C%29.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AGTurret.cpp" />
     <ClCompile Include="AirField(J).cpp" />

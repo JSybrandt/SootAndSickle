@@ -149,6 +149,8 @@ void SootNSickle::initialize(HWND hwnd)
 		throw GameError(6,"Failed to init extractor tex");
 	if(!turretgTex.initialize(graphics,TURRETG_IMAGE))
 		throw GameError(6,"Failed to init extractor tex");
+	if(!turretaTex.initialize(graphics,TURRETA_IMAGE))
+		throw GameError(6,"Failed to init extractor tex");
 	if(!standTex.initialize(graphics,TURRETBASE_IMAGE))
 		throw GameError(6,"Failed to init extractor tex");	
 	if(!houseTex.initialize(graphics,HOUSE_IMAGE))
@@ -203,7 +205,11 @@ void SootNSickle::initialize(HWND hwnd)
 
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
 		if(!turrets[i].initialize(this,0,0,0,&turretgTex,&standTex,&healthBarTex,&buildingText))
-			throw GameError(-1*i,"FAILED TO MAKE turret!");
+			throw GameError(-1*i,"FAILED TO MAKE agturret!");
+	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		if(!aaturrets[i].initialize(this,0,0,0,&turretaTex,&standTex,&healthBarTex,&buildingText))
+			throw GameError(-1*i,"FAILED TO MAKE aaturret!");
 	}
 
 	for(int i = 0; i < MAX_FACTORIES; i++) {
@@ -223,14 +229,14 @@ void SootNSickle::initialize(HWND hwnd)
 			throw GameError(-1*i,"FAILED TO MAKE zombie!");
 		zombies[i].setFrames(0, 3);   // animation frames
 		zombies[i].setCurrentFrame(0);     // starting frame
-		zombies[i].setFrameDelay(0.25f); //0.08 seems appriopriate
+		zombies[i].setFrameDelay(0.25f); 
 	}
 	for(int i = 0; i < MAX_AIR_ENEMIES; i++) {
 		if(!zombieBats[i].initialize(this,BAT_WIDTH,BAT_HEIGHT,BAT_COL,&zombieBatTex,&healthBarTex))
 			throw GameError(-1*i,"FAILED TO MAKE zombieBat!");
 		zombieBats[i].setFrames(0, 3);   // animation frames
 		zombieBats[i].setCurrentFrame(0);     // starting frame
-		zombieBats[i].setFrameDelay(BAT_DELAY); //0.08 seems appriopriate
+		zombieBats[i].setFrameDelay(BAT_DELAY);
 	}
 	menuLoad();
 
@@ -408,6 +414,10 @@ void SootNSickle::levelsUpdate()
 	{
 		turrets[i].update(frameTime);
 	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++)
+	{
+		aaturrets[i].update(frameTime);
+	}
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
 		zombies[i].update(frameTime);
 	for(int i = 0; i < MAX_AIR_ENEMIES; i++)
@@ -446,6 +456,10 @@ void SootNSickle::ai()
 				if(turrets[j].getActive())
 					zombies[i].ai(frameTime, turrets[j]);
 			}
+			for(int j = 0; j < MAX_AIR_TURRETS; j++) {
+				if(aaturrets[j].getActive())
+					zombies[i].ai(frameTime, aaturrets[j]);
+			}
 			for(int j = 0; j < MAX_HOUSES; j++) {
 				if(houses[j].getActive())
 					zombies[i].ai(frameTime, houses[j]);
@@ -453,6 +467,14 @@ void SootNSickle::ai()
 			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
 				if(airFields[j].getActive())
 					zombies[i].ai(frameTime, airFields[j]);
+			}
+			for(int j = 0; j < MAX_FACTORIES; j++) {
+				if(factories[j].getActive())
+					zombies[i].ai(frameTime, factories[j]);
+			}
+			for(int j = 0; j < MAX_EXTRACTORS; j++) {
+				if(extractors[j].getActive())
+					zombies[i].ai(frameTime, extractors[j]);
 			}
 			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
 				if(powerSupplies[j].getActive())
@@ -465,18 +487,14 @@ void SootNSickle::ai()
 	for(int i = 0; i < MAX_AIR_ENEMIES; i++) {
 		if(zombieBats[i].getActive()) {
 			zombieBats[i].ai(frameTime, base);
-			for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
-				if(turrets[j].getActive())
-					zombieBats[i].ai(frameTime, turrets[j]);
-			}
 			for(int j = 0; j < MAX_HOUSES; j++) {
 				if(houses[j].getActive())
 					zombieBats[i].ai(frameTime, houses[j]);
 			}
-			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
-				if(airFields[j].getActive())
-					zombieBats[i].ai(frameTime, airFields[j]);
-			}
+			//for(int j = 0; j < MAX_AIR_FIELDS; j++) {
+			//	if(airFields[j].getActive())
+			//		zombieBats[i].ai(frameTime, airFields[j]);
+			//}
 			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
 				if(powerSupplies[j].getActive())
 					zombieBats[i].ai(frameTime, powerSupplies[j]);
@@ -490,13 +508,15 @@ void SootNSickle::ai()
 			for(int j = 0; j < MAX_GROUND_ENEMIES; j++)
 				if(zombies[j].getActive())
 					turrets[i].ai(frameTime, zombies[j]);
-		for(int j = 0; j < MAX_AIR_ENEMIES; j++)				//DELETE THIS AFTER ADDING AA
-			if(zombieBats[j].getActive())		
-				turrets[i].ai(frameTime, zombieBats[j]);
 	}
 
 	//AIR TURRETS
-
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		if(aaturrets[i].getActive())
+		for(int j = 0; j < MAX_AIR_ENEMIES; j++)
+			if(zombieBats[j].getActive())		
+				aaturrets[i].ai(frameTime, zombieBats[j]);
+	}
 }
 //=============================================================================
 // Handle collisions
@@ -592,6 +612,9 @@ void SootNSickle::levelsRender()
 
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
 		turrets[i].draw(screenLoc);
+	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		aaturrets[i].draw(screenLoc);
 	}
 	for(int i = 0; i < MAX_AIR_FIELDS; i++) {
 		airFields[i].draw(screenLoc);
@@ -704,6 +727,7 @@ void SootNSickle::level1Load()
 	zs1.addWave(2, GROUND, 15);
 	zs1.addWave(1, AIR, 0);
 	zs1.addWave(5, GROUND, 10);
+	zs1.addWave(3, AIR, 0);
 	zs1.addWave(30, GROUND, 30);
 
 	guiLoad();
@@ -880,7 +904,7 @@ MineralPatch* SootNSickle::spawnMinerals(VECTOR2 loc, float ammount)
 
 Turret* SootNSickle::spawnTurret(VECTOR2 loc)
 {
-	for(int i = 0; i < MAX_MINERALS; i++)
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++)
 	{
 		if(!turrets[i].getActive())
 		{
@@ -892,9 +916,23 @@ Turret* SootNSickle::spawnTurret(VECTOR2 loc)
 	return nullptr;
 }
 
+Turret* SootNSickle::spawnAATurret(VECTOR2 loc)
+{
+	for(int i = 0; i < MAX_AIR_TURRETS; i++)
+	{
+		if(!aaturrets[i].getActive())
+		{
+			aaturrets[i].create(loc, 0);
+			return &aaturrets[i];
+		}
+	}
+
+	return nullptr;
+}
+
 Zombie* SootNSickle::spawnZombie(VECTOR2 loc)
 {
-	for(int i = 0; i < MAX_MINERALS; i++)
+	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
 	{
 		if(!zombies[i].getActive())
 		{
@@ -908,7 +946,7 @@ Zombie* SootNSickle::spawnZombie(VECTOR2 loc)
 
 ZombieBat* SootNSickle::spawnZombieBat(VECTOR2 loc)
 {
-	for(int i = 0; i < MAX_MINERALS; i++)
+	for(int i = 0; i < MAX_AIR_ENEMIES; i++)
 	{
 		if(!zombieBats[i].getActive())
 		{
@@ -968,6 +1006,8 @@ void SootNSickle::deactivateAll()
 		houses[i].setActive(false);
 	for(int i = 0 ; i < MAX_GROUND_TURRETS; i++)
 		turrets[i].setActive(false);
+	for(int i = 0 ; i < MAX_AIR_TURRETS; i++)
+		aaturrets[i].setActive(false);
 	for(int i = 0 ; i < MAX_HOUSES;i++)
 		houses[i].setActive(false);
 	for(int i = 0 ; i < MAX_AIR_FIELDS;i++)
@@ -1053,6 +1093,17 @@ void SootNSickle::checkClick()
 	else if(cursorSelection == ButtonNS::GROUND_TURRET_SELECTION&& mineralLevel > GROUND_TURRET_COST)
 	{
 		Turret * p = spawnTurret(getMouseInWorld());
+		if(!isBuildingLocationLegal(p)) p->setActive(false);
+		else
+		{
+			refreshPower();
+			mineralLevel-=GROUND_TURRET_COST;
+			audio->playCue(SC_BUILDING);
+		}
+	}
+	else if(cursorSelection == ButtonNS::AIR_TURRET_SELECTION&& mineralLevel > AIR_TURRET_COST)
+	{
+		Turret * p = spawnAATurret(getMouseInWorld());
 		if(!isBuildingLocationLegal(p)) p->setActive(false);
 		else
 		{
@@ -1329,6 +1380,8 @@ void SootNSickle::refreshPower()
 		factories[i].setPower(factories[i].collidesWith(base.getPowerField(),v));
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) 
 		turrets[i].setPower(turrets[i].collidesWith(base.getPowerField(),v));
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) 
+		aaturrets[i].setPower(aaturrets[i].collidesWith(base.getPowerField(),v));
 	for(int i = 0; i < MAX_HOUSES; i++)
 		houses[i].setPower(houses[i].collidesWith(base.getPowerField(),v));
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
@@ -1382,6 +1435,11 @@ void SootNSickle::refreshPower()
 			{
 				if(!turrets[i].getPower()&&currPwrSupp->getPowerField().collidesWith(turrets[i],v))
 					turrets[i].setPower(true);
+			}
+			for(int i = 0; i < MAX_AIR_TURRETS; i++) 
+			{
+				if(!aaturrets[i].getPower()&&currPwrSupp->getPowerField().collidesWith(aaturrets[i],v))
+					aaturrets[i].setPower(true);
 			}
 			for(int i = 0; i < MAX_HOUSES; i++) 
 			{

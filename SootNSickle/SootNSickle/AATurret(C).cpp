@@ -1,8 +1,8 @@
-#include "AATurret.h"
+#include "Turret.h"
 
 #include "SootNSickle.h"
 
-using namespace aaturretNS;
+using namespace turretNS;
 
 AATurret::AATurret(): Turret() {
 	radius = TURRET_RADIUS;
@@ -10,19 +10,20 @@ AATurret::AATurret(): Turret() {
 	base.setRadians(PI/4);
 	checked = false;
 	target = false;
-	personalEngageDistanceSQRD = ENGAGE_DISTANCE_SQRD;
+	personalEngageDistanceSQRD = turretNS::ENGAGE_DISTANCE_SQRD;
 	targetEntity = nullptr;
 	active = false;
 	weaponCooldown = 0;
 	rebootCooldown = 0;
+	damageType = GROUND;
 	setCapacity(CAPACITY);
+	setMaxHealth(HEALTH);
 }
 
-bool AATurret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *AATurretTM, TextureManager *baseTM, TextureManager* hbTexM, TextDX * text) {
+bool AATurret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *turretTM, TextureManager *baseTM, TextureManager* hbTexM, TextDX * text) {
 	game = g;
 	bool result = true;
-	damageType = AIR;
-	result = result && Building::initialize(g,width,height,ncols,AATurretTM,hbTexM,text);
+	result = result && Building::initialize(g,width,height,ncols,turretTM,hbTexM,text);
 	result = result && base.initialize(g,BASE_WIDTH,BASE_HEIGHT,0,baseTM);
 	return result;
 }
@@ -39,7 +40,7 @@ void AATurret::update(float frametime) {
 			if(rebootCooldown > 0) {
 				rebootCooldown -= frametime;
 			}
-			else if(targetEntity != nullptr) {
+			else if(targetEntity != nullptr && targetEntity->getActive()) {
 				colorFilter = graphicsNS::WHITE;
 
 				VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
@@ -48,7 +49,7 @@ void AATurret::update(float frametime) {
 				float radians = getRadians();
 
 				//if the player is close and in view
-				if(distSqrdtoTarget < ENGAGE_DISTANCE_SQRD)
+				if(distSqrdtoTarget < turretNS::ENGAGE_DISTANCE_SQRD)
 				{
 
 					//convert to principle arguments
@@ -60,7 +61,7 @@ void AATurret::update(float frametime) {
 					diff = toPincipleArgument(diff);
 
 					//if we got um
-					if(abs(diff) <= ROT_EPSILON)
+					if(abs(diff) <= turretNS::ROT_EPSILON)
 					{
 						setRadians(dirtoTarget);
 						radians = getRadians();
@@ -70,11 +71,11 @@ void AATurret::update(float frametime) {
 					{
 						if (diff < 0 )
 						{
-							rotVel = -ROTATION_SPEED;
+							rotVel = -turretNS::ROTATION_SPEED;
 						}
 						else if (diff > 0)
 						{
-							rotVel = ROTATION_SPEED;
+							rotVel = turretNS::ROTATION_SPEED;
 						}
 						setRadians(radians+ rotVel*frametime);
 					}
@@ -88,26 +89,31 @@ void AATurret::update(float frametime) {
 						//game->spawnBullet(v1,radians,graphicsNS::RED,false);
 						//game->spawnBullet(v2,radians,graphicsNS::RED,false);
 						animComplete = false;
-						//targetEntity->doDamage(25);
+						game->spawnParticleCone(getCenter(),radians-PI,graphicsNS::GRAY, 50);
+						//game->spawnParticleCone(getCenter()+turretNS::BULLET2_OFFSET,radians,graphicsNS::RED);
+						targetEntity->damage(25);
 						setCurrentFrame(0);
-						//audio->playCue(AATurret_CUE);
-						weaponCooldown = FIRE_RATE;
+						//audio->playCue(TURRET_CUE);
+						weaponCooldown = turretNS::FIRE_RATE;
 					}
 				}
+				//if(targetEntity->getActive())
+				//	targetEntity = nullptr;
 			}
 			else
 			{
 				float radians = getRadians();
 				if(radians > maxDir)
 				{
-					rotVel = -ROTATION_SPEED;
+					rotVel = -turretNS::ROTATION_SPEED;
 				}
 				if(radians < minDir)
 				{
 					setRadians(minDir);
-					rotVel = ROTATION_SPEED;
+					rotVel = turretNS::ROTATION_SPEED;
 				}
-				setRadians(radians+ rotVel*frametime);
+				else
+					setRadians(radians+ rotVel*frametime);
 			}
 
 		}
@@ -131,16 +137,20 @@ void AATurret::draw(VECTOR2 screenLoc) {
 }
 
 void AATurret::create(VECTOR2 loc, float dir) {
+	Building::create(loc);
 	setActive(true);
-	setRadians(dir);
-	minDir = dir - ROTATION_WIDTH;
-	maxDir = dir + ROTATION_WIDTH;
-	rotVel = ROTATION_SPEED;
+	setRadians(PI/2);
+	targetEntity = nullptr;
+	minDir = dir - turretNS::ROTATION_WIDTH;
+	maxDir = dir + turretNS::ROTATION_WIDTH;
+	rotVel = turretNS::ROTATION_SPEED;
 	setCenter(loc);
 	base.setCenter(loc);
 	weaponCooldown = 0;
 	rebootCooldown = 0;
 	colorFilter = graphicsNS::WHITE;
+	heal(turretNS::HEALTH);
+
 }
 
 void AATurret::ai(float frameTime, ActorWithHealthBar &t) {
@@ -151,6 +161,7 @@ void AATurret::ai(float frameTime, ActorWithHealthBar &t) {
 			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
 
 			if(distSqrdToOldTarget > personalEngageDistanceSQRD || !targetEntity->getActive()) {
+				targetEntity = nullptr;
 				target = false;
 			}
 			else {
@@ -179,3 +190,9 @@ void AATurret::hit() {
 	weaponCooldown = FIRE_RATE;
 	colorFilter = graphicsNS::GRAY;
 }
+
+/*
+BUGLIST:
+Needs to properly lose target if it reactivates after target dies
+
+*/

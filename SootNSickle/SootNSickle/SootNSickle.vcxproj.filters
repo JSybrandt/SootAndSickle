@@ -108,9 +108,6 @@
     <ClCompile Include="AGTurret.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="AATurret.cpp">
-      <Filter>Source Files\GameFiles</Filter>
-    </ClCompile>
     <ClCompile Include="Waypoint%28C%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
@@ -121,6 +118,9 @@
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
     <ClCompile Include="ZombieBat%28C%29.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="AATurret%28C%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
   </ItemGroup>
