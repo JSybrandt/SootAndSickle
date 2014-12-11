@@ -9,6 +9,8 @@ VECTOR2 utilityNS::rotateVector(VECTOR2 v, float d){
 
 float utilityNS::rand01(){return ((rand()%100)/100.0);}
 
+float utilityNS::randPM5(){return rand01()+0.5;}
+
 float utilityNS::randmax(int max){return rand()%max;}
 
 float utilityNS::randhalf() {return (rand()%100)/100;}
