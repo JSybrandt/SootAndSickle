@@ -17,9 +17,9 @@ SootNSickle::SootNSickle()
 
 	worldSizes = new VECTOR2[GameState::SIZE];
 	worldSizes[GameState::TitleScreen] = VECTOR2(GAME_WIDTH,GAME_HEIGHT);
-	worldSizes[GameState::Level1] = VECTOR2(GAME_WIDTH*2,GAME_HEIGHT*2);
-	worldSizes[GameState::Level2] = VECTOR2(GAME_WIDTH,GAME_HEIGHT);
-	worldSizes[GameState::Level3] = VECTOR2(GAME_WIDTH,GAME_HEIGHT);
+	worldSizes[GameState::Level1] = VECTOR2(4000,4000);
+	worldSizes[GameState::Level2] = VECTOR2(4000,4000);
+	worldSizes[GameState::Level3] = VECTOR2(4000,4000);
 	worldSizes[GameState::FeelingLucky] = VECTOR2(GAME_WIDTH,GAME_HEIGHT);
 
 	currentState = TitleScreen;
@@ -343,6 +343,12 @@ void SootNSickle::levelsUpdate()
 	{
 		level1Load();
 	}
+	if(input->wasKeyPressed('C'))
+	{
+		VECTOR2 screen (GAME_WIDTH,GAME_HEIGHT);
+		screen *= 0.5;
+		screenLoc = base.getCenter() - screen;
+	}
 
 	if(input->getMouseRButton())
 	{
@@ -368,11 +374,6 @@ void SootNSickle::levelsUpdate()
 		in.x -= 1;
 	if(input->isKeyDown(controls.right))
 		in.x += 1;
-
-	if(input->wasKeyPressed(VK_UP))
-		base.damage(10);
-	if(input->wasKeyPressed(VK_DOWN))
-		base.heal(10);
 
 	D3DXVec2Normalize(&in,&in);
 	in*=SCREEN_SPEED*frameTime;
@@ -408,7 +409,7 @@ void SootNSickle::levelsUpdate()
 	{
 		houses[i].update(frameTime);
 		if(houses[i].getActive() && houses[i].getPower())
-			newCapacity+=HouseNS::HOUSING;
+			newCapacity+=HouseNS::HOUSING*houses[i].getLevel();
 	}
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
 	{
@@ -734,6 +735,27 @@ void SootNSickle::level1Load()
 	currentState = Level1;
 	deactivateAll();
 	base.create(getCurrentWorldSize()*0.5);
+
+	for(float theta = 0; theta < 2*PI; theta+= PI/14)
+	{
+		for(float r = base.getWidth()+200; r < getCurrentWorldSize().x*1.4;r+=150)
+		{
+			if(rand()%((int)sqrt(0.35*r))==7)
+			{
+				VECTOR2 dist(r,0);
+				dist = rotateVector(dist,theta);
+				dist += getCurrentWorldSize()*0.5;
+
+				if(dist.x > 50 && dist.x < getCurrentWorldSize().x-50 && dist.y > 50 && dist.y < getCurrentWorldSize().y-50)
+				{
+					MineralPatch* m = spawnMinerals(dist,randPM5()*MineralNS::DEFAULT_MINERALS*(r/2000));
+					if(!isBuildingLocationLegal(m)) m->setActive(false);
+				}	
+			}
+		}
+	}
+
+
 	path1.add(VECTOR2(1200,200));
 	path1.add(VECTOR2(800,200));
 	path1.add(VECTOR2(600,600));
@@ -750,10 +772,6 @@ void SootNSickle::level1Load()
 	zs1.addWave(9, AIR, 0);
 
 	guiLoad();
-
-	spawnMinerals(VECTOR2(100,100),1000);
-	spawnMinerals(VECTOR2(300,500),1000);
-	spawnMinerals(VECTOR2(1500,800),2000);
 
 	capacity = 25;
 	addPopulation(10);

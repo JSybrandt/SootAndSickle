@@ -3,7 +3,9 @@
 #include "Actor.h"
 #include "textDX.h"
 
-
+namespace MineralNS{
+	const int DEFAULT_MINERALS = 2000;
+};
 
 class MineralPatch : public Actor
 {
