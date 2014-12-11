@@ -117,7 +117,7 @@
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
-    <ClCompile Include="ZombieSpawner.cpp" />
+    <ClCompile Include="ZombieSpawner%28C%29.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AATurret.h" />

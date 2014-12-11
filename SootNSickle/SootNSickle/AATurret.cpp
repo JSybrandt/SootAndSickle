@@ -15,6 +15,7 @@ AATurret::AATurret(): Turret() {
 	active = false;
 	weaponCooldown = 0;
 	rebootCooldown = 0;
+	damageType = AIR;
 	setCapacity(CAPACITY);
 }
 

@@ -14,7 +14,8 @@ protected:
 	VECTOR2 center;
 	float spawnTimer;
 	float resetTimer;
-	bool alive;
+	int zombies;
+	bool alive, last;
 	SootNSickle* game;
 	WPManager* wpm;
 	std::vector<std::pair<int,float>> waves;

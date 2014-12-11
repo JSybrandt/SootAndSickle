@@ -419,7 +419,20 @@ void SootNSickle::ai()
 			if(turrets[j].getActive())
 				zombies[i].ai(frameTime, turrets[j]);
 		}
+		for(int j = 0; j < MAX_HOUSES; j++) {
+			if(houses[j].getActive())
+				zombies[i].ai(frameTime, houses[j]);
+		}
+		for(int j = 0; j < MAX_AIR_FIELDS; j++) {
+			if(airFields[j].getActive())
+				zombies[i].ai(frameTime, airFields[j]);
+		}
+		for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
+			if(powerSupplies[j].getActive())
+				zombies[i].ai(frameTime, powerSupplies[j]);
+		}
 	}
+
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
 		if(turrets[i].getActive())
 			for(int j = 0; j < MAX_GROUND_ENEMIES; j++)
@@ -427,7 +440,6 @@ void SootNSickle::ai()
 					turrets[i].ai(frameTime, zombies[j]);
 	}
 }
-
 //=============================================================================
 // Handle collisions
 //=============================================================================
@@ -617,7 +629,7 @@ void SootNSickle::level1Load()
 	currentState = Level1;
 	deactivateAll();
 	base.create(getCurrentWorldSize()*0.5);
-	/*path1.add(VECTOR2(1200,200));
+	path1.add(VECTOR2(1200,200));
 	path1.add(VECTOR2(800,200));
 	path1.add(VECTOR2(600,600));
 	path1.add(base.getCenter());
@@ -625,9 +637,9 @@ void SootNSickle::level1Load()
 
 	zs1.setCenter(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
 	zs1.setManager(&path1);
-	zs1.addWave(2,5);
+	zs1.addWave(2,15);
 	zs1.addWave(5,10);
-	zs1.addWave(30,30);*/
+	zs1.addWave(30,30);
 
 	guiLoad();
 

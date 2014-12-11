@@ -117,7 +117,7 @@
     <ClCompile Include="WPManager%28C%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="ZombieSpawner.cpp">
+    <ClCompile Include="ZombieSpawner%28C%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
   </ItemGroup>
