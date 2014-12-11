@@ -48,6 +48,8 @@ const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
 const char ZOMBIE_IMAGE[] = "pictures\\zombieAni.png";
 const char MENU_BACKGROUND_IMAGE[] = "pictures\\menuBackground.png";
 const char MAIN_MENU_BUTTON_IMAGE[] = "pictures\\mainMenuButtons.png";
+const char TUTORIAL_IMAGE[] = "pictures\\tutorial.png";
+const char TRANSPORT_SHIP_IMAGE[] = "pictures\\transportShip.png";
 
 //Sound Locations
 const char WAVE_BANK[] = "audio\\Win\\Wave Bank.xwb";

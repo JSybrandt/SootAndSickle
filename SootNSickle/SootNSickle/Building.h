@@ -41,4 +41,6 @@ public:
 	}
 
 	void onDeath();
+
+	TextDX* getText(){return text;}
 };

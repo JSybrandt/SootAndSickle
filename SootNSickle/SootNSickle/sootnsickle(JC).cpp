@@ -41,6 +41,8 @@ SootNSickle::SootNSickle()
 	idlePopulation = 0;
 	capacity = 0;
 	upgradePoints = 0;
+	tutorialSelection = 0;
+	showTutorial = false;
 }
 
 //=============================================================================
@@ -81,9 +83,18 @@ void SootNSickle::initialize(HWND hwnd)
 	//
 	//Initializing Textures
 	//
+
+	if(!tutorialTex.initialize(graphics,TUTORIAL_IMAGE))
+		throw GameError(1,"Failed to init tutorial tex");
+
+	if(!tutorial.initialize(graphics,1280,800,1,&tutorialTex))
+		throw GameError(1,"Failed to init tutorial");
+
 	if(!backgroundTex.initialize(graphics,BACKGROUND_IMAGE))
 		throw GameError(1,"Failed to init background tex");
 
+	if(!transportShipTex.initialize(graphics,TRANSPORT_SHIP_IMAGE))
+		throw GameError(1,"Failed to init transport ship tex");
 
 	if(!particleTex.initialize(graphics,PARTICLE_IMAGE))
 		throw GameError(6,"Failed to init particle tex");
@@ -200,7 +211,7 @@ void SootNSickle::initialize(HWND hwnd)
 	}
 
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
-		if(!airFields[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex,&buildingText))
+		if(!airFields[i].initialize(this,0,0,0,&airFieldTex,&healthBarTex,&buildingText,&transportShipTex))
 			throw GameError(-1*i,"FAILED TO MAKE air field!");
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
 		if(!zombies[i].initialize(this,ZOMBIE_WIDTH,ZOMBIE_HEIGHT,ZOMBIE_COL,&zombieTex,&healthBarTex))
@@ -234,45 +245,63 @@ void SootNSickle::update()
 void SootNSickle::menuUpdate(bool reset)
 {
 	static int selection = 0;
-	if(input->wasKeyPressed(controls.up))
-		selection--;
-	if(input->wasKeyPressed(controls.down))
-		selection++;
 
-	if(selection < 0) selection = MAIN_MENU_OPTION_COUNT-1;
-	if(selection >= MAIN_MENU_OPTION_COUNT) selection = 0;
-
-	int choice = -1;
-
-	if(input->wasKeyPressed(VK_RETURN))
+	if(showTutorial)
 	{
-		choice = selection;
+		if(input->wasKeyPressed(controls.left))
+			tutorialSelection--;
+		if(input->wasKeyPressed(controls.right))
+			tutorialSelection++;
+		if(input->wasKeyPressed(VK_RETURN))
+			showTutorial = false;
+		if(tutorialSelection < 0) tutorialSelection = NUM_TUTORIAL_IMAGES-1;
+		if(tutorialSelection >= NUM_TUTORIAL_IMAGES) tutorialSelection = 0;
+		tutorial.setCurrentFrame(tutorialSelection);
 	}
-
-	VECTOR2 initPosit(866,313);
-	VECTOR2 verticalDisp(0,120);
-	VECTOR2 selectedDisp(-50,0);
-	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	else
 	{
-		if(input->getMouseX()> mainMenuOptions[i].getX() && input->getMouseX() < mainMenuOptions[i].getX()+mainMenuOptions[i].getWidth()
-			&&input->getMouseY()> mainMenuOptions[i].getY() && input->getMouseY() < mainMenuOptions[i].getY()+mainMenuOptions[i].getHeight())
+		if(input->wasKeyPressed(controls.up))
+			selection--;
+		if(input->wasKeyPressed(controls.down))
+			selection++;
+
+		if(selection < 0) selection = MAIN_MENU_OPTION_COUNT-1;
+		if(selection >= MAIN_MENU_OPTION_COUNT) selection = 0;
+
+		int choice = -1;
+
+		if(input->wasKeyPressed(VK_RETURN))
 		{
-			selection = i;
-			if(input->getMouseLButton())
-				choice = i;
+			choice = selection;
 		}
 
-		VECTOR2 currLoc = initPosit + i*verticalDisp;
-		if(i==selection) currLoc+= selectedDisp;
-		mainMenuOptions[i].setX(currLoc.x);
-		mainMenuOptions[i].setY(currLoc.y);
+		VECTOR2 initPosit(866,313);
+		VECTOR2 verticalDisp(0,120);
+		VECTOR2 selectedDisp(-50,0);
+		for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+		{
+			if(input->getMouseX()> mainMenuOptions[i].getX() && input->getMouseX() < mainMenuOptions[i].getX()+mainMenuOptions[i].getWidth()
+				&&input->getMouseY()> mainMenuOptions[i].getY() && input->getMouseY() < mainMenuOptions[i].getY()+mainMenuOptions[i].getHeight())
+			{
+				selection = i;
+				if(input->getMouseLButton())
+					choice = i;
+			}
 
+			VECTOR2 currLoc = initPosit + i*verticalDisp;
+			if(i==selection) currLoc+= selectedDisp;
+			mainMenuOptions[i].setX(currLoc.x);
+			mainMenuOptions[i].setY(currLoc.y);
+
+		}
+
+		if(choice == 0)
+			level1Load();
+		else if (choice == 1)
+			showTutorial = true;
+		else if (choice == 3)
+			exitGame();
 	}
-
-	if(choice == 0)
-		level1Load();
-	else if (choice == 3)
-		exitGame();
 
 }
 
@@ -435,10 +464,19 @@ void SootNSickle::menuRender()
 {
 	VECTOR2 UIScreenLoc(0,0);
 
-	mainMenuBackground.draw(UIScreenLoc);
-	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+	if(showTutorial)
 	{
-		mainMenuOptions[i].draw(UIScreenLoc);
+		tutorial.draw(UIScreenLoc);
+		infoText.print("<<<"+std::to_string(tutorialSelection+1) + "/" + std::to_string(NUM_TUTORIAL_IMAGES) + ">>>",GAME_WIDTH*0.85,10);
+		infoText.print("PRESS ENTER TO RETURN",GAME_WIDTH*0.8,30);
+	}
+	else
+	{
+		mainMenuBackground.draw(UIScreenLoc);
+		for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
+		{
+			mainMenuOptions[i].draw(UIScreenLoc);
+		}
 	}
 
 }
@@ -492,6 +530,28 @@ void SootNSickle::levelsRender()
 	guiOverlay.draw(VECTOR2(0,0));
 	for(int i = 0 ; i < MAX_BUTTONS;i++)
 	{
+		
+		int cost = -1;
+		switch(buttons[i].getButtonType())
+		{
+		case ButtonNS::ButtonType::POWER_SUPPLY_SELECTION:cost = POWER_SUPPLY_COST; break;	
+		case ButtonNS::ButtonType::GROUND_TURRET_SELECTION:cost = GROUND_TURRET_COST;break;
+		case ButtonNS::ButtonType::AIR_TURRET_SELECTION: cost = AIR_TURRET_COST;break;
+		case ButtonNS::ButtonType::FACTORY_SELECTION: cost = FACTORY_COST; break;
+		case ButtonNS::ButtonType::EXTRACTOR_SELECTION: cost = EXTRACTOR_COST; break;
+		case ButtonNS::ButtonType::HOUSE_SELECTION: cost = HOUSE_COST; break;
+		case ButtonNS::ButtonType::AIR_FIELD_SELECTION: cost = AIR_FIELD_COST; break;
+		}
+		if(cost > 0)
+		{
+			RECT r;
+			r.bottom = buttons[i].getY();
+			r.left = buttons[i].getX();
+			r.top = r.bottom - 20;
+			r.right = r.left + buttons[i].getWidth();
+			infoText.print(std::to_string(cost),r, DT_CENTER|DT_VCENTER);
+		}
+
 		buttons[i].draw(VECTOR2(0,0));
 	}
 
@@ -545,8 +605,10 @@ void SootNSickle::menuLoad()
 	for(int i = 0 ; i < MAIN_MENU_OPTION_COUNT; i++)
 	{
 		mainMenuOptions[i].setVisible(true);
-
 	}
+
+	tutorialSelection = 0;
+	showTutorial = false;
 
 }
 
@@ -555,7 +617,7 @@ void SootNSickle::level1Load()
 	currentState = Level1;
 	deactivateAll();
 	base.create(getCurrentWorldSize()*0.5);
-	path1.add(VECTOR2(1200,200));
+	/*path1.add(VECTOR2(1200,200));
 	path1.add(VECTOR2(800,200));
 	path1.add(VECTOR2(600,600));
 	path1.add(base.getCenter());
@@ -565,7 +627,7 @@ void SootNSickle::level1Load()
 	zs1.setManager(&path1);
 	zs1.addWave(2,5);
 	zs1.addWave(5,10);
-	zs1.addWave(30,30);
+	zs1.addWave(30,30);*/
 
 	guiLoad();
 
@@ -608,12 +670,20 @@ void SootNSickle::feelingLuckyLoad()
 void SootNSickle::guiLoad()
 {
 	int type = 0;
-	for(float y = GAME_HEIGHT*0.75;y<GAME_HEIGHT-ButtonNS::HEIGHT;y+=ButtonNS::HEIGHT+10)
-		for(float x = GAME_WIDTH*0.85;x<GAME_WIDTH-ButtonNS::WIDTH;x+=ButtonNS::WIDTH+10)
+	bool cellNewLine = true;
+	tutorial.setX(0);tutorial.setY(0);
+	for(float y = GAME_HEIGHT*0.7;y<GAME_HEIGHT-ButtonNS::HEIGHT;y+=ButtonNS::HEIGHT+20)
+		for(float x = GAME_WIDTH*0.8;x<GAME_WIDTH-ButtonNS::WIDTH;x+=ButtonNS::WIDTH+10)
 		{
+			if(type == ButtonNS::ButtonType::SELL_SELECTION && cellNewLine)
+			{
+				cellNewLine = false;
+				break;
+			}
 			spawnButton(VECTOR2(x,y),(ButtonNS::ButtonType)type);
 			type++;
 			if(type >= (int)ButtonNS::ButtonType::SIZE) return;
+			
 		}
 }
 
@@ -837,6 +907,7 @@ void SootNSickle::buttonOnClick(Button* caller){
 
 void SootNSickle::checkClick()
 {
+
 	if(cursorSelection == ButtonNS::POWER_SUPPLY_SELECTION && mineralLevel > POWER_SUPPLY_COST)
 	{
 
@@ -848,16 +919,42 @@ void SootNSickle::checkClick()
 			mineralLevel-=POWER_SUPPLY_COST;
 		}
 	}
+	//custom for extractors (only build on mineral patch)
 	else if(cursorSelection == ButtonNS::EXTRACTOR_SELECTION&& mineralLevel > EXTRACTOR_COST)
 	{
-		Extractor * p = spawnExtractor(getMouseInWorld());
-		if(!isBuildingLocationLegal(p)) p->setActive(false);
-		else
+
+		for(int i = 0 ; i < MAX_MINERALS; i++)
 		{
-			refreshPower();
-			mineralLevel-=EXTRACTOR_COST;
-		}
-	}
+			if(minerals[i].getActive())
+			{
+				VECTOR2 disp = getMouseInWorld() - minerals[i].getCenter();
+				if(D3DXVec2LengthSq(&disp) <= pow(minerals[i].getRadius(),2))
+				{
+					bool noOtherExtractor = true;
+					for(int j = 0 ; j < MAX_EXTRACTORS;j++)
+					{
+						if(extractors[j].getActive())
+						{
+							disp = getMouseInWorld() - extractors[j].getCenter();
+							if(D3DXVec2LengthSq(&disp) <= pow(extractors[j].getRadius(),2))
+							{
+								noOtherExtractor = false;
+								break;
+							}
+						}
+					} //end extractos
+
+					if(noOtherExtractor)
+					{
+						spawnExtractor(minerals[i].getCenter());
+						refreshPower();
+						mineralLevel-=EXTRACTOR_COST;
+					}
+				}
+			}
+		}//end minerals
+
+	}//end extractor placement click
 	else if(cursorSelection == ButtonNS::GROUND_TURRET_SELECTION&& mineralLevel > GROUND_TURRET_COST)
 	{
 		Turret * p = spawnTurret(getMouseInWorld());

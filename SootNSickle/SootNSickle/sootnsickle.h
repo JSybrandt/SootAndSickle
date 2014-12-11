@@ -65,6 +65,8 @@ namespace SootNSickleNS
 	const float SELL_BACK_RATE = 0.8;
 
 	const int MAIN_MENU_OPTION_COUNT = 4;
+
+	const int NUM_TUTORIAL_IMAGES = 3;
 }
 
 
@@ -110,6 +112,8 @@ private:
 	TextureManager zombieTex;
 	TextureManager mainMenuBackgroundTex;
 	TextureManager mainMenuButtonTex;
+	TextureManager tutorialTex;
+	TextureManager transportShipTex;
 
 	Base base;
 
@@ -119,6 +123,8 @@ private:
 	Image background;
 	Image guiOverlay;
 	Image cursor;
+
+	Image tutorial;
 
 	Image mainMenuBackground;
 	Image mainMenuOptions[MAIN_MENU_OPTION_COUNT];
@@ -157,6 +163,9 @@ private:
 
 	void attemptToSellBuilding();
 	void attemptToUpgradeBuilding();
+
+	int tutorialSelection;
+	bool showTutorial;
 
 public:
 	// Constructor

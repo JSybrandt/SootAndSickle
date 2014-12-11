@@ -48,3 +48,23 @@ void Extractor::update(float frameTime)
 		}
 	}
 }
+
+//void Extractor::draw(VECTOR2 screenLoc){
+//
+//	if(getActive())
+//	{
+//	ActorWithHealthBar::draw(screenLoc);
+//
+//		if(getCapacity() > 0 )
+//			{
+//				RECT textRect;
+//				//set text rect to be below the image
+//				textRect.top = getY()+getHeight()-screenLoc.y;
+//				textRect.left = getX()-screenLoc.x;
+//				textRect.right = textRect.left + getWidth();
+//				textRect.bottom = textRect.top +20;
+//		
+//				getText()->print(std::to_string(getStaff())+"/"+std::to_string(getCapacity()),textRect,DT_CENTER|DT_VCENTER);
+//			}
+//	}
+//}

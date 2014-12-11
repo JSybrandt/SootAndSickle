@@ -19,4 +19,5 @@ public:
 	Extractor(){setActive(false); setCollisionRadius(ExtractorNS::COLLISION_RADIUS);setMaxHealth(ExtractorNS::HEALTH);}
 	void update(float frameTime);
 	void create(VECTOR2 loc);
+	//void draw(VECTOR2 screenLoc);
 };

@@ -38,10 +38,10 @@ void MineralPatch::draw(VECTOR2 screenLoc)
 		Actor::draw(screenLoc);
 		RECT textRect;
 		//set text rect to be below the image
-		textRect.top = getY()-screenLoc.y;
+		textRect.top = getY()+getHeight()-screenLoc.y;
 		textRect.left = getX()-screenLoc.x;
 		textRect.right = textRect.left + getWidth();
-		textRect.bottom = textRect.top +getHeight();
+		textRect.bottom = textRect.top + 20;
 
 		text->print(std::to_string((int)mineralLevel),textRect,DT_CENTER|DT_VCENTER);
 	}
