@@ -222,8 +222,11 @@ void SootNSickle::initialize(HWND hwnd)
 		zombies[i].setFrameDelay(0.25f); //0.08 seems appriopriate
 	}
 	for(int i = 0; i < MAX_AIR_ENEMIES; i++) {
-		if(!zombieBats[i].initialize(this,0,0,0,&zombieBatTex,&healthBarTex))
+		if(!zombieBats[i].initialize(this,BAT_WIDTH,BAT_HEIGHT,BAT_COL,&zombieBatTex,&healthBarTex))
 			throw GameError(-1*i,"FAILED TO MAKE zombieBat!");
+		zombieBats[i].setFrames(0, 3);   // animation frames
+		zombieBats[i].setCurrentFrame(0);     // starting frame
+		zombieBats[i].setFrameDelay(BAT_DELAY); //0.08 seems appriopriate
 	}
 	menuLoad();
 

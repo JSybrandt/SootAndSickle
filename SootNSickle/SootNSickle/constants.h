@@ -46,7 +46,7 @@ const char FACTORY_IMAGE[] = "pictures\\factory.png";
 const char HOUSE_IMAGE[] = "pictures\\house.png";
 const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
 const char ZOMBIE_IMAGE[] = "pictures\\zombieAni.png";
-const char ZOMBIEBAT_IMAGE[] = "pictures\\zombieBat.png";
+const char ZOMBIEBAT_IMAGE[] = "pictures\\batAni.png";
 const char MENU_BACKGROUND_IMAGE[] = "pictures\\menuBackground.png";
 const char MAIN_MENU_BUTTON_IMAGE[] = "pictures\\mainMenuButtons.png";
 const char TUTORIAL_IMAGE[] = "pictures\\tutorial.png";
@@ -81,6 +81,12 @@ const int ZOMBIE_COL = 2;
 const int ZOMBIE_WIDTH = 128;
 const int ZOMBIE_HEIGHT = 128;
 const float ZOMBIE_DELAY = 0.15f;
+
+//Zombie Cells
+const int BAT_COL = 2;
+const int BAT_WIDTH = 128;
+const int BAT_HEIGHT = 128;
+const float BAT_DELAY = 0.15f;
 
 // game
 const double PI = 3.14159265;
