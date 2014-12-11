@@ -96,6 +96,7 @@ void AATurret::update(float frametime) {
 						setCurrentFrame(0);
 						//audio->playCue(TURRET_CUE);
 						weaponCooldown = turretNS::FIRE_RATE;
+						//BLUB BLUB!============================================================================
 					}
 				}
 				if(!targetEntity->getActive()) {
