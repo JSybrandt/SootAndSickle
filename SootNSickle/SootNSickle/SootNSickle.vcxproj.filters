@@ -117,7 +117,10 @@
     <ClCompile Include="WPManager%28C%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="ZombieSpawner.cpp">
+    <ClCompile Include="ZombieSpawner%28C%29.cpp">
+      <Filter>Source Files\GameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ZombieBat%28C%29.cpp">
       <Filter>Source Files\GameFiles</Filter>
     </ClCompile>
   </ItemGroup>
@@ -219,6 +222,9 @@
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
     <ClInclude Include="ZombieSpawner.h">
+      <Filter>Header Files\GameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="ZombieBat.h">
       <Filter>Header Files\GameFiles</Filter>
     </ClInclude>
   </ItemGroup>

@@ -24,7 +24,9 @@ using std::string;
 #include "MineralPatch.h"
 #include "Extractor.h"
 #include "Turret.h"
+#include "AATurret.h"
 #include "Zombie.h"
+#include "ZombieBat.h"
 #include "Factory.h"
 #include "House.h"
 #include "AirField.h"
@@ -112,6 +114,7 @@ private:
 	TextureManager houseTex;
 	TextureManager airFieldTex;
 	TextureManager zombieTex;
+	TextureManager zombieBatTex;
 	TextureManager mainMenuBackgroundTex;
 	TextureManager mainMenuButtonTex;
 	TextureManager tutorialTex;
@@ -137,7 +140,9 @@ private:
 	Extractor extractors[MAX_EXTRACTORS];
 	MineralPatch minerals[MAX_MINERALS];
 	Turret turrets[MAX_GROUND_TURRETS];
+	AATurret aaturrets[MAX_AIR_TURRETS];
 	Zombie zombies[MAX_GROUND_ENEMIES];
+	ZombieBat zombieBats[MAX_AIR_ENEMIES];
 	Factory factories[MAX_FACTORIES];
 	House houses[MAX_HOUSES];
 	AirField airFields[MAX_AIR_FIELDS];
@@ -206,6 +211,7 @@ public:
 	House* spawnHouse(VECTOR2 loc);
 	AirField* spawnAirField(VECTOR2 loc);
 	Zombie* spawnZombie(VECTOR2 loc);
+	ZombieBat* spawnZombieBat(VECTOR2 loc);
 
 	void menuLoad();
 	void menuUpdate(bool reset = false);

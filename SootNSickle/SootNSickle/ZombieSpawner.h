@@ -14,10 +14,12 @@ protected:
 	VECTOR2 center;
 	float spawnTimer;
 	float resetTimer;
-	bool alive;
+	int zombies;
+	WEAPON type;
+	bool alive, last;
 	SootNSickle* game;
 	WPManager* wpm;
-	std::vector<std::pair<int,float>> waves;
+	std::vector<std::pair<std::pair<int, WEAPON>,float>> waves;
 
 public:
 	ZombieSpawner();
@@ -28,7 +30,7 @@ public:
 
 	bool initialize(SootNSickle* g);
 	void setCenter(VECTOR2 loc);
-	void create(int zombies);
-	void addWave(int zombies, float time);
+	void create(int zombies, WEAPON type);
+	void addWave(int zombies, WEAPON type, float time);
 	void update(float frameTime);
 };

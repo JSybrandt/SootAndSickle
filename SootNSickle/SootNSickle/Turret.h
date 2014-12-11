@@ -28,7 +28,7 @@ protected:
 	float weaponCooldown;
 	float rebootCooldown;
 	float dmg;
-	WEAPON damageType;
+	
 
 	bool target, checked; //Target means it has a target and is within range of itself.
 						  //Checked is true if it has found a new target or the old one is still alive & within range

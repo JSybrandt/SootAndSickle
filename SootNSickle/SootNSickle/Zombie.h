@@ -20,7 +20,7 @@ namespace zombieNS
 
 class Zombie: public ActorWithHealthBar
 {
-public:
+protected:
 	SootNSickle *game;
 	ActorWithHealthBar* targetEntity;
 	Waypoint path;

@@ -157,7 +157,8 @@ void SootNSickle::initialize(HWND hwnd)
 		throw GameError(6,"Failed to init house tex");
 	if(!zombieTex.initialize(graphics,ZOMBIE_IMAGE))
 		throw GameError(6,"Failed to init zombie tex");
-
+	if(!zombieBatTex.initialize(graphics,ZOMBIEBAT_IMAGE))
+		throw GameError(6,"Failed to init zombiebat tex");
 	//
 	//Initializing actors
 	//
@@ -224,7 +225,10 @@ void SootNSickle::initialize(HWND hwnd)
 		zombies[i].setCurrentFrame(0);     // starting frame
 		zombies[i].setFrameDelay(0.25f); //0.08 seems appriopriate
 	}
-
+	for(int i = 0; i < MAX_AIR_ENEMIES; i++) {
+		if(!zombieBats[i].initialize(this,0,0,0,&zombieBatTex,&healthBarTex))
+			throw GameError(-1*i,"FAILED TO MAKE zombieBat!");
+	}
 	menuLoad();
 
 	audio->playCue(SC_OPENING);
@@ -403,13 +407,15 @@ void SootNSickle::levelsUpdate()
 	}
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
 		zombies[i].update(frameTime);
+	for(int i = 0; i < MAX_AIR_ENEMIES; i++)
+		zombieBats[i].update(frameTime);
 	zs1.update(frameTime);
 
 
 	capacity = newCapacity;
 	if(population > capacity) population = capacity;
 
-	//check fisrt click
+	//check first click
 	if(!wasClickedLastFrame && input->getMouseLButton())
 	{
 		bool buttonClicked = false;
@@ -428,22 +434,67 @@ void SootNSickle::levelsUpdate()
 void SootNSickle::ai()
 {
 	VECTOR2 collision;
+
+	//ZOMBIES
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
-		if(zombies[i].getActive())
+		if(zombies[i].getActive()) {
 			zombies[i].ai(frameTime, base);
-		for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
-			if(turrets[j].getActive())
-				zombies[i].ai(frameTime, turrets[j]);
+			for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
+				if(turrets[j].getActive())
+					zombies[i].ai(frameTime, turrets[j]);
+			}
+			for(int j = 0; j < MAX_HOUSES; j++) {
+				if(houses[j].getActive())
+					zombies[i].ai(frameTime, houses[j]);
+			}
+			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
+				if(airFields[j].getActive())
+					zombies[i].ai(frameTime, airFields[j]);
+			}
+			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
+				if(powerSupplies[j].getActive())
+					zombies[i].ai(frameTime, powerSupplies[j]);
+			}
 		}
 	}
+
+	//ZOMBIEBATS
+	for(int i = 0; i < MAX_AIR_ENEMIES; i++) {
+		if(zombieBats[i].getActive()) {
+			zombieBats[i].ai(frameTime, base);
+			for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
+				if(turrets[j].getActive())
+					zombieBats[i].ai(frameTime, turrets[j]);
+			}
+			for(int j = 0; j < MAX_HOUSES; j++) {
+				if(houses[j].getActive())
+					zombieBats[i].ai(frameTime, houses[j]);
+			}
+			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
+				if(airFields[j].getActive())
+					zombieBats[i].ai(frameTime, airFields[j]);
+			}
+			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
+				if(powerSupplies[j].getActive())
+					zombieBats[i].ai(frameTime, powerSupplies[j]);
+			}
+		}
+	}
+
+	//GROUND TURRETS
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
 		if(turrets[i].getActive())
 			for(int j = 0; j < MAX_GROUND_ENEMIES; j++)
 				if(zombies[j].getActive())
 					turrets[i].ai(frameTime, zombies[j]);
+		for(int j = 0; j < MAX_AIR_ENEMIES; j++)				//DELETE THIS AFTER ADDING AA
+			if(zombieBats[j].getActive())		
+				turrets[i].ai(frameTime, zombieBats[j]);
 	}
-}
 
+	//AIR TURRETS
+
+}
 //=============================================================================
 // Handle collisions
 //=============================================================================
@@ -453,6 +504,10 @@ void SootNSickle::collisions()
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
 		if(zombies[i].getActive() && zombies[i].collidesWith(*zombies[i].getWaypoint(), collision))
 			zombies[i].nextWaypoint();
+	}
+	for(int i = 0; i < MAX_AIR_ENEMIES; i++) {
+		if(zombieBats[i].getActive() && zombieBats[i].collidesWith(*zombieBats[i].getWaypoint(), collision))
+			zombieBats[i].nextWaypoint();
 	}
 }
 
@@ -541,12 +596,14 @@ void SootNSickle::levelsRender()
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
 		zombies[i].draw(screenLoc);
 	}
-
+	for(int i = 0; i < MAX_AIR_ENEMIES; i++) {
+		zombieBats[i].draw(screenLoc);
+	}
 
 	guiOverlay.draw(VECTOR2(0,0));
 	for(int i = 0 ; i < MAX_BUTTONS;i++)
 	{
-		
+
 		int cost = -1;
 		switch(buttons[i].getButtonType())
 		{
@@ -633,7 +690,7 @@ void SootNSickle::level1Load()
 	currentState = Level1;
 	deactivateAll();
 	base.create(getCurrentWorldSize()*0.5);
-	/*path1.add(VECTOR2(1200,200));
+	path1.add(VECTOR2(1200,200));
 	path1.add(VECTOR2(800,200));
 	path1.add(VECTOR2(600,600));
 	path1.add(base.getCenter());
@@ -641,9 +698,10 @@ void SootNSickle::level1Load()
 
 	zs1.setCenter(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
 	zs1.setManager(&path1);
-	zs1.addWave(2,5);
-	zs1.addWave(5,10);
-	zs1.addWave(30,30);*/
+	zs1.addWave(2, GROUND, 15);
+	zs1.addWave(1, AIR, 0);
+	zs1.addWave(5, GROUND, 10);
+	zs1.addWave(30, GROUND, 30);
 
 	guiLoad();
 
@@ -699,7 +757,7 @@ void SootNSickle::guiLoad()
 			spawnButton(VECTOR2(x,y),(ButtonNS::ButtonType)type);
 			type++;
 			if(type >= (int)ButtonNS::ButtonType::SIZE) return;
-			
+
 		}
 }
 
@@ -845,6 +903,20 @@ Zombie* SootNSickle::spawnZombie(VECTOR2 loc)
 	return nullptr;
 }
 
+ZombieBat* SootNSickle::spawnZombieBat(VECTOR2 loc)
+{
+	for(int i = 0; i < MAX_MINERALS; i++)
+	{
+		if(!zombieBats[i].getActive())
+		{
+			zombieBats[i].create(loc);
+			return &zombieBats[i];
+		}
+	}
+
+	return nullptr;
+}
+
 House* SootNSickle::spawnHouse(VECTOR2 loc)
 {
 	for(int i = 0; i < MAX_HOUSES; i++)
@@ -899,6 +971,8 @@ void SootNSickle::deactivateAll()
 		airFields[i].setActive(false);
 	for(int i = 0 ; i < MAX_GROUND_ENEMIES;i++)
 		zombies[i].setActive(false);
+	for(int i = 0 ; i < MAX_AIR_ENEMIES;i++)
+		zombieBats[i].setActive(false);
 	base.setActive(false);
 }
 

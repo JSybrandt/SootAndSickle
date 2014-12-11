@@ -15,6 +15,7 @@ Turret::Turret(): Building() {
 	active = false;
 	weaponCooldown = 0;
 	rebootCooldown = 0;
+	damageType = GROUND;
 	setCapacity(CAPACITY);
 	setMaxHealth(HEALTH);
 }
@@ -39,7 +40,7 @@ void Turret::update(float frametime) {
 			if(rebootCooldown > 0) {
 				rebootCooldown -= frametime;
 			}
-			else if(targetEntity != nullptr) {
+			else if(targetEntity != nullptr && targetEntity->getActive()) {
 				colorFilter = graphicsNS::WHITE;
 
 				VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
@@ -96,8 +97,8 @@ void Turret::update(float frametime) {
 						weaponCooldown = turretNS::FIRE_RATE;
 					}
 				}
-				if(targetEntity->getActive())
-					targetEntity = nullptr;
+				//if(targetEntity->getActive())
+				//	targetEntity = nullptr;
 			}
 			else
 			{
@@ -160,6 +161,7 @@ void Turret::ai(float frameTime, ActorWithHealthBar &t) {
 			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
 
 			if(distSqrdToOldTarget > personalEngageDistanceSQRD || !targetEntity->getActive()) {
+				targetEntity = nullptr;
 				target = false;
 			}
 			else {

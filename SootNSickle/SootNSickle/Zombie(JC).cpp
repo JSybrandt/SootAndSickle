@@ -8,7 +8,7 @@ Zombie::Zombie():ActorWithHealthBar(){
 	edge.right = 12;
 	collisionType = COLLISION_TYPE::BOX;
 	colorFilter = zombieNS::COLOR;
-	health = 500;
+	setHealth(500);
 	personalSpeed = zombieNS::SPEED;
 	setActive(false);
 	target = false;

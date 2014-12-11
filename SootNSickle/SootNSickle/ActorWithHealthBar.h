@@ -12,7 +12,7 @@ namespace ActorWithHealthBarNS{
 class ActorWithHealthBar:public Actor
 {
 public:
-	ActorWithHealthBar():Actor(){maxHealth=100;healthBar.setMaxValue(100);}
+	ActorWithHealthBar():Actor(){maxHealth=100;healthBar.setMaxValue(100); damageType = GROUND;}
 	bool initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM);
 	void draw(VECTOR2 screenLoc);
 	void damage(float ammount);
@@ -28,5 +28,6 @@ private:
 	virtual void onDeath(){};
 protected:
 	SootNSickle* game;
+	WEAPON damageType;
 	
 };

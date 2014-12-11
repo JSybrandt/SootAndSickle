@@ -21,6 +21,7 @@ AATurret::AATurret(): Turret() {
 bool AATurret::initialize(SootNSickle * g, int width, int height, int ncols, TextureManager *AATurretTM, TextureManager *baseTM, TextureManager* hbTexM, TextDX * text) {
 	game = g;
 	bool result = true;
+	damageType = AIR;
 	result = result && Building::initialize(g,width,height,ncols,AATurretTM,hbTexM,text);
 	result = result && base.initialize(g,BASE_WIDTH,BASE_HEIGHT,0,baseTM);
 	return result;
