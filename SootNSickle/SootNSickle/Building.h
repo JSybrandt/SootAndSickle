@@ -24,7 +24,7 @@ public:
 	void create(VECTOR2 loc);
 
 	bool getPower(){return hasPower;}
-	void setPower(bool n){hasPower = n;}
+	virtual void setPower(bool n){hasPower = n;}
 
 	int getStaff(){return numStaff;}
 	void setStaff(int n){numStaff = min(capacity,max(0,n));}
@@ -32,13 +32,19 @@ public:
 	void modifyStaff(int n){numStaff += n; min(capacity,max(0,numStaff));}
 	int getCapacity(){return capacity;}
 
-	float getEffectiveness(){return (getStaff()/((float)getCapacity()));}
+	float getEffectiveness(){ 
+		if(getCapacity()>0)
+			return (getStaff()/((float)getCapacity()))*(getLevel()+(getLevel()-1)*1.25);
+		else
+			return (getLevel()+(getLevel()-1)*1.25);
+	}
 
 	virtual void upgrade(){
-		level++;
+		level = min(level+1,3);
 		setMaxHealth(getMaxHealth()*1.2);
 		setHealth(getMaxHealth());
 	}
+	int getLevel(){return level;}
 
 	void onDeath();
 

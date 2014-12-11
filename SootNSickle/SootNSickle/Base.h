@@ -27,7 +27,7 @@ public:
 
 	PowerField & getPowerField(){return field;}
 
-	bool initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextureManager* pwrTex);
+	bool initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextureManager* pwrTex, TextDX* infoText);
 
 	void create(VECTOR2 loc){Building::create(loc);	field.setActive(true); field.setCenter(loc);cooldown = BaseNS::TELEPORTER_COOLDOWN;}
 

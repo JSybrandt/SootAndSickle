@@ -20,7 +20,9 @@ void HealthBar::setMaxValue(float n)
 
 void HealthBar::updateActiveRec()
 {
-	int activeWidth = (currentValue / maxValue)*WIDTH;
+	setScale(max(0.5,maxValue / WIDTH));
+	activeImg.setScale(max(0.5,maxValue/WIDTH));
+	int activeWidth = (currentValue / maxValue)*getWidth();
 	RECT activeRec = activeImg.getSpriteDataRect();
 	activeRec.right = activeWidth;
 	activeImg.setSpriteDataRect(activeRec);

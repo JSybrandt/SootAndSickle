@@ -69,6 +69,8 @@ namespace SootNSickleNS
 	const int MAIN_MENU_OPTION_COUNT = 4;
 
 	const int NUM_TUTORIAL_IMAGES = 3;
+
+	const float AUDIO_INTRO_TIME = 17.5;
 }
 
 
@@ -171,6 +173,10 @@ private:
 
 	int tutorialSelection;
 	bool showTutorial;
+	
+	float audioIntroCountdown;
+	float playingIntro;
+
 
 public:
 	// Constructor

@@ -12,3 +12,4 @@ void Factory::update(float frameTime)
 		//TODO:link into stuff
 	}
 }
+

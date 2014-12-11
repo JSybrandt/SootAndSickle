@@ -13,6 +13,7 @@ PowerSupply::PowerSupply()
 	setCapacity(0);
 
 	setMaxHealth(HEALTH);
+	hasPowerLastFrame = false;
 }
 
 void PowerSupply::update(float frameTime)
@@ -32,6 +33,8 @@ void PowerSupply::update(float frameTime)
 			game->spawnParticleCloud(getCenter(),graphicsNS::CYAN,1);
 			game->spawnParticleCloud(getCenter(),graphicsNS::YELLOW,1);
 		}
+
+		hasPowerLastFrame = getPower();
 	}
 }
 
@@ -58,4 +61,5 @@ void PowerSupply::create(VECTOR2 loc)
 	setHealth(100);
 	bootCooldown = BOOT_TIME;
 	field.setColorFilter(Graphics::calculateAlpha(0));
+	hasPowerLastFrame = false;
 }

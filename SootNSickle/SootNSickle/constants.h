@@ -58,7 +58,13 @@ const char SOUND_BANK[] = "audio\\win\\Sound Bank.xsb";
 const char XGS_FILE[]   = "audio\\Win\\AudioProject.xgs";
 
 //Cue Names
-const char SC_LAUNCH[] = "launch"; //MUST be exactly the same as cue name
+const char SC_BUILDING[] = "building";
+const char SC_OPENING[] = "ruski start";
+const char SC_MAIN_LOOP[] = "ruski main";
+const char SC_SELL[] = "cash";
+const char SC_UPGRADE[] = "upgrade";
+const char SC_POWER_ON[] = "powerOn";
+const char SC_BUILDING_COLLAPSE[] = "buildingCollapse";
 
 
 // window
