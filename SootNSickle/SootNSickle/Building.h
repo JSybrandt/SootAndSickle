@@ -23,7 +23,7 @@ public:
 	void update(float frameTime);
 	void create(VECTOR2 loc);
 
-	bool getPower(){return hasPower;}
+	bool getPower(){return hasPower&&powerToggle;}
 	virtual void setPower(bool n){hasPower = n;}
 
 	int getStaff(){return numStaff;}
@@ -49,4 +49,6 @@ public:
 	void onDeath();
 
 	TextDX* getText(){return text;}
+
+	bool powerToggle;
 };

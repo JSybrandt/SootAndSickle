@@ -1192,6 +1192,10 @@ void SootNSickle::checkClick()
 	{
 		attemptToUpgradeBuilding();
 	}
+	else if(cursorSelection == ButtonNS::DEACTIVATE_SELECTION)
+	{
+		attemptToTogglePower();
+	}
 }
 
 bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
@@ -1428,6 +1432,85 @@ void SootNSickle::attemptToUpgradeBuilding()
 				upgradePoints-=1;
 				airFields[i].upgrade();
 				audio->playCue(SC_UPGRADE);
+			}
+		}
+	}
+}
+
+void SootNSickle::attemptToTogglePower()
+{
+	VECTOR2 disp;
+	VECTOR2 mouse = getMouseInWorld();
+
+	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+	{
+		if(powerSupplies[i].getActive())
+		{
+			disp = mouse - powerSupplies[i].getCenter();
+			if(D3DXVec2Length(&disp) < powerSupplies[i].getRadius())
+			{
+				powerSupplies[i].powerToggle = ! powerSupplies[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_EXTRACTORS;i++)
+	{
+		if(extractors[i].getActive())
+		{
+			disp = mouse - extractors[i].getCenter();
+			if(D3DXVec2Length(&disp) < extractors[i].getRadius())
+			{
+				extractors[i].powerToggle = ! extractors[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		if(turrets[i].getActive())
+		{
+			disp = mouse - turrets[i].getCenter();
+			if(D3DXVec2Length(&disp) < turrets[i].getRadius())
+			{
+				turrets[i].powerToggle = ! turrets[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		if(aaturrets[i].getActive())
+		{
+			disp = mouse - aaturrets[i].getCenter();
+			if(D3DXVec2Length(&disp) < aaturrets[i].getRadius())
+			{
+				aaturrets[i].powerToggle = ! aaturrets[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_FACTORIES; i++) {
+		if(factories[i].getActive())
+		{
+			disp = mouse - factories[i].getCenter();
+			if(D3DXVec2Length(&disp) < factories[i].getRadius())
+			{
+				factories[i].powerToggle = ! factories[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_HOUSES; i++){
+		if(houses[i].getActive())
+		{
+			disp = mouse - houses[i].getCenter();
+			if(D3DXVec2Length(&disp) < houses[i].getRadius())
+			{
+				houses[i].powerToggle = ! houses[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_AIR_FIELDS; i++){
+		if(airFields[i].getActive())
+		{
+			disp = mouse - airFields[i].getCenter();
+			if(D3DXVec2Length(&disp) < airFields[i].getRadius())
+			{
+				airFields[i].powerToggle = ! airFields[i].powerToggle;
 			}
 		}
 	}

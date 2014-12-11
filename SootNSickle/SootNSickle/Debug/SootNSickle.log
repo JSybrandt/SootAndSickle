@@ -1,4 +1,4 @@
-﻿Build started 12/11/2014 4:59:21 PM.
+﻿Build started 12/11/2014 5:43:53 PM.
      1>Project "C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\SootNSickle.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "sootnsickle(JC).cpp"
@@ -25,7 +25,7 @@
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(67): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(241): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(242): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(15): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(19): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(23): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
@@ -88,4 +88,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.89
+Time Elapsed 00:00:02.01

@@ -46,7 +46,7 @@ namespace SootNSickleNS
 	const int MAX_HOUSES = 100;
 	const int MAX_AIR_FIELDS = 100;
 	const int MAX_PARTICLES = 10000;
-	const int MAX_BUTTONS = 9;
+	const int MAX_BUTTONS = 10;
 
 	const int NUM_PARTICLES_IN_CONE_EFFECT = 150;
 	const int NUM_PARTICLES_IN_CLOUD_EFFECT = 200;
@@ -174,6 +174,7 @@ private:
 
 	void attemptToSellBuilding();
 	void attemptToUpgradeBuilding();
+	void attemptToTogglePower();
 
 	int tutorialSelection;
 	bool showTutorial;

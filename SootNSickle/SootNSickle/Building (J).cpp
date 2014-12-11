@@ -47,11 +47,13 @@ void Building::update(float frameTime)
 				numStaff++;
 				game->removeIdlePop(1);
 			}
+			setColorFilter(graphics->calculateAlpha(1));
 		}
 		else if(numStaff > 0)
 		{
 			numStaff--;
 			game->addIdlePop(1);
+			setColorFilter(graphics->calculateAlpha(0.5));
 		}
 	}
 }
@@ -63,6 +65,7 @@ void Building::create(VECTOR2 loc)
 	setPower(false);
 	setCenter(loc);
 	level = 1;
+	powerToggle = true;
 }
 
 void Building::onDeath()
