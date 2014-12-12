@@ -872,9 +872,8 @@ void SootNSickle::level1Load()
 	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
 	zs1.setManager(&path1);
 	zs1.addWave(2, GROUND, 10);
-	zs1.addWave(1, AIR, 0);
 	zs1.addWave(5, GROUND, 15);
-	zs1.addWave(3, AIR, 0);
+	zs1.addWave(2, AIR, 0);
 	zs1.addWave(20, GROUND, 30);
 	zs1.addWave(9, AIR, 0);
 
@@ -903,7 +902,7 @@ void SootNSickle::level2Load()
 {
 	levelTimer = 140;
 	currentState = Level2;
-	resetZombies();
+	//resetZombies();
 	healBuildings();
 
 	path1.add(VECTOR2(1200,200));
@@ -913,7 +912,7 @@ void SootNSickle::level2Load()
 	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
 	zs1.setManager(&path1);
 
-	zs1.addWave(10, GROUND, 10);
+	zs1.addWave(10, GROUND, 20);
 	zs1.addWave(5, AIR, 0);
 
 	zs1.addWave(20, GROUND, 15);
@@ -946,7 +945,7 @@ void SootNSickle::level3Load()
 	levelTimer = 160;
 	currentState = Level3;
 	healBuildings();
-	resetZombies();
+	//resetZombies();
 
 	path1.add(VECTOR2(1200,200));
 	path1.add(VECTOR2(800,200));
@@ -955,7 +954,7 @@ void SootNSickle::level3Load()
 
 	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
 	zs1.setManager(&path1);
-	zs1.addWave(15, GROUND, 10);
+	zs1.addWave(15, GROUND, 30);
 	zs1.addWave(8, AIR, 0);
 	zs1.addWave(30, GROUND, 15);
 	zs1.addWave(8, AIR, 0);
@@ -971,7 +970,7 @@ void SootNSickle::level3Load()
 
 	zs2.setCenter(VECTOR2(0,getCurrentWorldSize().y+(randmax(200))));
 	zs2.setManager(&path2);
-	zs2.addWave(5, GROUND, 15);
+	zs2.addWave(5, GROUND, 25);
 	zs2.addWave(10, AIR, 0);
 
 	zs2.addWave(6, GROUND, 20);
@@ -987,7 +986,7 @@ void SootNSickle::level3Load()
 	zs3.setCenter(VECTOR2(0,0));
 	zs3.setManager(&path2);
 
-	zs3.addWave(10, GROUND, 15);
+	zs3.addWave(10, GROUND, 5);
 	zs3.addWave(10, AIR, 2);
 
 	zs3.addWave(20, GROUND, 18);
