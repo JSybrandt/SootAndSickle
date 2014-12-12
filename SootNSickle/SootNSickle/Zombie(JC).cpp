@@ -16,6 +16,7 @@ Zombie::Zombie():ActorWithHealthBar(){
 	type = GROUND;
 	checked = false;
 	targetEntity = nullptr;
+	moan = 10+randmax(10);
 }
 Zombie::~Zombie(){}
 
@@ -34,7 +35,13 @@ void Zombie::update(float frameTime)
 		ActorWithHealthBar::update(frameTime);
 		if(health <= 0) {
 			setActive(false);
-			//audio->playCue(KILL1_CUE);
+			audio->playCue(SC_ZOMBIEDEATH);
+			audio->stopCue(SC_ZOMBIE1);
+		}
+		moan -= frameTime;
+		if(moan <= 0) {
+			audio->playCue(SC_ZOMBIE1);
+			moan = 10+randmax(10);
 		}
 
 		checked = false;
@@ -72,7 +79,6 @@ void Zombie::update(float frameTime)
 				}
 				else
 					setRadians(aimDir);
-
 			}
 
 			//else {
@@ -184,6 +190,7 @@ void Zombie::create(VECTOR2 loc)
 	shoot = false;
 	velocity = VECTOR2(0,0);
 	targetEntity = nullptr;
+	moan = 10+randmax(10);
 
 	setActive(true);
 	setCenter(loc);

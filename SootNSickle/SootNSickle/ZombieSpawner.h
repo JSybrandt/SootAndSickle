@@ -33,4 +33,5 @@ public:
 	void create(int zombies, WEAPON type);
 	void addWave(int zombies, WEAPON type, float time);
 	void update(float frameTime);
+	void clear();
 };

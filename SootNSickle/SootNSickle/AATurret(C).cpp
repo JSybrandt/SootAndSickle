@@ -94,7 +94,7 @@ void AATurret::update(float frametime) {
 						//game->spawnParticleCone(getCenter()+turretNS::BULLET2_OFFSET,radians,graphicsNS::RED);
 						targetEntity->damage(25);
 						setCurrentFrame(0);
-						//audio->playCue(TURRET_CUE);
+						audio->playCue(SC_CANNON);
 						weaponCooldown = turretNS::FIRE_RATE;
 						//BLUB BLUB!============================================================================
 					}
@@ -113,7 +113,7 @@ void AATurret::update(float frametime) {
 				}
 				if(radians < minDir)
 				{
-					setRadians(minDir);
+					//setRadians(minDir);
 					rotVel = turretNS::ROTATION_SPEED;
 				}
 				else
@@ -160,7 +160,7 @@ void AATurret::create(VECTOR2 loc, float dir) {
 void AATurret::ai(float frameTime, ActorWithHealthBar &t) {
 	if(active && t.getActive() && !checked) {
 		float rad = 0;
-		if(targetEntity != nullptr && target) { //If previous target is still active and within range
+		if(targetEntity != nullptr && targetEntity->getActive()) { //If previous target is still active and within range
 			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
 			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
 

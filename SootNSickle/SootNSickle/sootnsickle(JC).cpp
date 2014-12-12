@@ -348,6 +348,16 @@ void SootNSickle::menuUpdate(bool reset)
 void SootNSickle::levelsUpdate()
 {
 
+	levelTimer -= frameTime;
+	if(levelTimer <= 0) {
+		switch(currentState) {
+		case Level1:
+			level2Load();
+			break;
+
+		}
+	}
+
 	if(input->wasKeyPressed('R'))
 	{
 		level1Load();
@@ -437,6 +447,7 @@ void SootNSickle::levelsUpdate()
 	for(int i = 0; i < MAX_AIR_ENEMIES; i++)
 		zombieBats[i].update(frameTime);
 	zs1.update(frameTime);
+	zs2.update(frameTime);
 
 
 	capacity = newCapacity;
@@ -500,19 +511,20 @@ void SootNSickle::ai()
 	//ZOMBIEBATS
 	for(int i = 0; i < MAX_AIR_ENEMIES; i++) {
 		if(zombieBats[i].getActive()) {
-			zombieBats[i].ai(frameTime, base);
-			for(int j = 0; j < MAX_HOUSES; j++) {
-				if(houses[j].getActive())
-					zombieBats[i].ai(frameTime, houses[j]);
-			}
-			//for(int j = 0; j < MAX_AIR_FIELDS; j++) {
-			//	if(airFields[j].getActive())
-			//		zombieBats[i].ai(frameTime, airFields[j]);
-			//}
+			
 			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
 				if(powerSupplies[j].getActive())
 					zombieBats[i].ai(frameTime, powerSupplies[j]);
 			}
+			for(int j = 0; j < MAX_HOUSES; j++) {
+				if(houses[j].getActive())
+					zombieBats[i].ai(frameTime, houses[j]);
+			}
+			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
+				if(airFields[j].getActive())
+					zombieBats[i].ai(frameTime, airFields[j]);
+			}
+			zombieBats[i].ai(frameTime, base);	
 		}
 	}
 
@@ -748,6 +760,7 @@ void SootNSickle::menuLoad()
 
 void SootNSickle::level1Load()
 {
+	levelTimer = 120;
 	currentState = Level1;
 	deactivateAll();
 	base.create(getCurrentWorldSize()*0.5);
@@ -778,13 +791,14 @@ void SootNSickle::level1Load()
 	path1.add(base.getCenter());
 
 
-	zs1.setCenter(VECTOR2(GAME_WIDTH*2+(randmax(200)),GAME_HEIGHT+(randmax(200))));
+	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
 	zs1.setManager(&path1);
 	zs1.addWave(2, GROUND, 15);
 	zs1.addWave(1, AIR, 0);
 	zs1.addWave(5, GROUND, 10);
 	zs1.addWave(3, AIR, 0);
-	zs1.addWave(30, GROUND, 30);
+	zs1.addWave(20, GROUND, 30);
+	zs1.addWave(9, AIR, 0);
 
 	guiLoad();
 
@@ -802,10 +816,39 @@ void SootNSickle::level1Load()
 
 void SootNSickle::level2Load()
 {
+	levelTimer = 420;
 	currentState = Level2;
-	deactivateAll();
+	resetZombies();
 
+	path1.add(VECTOR2(1200,200));
+	path1.add(VECTOR2(800,200));
+	path1.add(VECTOR2(600,600));
+	path1.add(base.getCenter());
 
+	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
+	zs1.setManager(&path1);
+	zs1.addWave(5, GROUND, 15);
+	zs1.addWave(3, AIR, 0);
+	zs1.addWave(15, GROUND, 10);
+	zs1.addWave(9, AIR, 0);
+	zs1.addWave(50, GROUND, 30);
+	zs1.addWave(18, AIR, 0);
+
+	path2.add(VECTOR2(600,GAME_HEIGHT*3/4));
+	path2.add(VECTOR2(1000, GAME_HEIGHT/2));
+	path2.add(base.getCenter());
+
+	zs2.setCenter(VECTOR2(0,getCurrentWorldSize().y+(randmax(200))));
+	zs2.setManager(&path2);
+	zs2.addWave(1, GROUND, 15);
+	zs2.addWave(2, AIR, 0);
+	zs2.addWave(2, GROUND, 10);
+	zs2.addWave(5, AIR, 0);
+	zs2.addWave(10, GROUND, 30);
+	zs2.addWave(20, AIR, 0);
+
+	levelTextCooldown = SHOW_TEXT_TIME;
+	levelString = "LEVEL 2";
 }
 
 void SootNSickle::level3Load()
@@ -1073,6 +1116,23 @@ void SootNSickle::deactivateAll()
 	for(int i = 0 ; i < MAX_AIR_ENEMIES;i++)
 		zombieBats[i].setActive(false);
 	base.setActive(false);
+	path1.clear();
+	path2.clear();
+	zs1.clear();
+	zs2.clear();
+}
+
+void SootNSickle::resetZombies()
+{
+	for(int i = 0 ; i < MAX_GROUND_ENEMIES;i++)
+		zombies[i].setActive(false);
+	for(int i = 0 ; i < MAX_AIR_ENEMIES;i++)
+		zombieBats[i].setActive(false);
+	base.setActive(false);
+	path1.clear();
+	path2.clear();
+	zs1.clear();
+	zs2.clear();
 }
 
 void SootNSickle::onBaseDeath()
@@ -1237,6 +1297,10 @@ bool SootNSickle::isBuildingLocationLegal(Actor* newBuilding)
 	}
 	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
 		if((&turrets[i]!=newBuilding)&&newBuilding->collidesWith(turrets[i],v))
+			return false;
+	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		if((&aaturrets[i]!=newBuilding)&&newBuilding->collidesWith(aaturrets[i],v))
 			return false;
 	}
 	for(int i = 0; i < MAX_FACTORIES; i++) {

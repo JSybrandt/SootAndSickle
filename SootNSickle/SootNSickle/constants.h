@@ -68,7 +68,10 @@ const char SC_SELL[] = "cash";
 const char SC_UPGRADE[] = "upgrade";
 const char SC_POWER_ON[] = "powerOn";
 const char SC_BUILDING_COLLAPSE[] = "buildingCollapse";
-
+const char SC_ZOMBIE1[] = "zombie1";
+const char SC_ZOMBIEDEATH[] = "zombieDeath";
+const char SC_ROCKET[] = "rocket";
+const char SC_CANNON[] = "cannon";
 
 // window
 const char CLASS_NAME[] = "Soot & Sickle";

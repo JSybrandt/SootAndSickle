@@ -194,7 +194,7 @@ private:
 	string levelString;
 
 	bool showIcon;
-
+	float levelTimer;
 public:
 	// Constructor
     SootNSickle();
@@ -245,7 +245,7 @@ public:
 	void levelsUpdate();
 	void levelsRender();
 
-
+	void resetZombies();
 	void deactivateAll();
 
 	VECTOR2 getMouseInWorld(){
