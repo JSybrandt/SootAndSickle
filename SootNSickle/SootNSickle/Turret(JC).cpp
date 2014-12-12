@@ -91,6 +91,7 @@ void Turret::update(float frametime) {
 						game->spawnParticleCone(getCenter(),radians,graphicsNS::BLUE, 50);
 						//game->spawnParticleCone(getCenter()+turretNS::BULLET2_OFFSET,radians,graphicsNS::RED);
 						targetEntity->damage(25);
+						if(game->cheatMoreDamage)targetEntity->damage(500);
 						setCurrentFrame(0);
 						audio->playCue(SC_CANNON);
 						weaponCooldown = turretNS::FIRE_RATE;
