@@ -47,6 +47,11 @@ SootNSickle::SootNSickle()
 	audioIntroCountdown = AUDIO_INTRO_TIME;
 	playingIntro = true;
 	levelTextCooldown = 0;
+
+	cheatNoDeath = false;
+	cheatBigMoney = false;
+	cheatMoreDamage = false;
+	cheatCooldown = 0;
 }
 
 //=============================================================================
@@ -282,6 +287,25 @@ void SootNSickle::update()
 
 void SootNSickle::menuUpdate(bool reset)
 {
+	if(input->isKeyDown('A')&&input->isKeyDown('B')&&input->isKeyDown('T'))
+	{
+		cheatNoDeath = true;
+		cheatCooldown = 2;
+		cheatText = "All Bout That Base";
+	}
+	if(input->isKeyDown('D')&&input->isKeyDown('B')&&input->isKeyDown('Y'))
+	{
+		cheatBigMoney = true;
+		cheatCooldown = 2;
+		cheatText = "Dolla Dolla Billz Yall";
+	}
+	if(input->isKeyDown('N')&&input->isKeyDown('M')&&input->isKeyDown('D'))
+	{
+		cheatMoreDamage = true;
+		cheatCooldown = 2;
+		cheatText = "Needz Moar Dakka";
+	}
+
 	static int selection = 0;
 
 	if(showGameOverScreen)
@@ -374,6 +398,10 @@ void SootNSickle::levelsUpdate()
 			break;
 		case Level2:
 			level3Load();
+		case Level3:
+			victory = true;
+			showGameOverScreen = true;
+			menuLoad();
 			break;
 		}
 	}
@@ -625,6 +653,12 @@ void SootNSickle::menuRender()
 	}
 	if(showIcon)
 		logo.draw(UIScreenLoc);
+
+	if(cheatCooldown>0)
+	{
+		cheatCooldown-=frameTime;
+		infoText.print(cheatText,0,0);
+	}
 }
 
 void SootNSickle::levelsRender()
@@ -782,6 +816,11 @@ void SootNSickle::menuLoad()
 	gameOver.setX(0);gameOver.setY(0);
 	showGameOverScreen = false;
 
+	cheatNoDeath = false;
+	cheatBigMoney = false;
+	cheatMoreDamage = false;
+	cheatCooldown = 0;
+
 }
 
 void SootNSickle::level1Load()
@@ -838,6 +877,13 @@ void SootNSickle::level1Load()
 	addPopulation(10);
 
 	mineralLevel = 1000;
+
+	if(cheatBigMoney)
+	{
+		capacity = 1000;
+		addPopulation(1000);
+		mineralLevel = 100000;
+	}
 
 	screenLoc = base.getCenter() - VECTOR2(GAME_WIDTH/2,GAME_HEIGHT/2);
 	updateScreen();
@@ -1228,6 +1274,7 @@ void SootNSickle::resetZombies()
 
 void SootNSickle::onBaseDeath()
 {
+	if(cheatNoDeath)return;
 	menuLoad();
 	updateMaxes();
 	showGameOverScreen = true;

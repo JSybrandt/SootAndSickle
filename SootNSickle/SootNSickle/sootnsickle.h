@@ -304,6 +304,13 @@ public:
 
 	int getScore(){return mineralsMined/2+5*enemeiesKilled-3*buildingsDestroyed+secondsSurvived;}
 
+
+	bool cheatNoDeath;
+	bool cheatMoreDamage;
+	bool cheatBigMoney;
+
+	float cheatCooldown;
+	string cheatText;
 };
 
 #endif
