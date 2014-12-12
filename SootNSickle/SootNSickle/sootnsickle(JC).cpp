@@ -361,7 +361,10 @@ void SootNSickle::menuUpdate(bool reset)
 		if(choice == 0)
 			level1Load();
 		else if (choice == 1)
+		{
 			system("START https://www.youtube.com/watch?v=PX-KhvY7xxs&feature=youtu.be");
+			exitGame();
+		}
 		else if (choice == 2)
 			showIcon = !showIcon;
 		else if (choice == 3)
@@ -684,7 +687,7 @@ void SootNSickle::levelsRender()
 		particles[i].draw(screenLoc);
 	}
 
-	base.draw(screenLoc);
+	
 
 	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
 	{
@@ -712,6 +715,9 @@ void SootNSickle::levelsRender()
 	for(int i = 0; i < MAX_AIR_FIELDS; i++) {
 		airFields[i].draw(screenLoc);
 	}
+
+	base.draw(screenLoc);
+
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
 		zombies[i].draw(screenLoc);
 	}
@@ -880,8 +886,8 @@ void SootNSickle::level1Load()
 
 	guiLoad();
 
-	capacity = 25;
-	addPopulation(10);
+	capacity = 45;
+	addPopulation(20);
 
 	mineralLevel = 1000;
 

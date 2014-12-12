@@ -2,6 +2,7 @@
 #include"SootNSickle.h"
 
 Zombie::Zombie():ActorWithHealthBar(){
+	isHealthBarVisible = false;
 	edge.top = -32;
 	edge.bottom = 32;
 	edge.left = -12;
