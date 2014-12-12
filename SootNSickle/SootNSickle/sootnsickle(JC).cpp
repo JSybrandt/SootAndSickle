@@ -100,12 +100,6 @@ void SootNSickle::initialize(HWND hwnd)
 	//Initializing Textures
 	//
 
-	if(!tutorialTex.initialize(graphics,TUTORIAL_IMAGE))
-		throw GameError(1,"Failed to init tutorial tex");
-
-	if(!tutorial.initialize(graphics,1280,800,1,&tutorialTex))
-		throw GameError(1,"Failed to init tutorial");
-
 	if(!backgroundTex.initialize(graphics,BACKGROUND_IMAGE))
 		throw GameError(1,"Failed to init background tex");
 
