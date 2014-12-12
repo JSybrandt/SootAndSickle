@@ -123,7 +123,6 @@ private:
 	TextureManager zombieBatTex;
 	TextureManager mainMenuBackgroundTex;
 	TextureManager mainMenuButtonTex;
-	TextureManager tutorialTex;
 	TextureManager transportShipTex;
 	TextureManager logoTex;
 	TextureManager gameOverTex;

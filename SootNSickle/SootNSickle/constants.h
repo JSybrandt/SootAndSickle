@@ -28,32 +28,31 @@
 //                  Constants
 //-----------------------------------------------
 // graphic images
-const char BACKGROUND_IMAGE[] = "pictures\\background.png";
-const char PARTICLE_IMAGE[] = "pictures\\particle.png";
-const char BUTTON_IMAGE[] = "pictures\\button.png";
-const char GUI_OVERLAY_IMAGE[] = "pictures\\guiOverlay.png";
-const char BASE_IMAGE[] = "pictures\\base.png";
-const char HEALTH_BAR_IMAGE[] = "pictures\\healthBar.png";
-const char ICON_IMAGE[] = "pictures\\buttonImages.png";
-const char CURSOR_IMAGE[] = "pictures\\cursorImages.png";
-const char POWER_SUPPLY_IMAGE[] = "pictures\\powerSupply.png";
-const char POWER_FIELD_IMAGE[] = "pictures\\powerField.png";
-const char MINERAL_IMAGE[] = "pictures\\minerals.png";
-const char EXTRACTOR_IMAGE[] = "pictures\\extractor.png";
-const char TURRETG_IMAGE[] = "pictures\\turretG.png";
-const char TURRETA_IMAGE[] = "pictures\\turretA.png";
-const char TURRETBASE_IMAGE[] = "pictures\\stand.png";
-const char FACTORY_IMAGE[] = "pictures\\factory.png";
-const char HOUSE_IMAGE[] = "pictures\\house.png";
-const char AIR_FIELD_IMAGE[] = "pictures\\airField.png";
-const char ZOMBIE_IMAGE[] = "pictures\\zombieAni.png";
-const char ZOMBIEBAT_IMAGE[] = "pictures\\batAni.png";
-const char MENU_BACKGROUND_IMAGE[] = "pictures\\menuBackground.png";
-const char MAIN_MENU_BUTTON_IMAGE[] = "pictures\\mainMenuButtons.png";
-const char TUTORIAL_IMAGE[] = "pictures\\tutorial.png";
-const char TRANSPORT_SHIP_IMAGE[] = "pictures\\transportShip.png";
-const char LOGO_IMAGE[] = "pictures\\logo.png";
-const char GAMEOVER_IMAGE[] = "pictures\\gameOver.png";
+const char BACKGROUND_IMAGE[] = "pictures\\backgroundJ.png";
+const char PARTICLE_IMAGE[] = "pictures\\particleJ.png";
+const char BUTTON_IMAGE[] = "pictures\\buttonJ.png";
+const char GUI_OVERLAY_IMAGE[] = "pictures\\guiOverlayJ.png";
+const char BASE_IMAGE[] = "pictures\\baseJ.png";
+const char HEALTH_BAR_IMAGE[] = "pictures\\healthBarJ.png";
+const char ICON_IMAGE[] = "pictures\\buttonImagesJ.png";
+const char CURSOR_IMAGE[] = "pictures\\cursorImagesJ.png";
+const char POWER_SUPPLY_IMAGE[] = "pictures\\powerSupplyJ.png";
+const char POWER_FIELD_IMAGE[] = "pictures\\powerFieldJ.png";
+const char MINERAL_IMAGE[] = "pictures\\mineralsJ.png";
+const char EXTRACTOR_IMAGE[] = "pictures\\extractorJ.png";
+const char TURRETG_IMAGE[] = "pictures\\turretgC.png";
+const char TURRETA_IMAGE[] = "pictures\\turretaC.png";
+const char TURRETBASE_IMAGE[] = "pictures\\standC.png";
+const char FACTORY_IMAGE[] = "pictures\\factoryJ.png";
+const char HOUSE_IMAGE[] = "pictures\\houseJ.png";
+const char AIR_FIELD_IMAGE[] = "pictures\\airFieldJ.png";
+const char ZOMBIE_IMAGE[] = "pictures\\zombieAniC.png";
+const char ZOMBIEBAT_IMAGE[] = "pictures\\batAniC.png";
+const char MENU_BACKGROUND_IMAGE[] = "pictures\\menuBackgroundJ.png";
+const char MAIN_MENU_BUTTON_IMAGE[] = "pictures\\mainMenuButtonsJ.png";
+const char TRANSPORT_SHIP_IMAGE[] = "pictures\\transportShipJ.png";
+const char LOGO_IMAGE[] = "pictures\\logoJ.png";
+const char GAMEOVER_IMAGE[] = "pictures\\gameOverJ.png";
 
 //Sound Locations
 const char WAVE_BANK[] = "audio\\Win\\Wave Bank.xwb";
