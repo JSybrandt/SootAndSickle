@@ -12,6 +12,8 @@
 using std::string;
 #include <ctime>
 
+#include<Windows.h>
+
 #include <stack> 
 
 #include "Actor.h"
@@ -122,6 +124,8 @@ private:
 	TextureManager mainMenuButtonTex;
 	TextureManager tutorialTex;
 	TextureManager transportShipTex;
+	TextureManager logoTex;
+	TextureManager gameOverTex;
 
 	Base base;
 
@@ -132,6 +136,10 @@ private:
 	Image background;
 	Image guiOverlay;
 	Image cursor;
+	Image logo;
+	Image gameOver;
+
+	bool showGameOverScreen;
 
 	Image tutorial;
 
@@ -184,6 +192,8 @@ private:
 
 	float levelTextCooldown;
 	string levelString;
+
+	bool showIcon;
 
 public:
 	// Constructor

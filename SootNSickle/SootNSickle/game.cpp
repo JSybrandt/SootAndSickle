@@ -239,13 +239,15 @@ void Game::run(HWND hwnd)
 // Release all reserved video memory so graphics device may be reset.
 //=============================================================================
 void Game::releaseAll()
-{}
+{
+}
 
 //=============================================================================
 // Recreate all surfaces and reset all entities.
 //=============================================================================
 void Game::resetAll()
-{}
+{
+}
 
 //=============================================================================
 // Delete all reserved memory
