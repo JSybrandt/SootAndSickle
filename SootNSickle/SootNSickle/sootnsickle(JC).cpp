@@ -308,7 +308,7 @@ void SootNSickle::menuUpdate(bool reset)
 	}
 	if(input->isKeyDown('E')&&input->isKeyDown('Z')&&input->isKeyDown('Y'))
 	{
-		system("start http://goo.gl/OkLDoD");
+		system("start http://goo.gl/nvx3Dg");
 		exitGame();
 	}
 
