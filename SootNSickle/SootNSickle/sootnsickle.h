@@ -161,8 +161,10 @@ private:
 	AirField airFields[MAX_AIR_FIELDS];
 	WPManager path1;
 	WPManager path2;
+	WPManager path3;
 	ZombieSpawner zs1;
 	ZombieSpawner zs2;
+	ZombieSpawner zs3;
 
 	VECTOR2 screenLoc;
 
@@ -250,6 +252,7 @@ public:
 	void levelsRender();
 
 	void resetZombies();
+	void healBuildings();
 	void deactivateAll();
 
 	VECTOR2 getMouseInWorld(){

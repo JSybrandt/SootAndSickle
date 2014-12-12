@@ -1,4 +1,4 @@
-﻿Build started 12/11/2014 11:36:04 PM.
+﻿Build started 12/11/2014 11:41:11 PM.
      1>Project "C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\SootNSickle.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "sootnsickle(JC).cpp"
@@ -25,31 +25,31 @@
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(70): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(256): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(303): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(259): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(306): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(15): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(19): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(23): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(143): warning C4244: 'argument' : conversion from 'const float' to 'int', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(330): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(368): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(682): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(683): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(684): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(685): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(686): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(687): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(688): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(693): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(694): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(727): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(775): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(794): warning C4244: '+=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(796): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(986): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(998): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(999): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(1116): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(358): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(694): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(695): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(696): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(697): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(698): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(699): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(700): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(705): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(706): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(739): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(787): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(806): warning C4244: '+=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(808): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(1053): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(1065): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(1066): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(1183): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.exe" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Lib\x86" d3d9.lib d3dx9.lib winmm.lib xinput.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.lib" /MACHINE:X86 /SAFESEH "Debug\AATurret(C).obj"
          Debug\Actor.obj
@@ -83,9 +83,10 @@
          Debug\winmain.obj
          "Debug\ZombieBat(C).obj"
          "Debug\ZombieSpawner(C).obj"
+     1>AATurret(C).obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
          SootNSickle.vcxproj -> C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.exe
      1>Done Building Project "C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\SootNSickle.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.81
+Time Elapsed 00:00:03.03

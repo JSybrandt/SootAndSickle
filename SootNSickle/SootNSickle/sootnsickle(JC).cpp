@@ -349,16 +349,6 @@ void SootNSickle::menuUpdate(bool reset)
 void SootNSickle::levelsUpdate()
 {
 
-	levelTimer -= frameTime;
-	if(levelTimer <= 0) {
-		switch(currentState) {
-		case Level1:
-			level2Load();
-			break;
-
-		}
-	}
-
 	if(input->wasKeyPressed('R'))
 	{
 		level1Load();
@@ -381,6 +371,18 @@ void SootNSickle::levelsUpdate()
 	}
 
 	if(paused) return;
+
+	levelTimer -= frameTime;
+	if(levelTimer <= 0) {
+		switch(currentState) {
+		case Level1:
+			level2Load();
+			break;
+		case Level2:
+			level3Load();
+			break;
+		}
+	}
 
 	levelTextCooldown = max(levelTextCooldown-frameTime,0);
 	
@@ -451,7 +453,7 @@ void SootNSickle::levelsUpdate()
 		zombieBats[i].update(frameTime);
 	zs1.update(frameTime);
 	zs2.update(frameTime);
-
+	zs3.update(frameTime);
 
 	capacity = newCapacity;
 	if(population > capacity) population = capacity;
@@ -481,32 +483,39 @@ void SootNSickle::ai()
 		if(zombies[i].getActive()) {
 			for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
 				if(turrets[j].getActive())
-					zombies[i].ai(frameTime, turrets[j]);
+					if(zombies[i].ai(frameTime, turrets[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_AIR_TURRETS; j++) {
 				if(aaturrets[j].getActive())
-					zombies[i].ai(frameTime, aaturrets[j]);
+					if(zombies[i].ai(frameTime, aaturrets[j]))
+						break;
 			}
 			zombies[i].ai(frameTime, base);
 			for(int j = 0; j < MAX_HOUSES; j++) {
 				if(houses[j].getActive())
-					zombies[i].ai(frameTime, houses[j]);
+					if(zombies[i].ai(frameTime, houses[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
 				if(airFields[j].getActive())
-					zombies[i].ai(frameTime, airFields[j]);
+					if(zombies[i].ai(frameTime, airFields[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_FACTORIES; j++) {
 				if(factories[j].getActive())
-					zombies[i].ai(frameTime, factories[j]);
+					if(zombies[i].ai(frameTime, factories[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_EXTRACTORS; j++) {
 				if(extractors[j].getActive())
-					zombies[i].ai(frameTime, extractors[j]);
+					if(zombies[i].ai(frameTime, extractors[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
 				if(powerSupplies[j].getActive())
-					zombies[i].ai(frameTime, powerSupplies[j]);
+					if(zombies[i].ai(frameTime, powerSupplies[j]))
+						break;
 			}
 		}
 	}
@@ -517,15 +526,18 @@ void SootNSickle::ai()
 			
 			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
 				if(powerSupplies[j].getActive())
-					zombieBats[i].ai(frameTime, powerSupplies[j]);
+					if(zombieBats[i].ai(frameTime, powerSupplies[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_HOUSES; j++) {
 				if(houses[j].getActive())
-					zombieBats[i].ai(frameTime, houses[j]);
+					if(zombieBats[i].ai(frameTime, houses[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
 				if(airFields[j].getActive())
-					zombieBats[i].ai(frameTime, airFields[j]);
+					if(zombieBats[i].ai(frameTime, airFields[j]))
+						break;
 			}
 			zombieBats[i].ai(frameTime, base);	
 		}
@@ -819,9 +831,9 @@ void SootNSickle::level1Load()
 
 	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
 	zs1.setManager(&path1);
-	zs1.addWave(2, GROUND, 15);
+	zs1.addWave(2, GROUND, 10);
 	zs1.addWave(1, AIR, 0);
-	zs1.addWave(5, GROUND, 10);
+	zs1.addWave(5, GROUND, 15);
 	zs1.addWave(3, AIR, 0);
 	zs1.addWave(20, GROUND, 30);
 	zs1.addWave(9, AIR, 0);
@@ -845,6 +857,48 @@ void SootNSickle::level2Load()
 	levelTimer = 420;
 	currentState = Level2;
 	resetZombies();
+	healBuildings();
+
+	path1.add(VECTOR2(1200,200));
+	path1.add(VECTOR2(800,200));
+	path1.add(VECTOR2(600,600));
+	path1.add(base.getCenter());
+	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
+	zs1.setManager(&path1);
+
+	zs1.addWave(3, GROUND, 10);
+	zs1.addWave(2, AIR, 0);
+
+	zs1.addWave(10, GROUND, 15);
+	zs1.addWave(3, AIR, 0);
+	zs1.addWave(3, AIR, 3);
+
+	zs1.addWave(35, GROUND, 27);
+	zs1.addWave(12, AIR, 0);
+
+	path2.add(VECTOR2(800,getCurrentWorldSize().y-100));
+	path2.add(VECTOR2(1000, getCurrentWorldSize().y-400));
+	path2.add(base.getCenter());
+
+	zs2.setCenter(VECTOR2(0,getCurrentWorldSize().y+(randmax(200))));
+	zs2.setManager(&path2);
+	zs2.addWave(1, GROUND, 10);
+	zs2.addWave(2, AIR, 0);
+	zs2.addWave(2, GROUND, 15);
+	zs2.addWave(5, AIR, 0);
+	zs2.addWave(5, GROUND, 30);
+	zs2.addWave(15, AIR, 0);
+
+	levelTextCooldown = SHOW_TEXT_TIME;
+	levelString = "LEVEL 2";
+}
+
+void SootNSickle::level3Load()
+{
+	levelTimer = 420;
+	currentState = Level3;
+	healBuildings();
+	resetZombies();
 
 	path1.add(VECTOR2(1200,200));
 	path1.add(VECTOR2(800,200));
@@ -853,43 +907,56 @@ void SootNSickle::level2Load()
 
 	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
 	zs1.setManager(&path1);
-	zs1.addWave(5, GROUND, 15);
+	zs1.addWave(5, GROUND, 10);
 	zs1.addWave(3, AIR, 0);
-	zs1.addWave(15, GROUND, 10);
-	zs1.addWave(8, AIR, 0);
-	zs1.addWave(40, GROUND, 30);
-	zs1.addWave(10, AIR, 0);
-	zs1.addWave(100,GROUND, 40);
+	zs1.addWave(15, GROUND, 15);
+	zs1.addWave(4, AIR, 0);
+	zs1.addWave(4, AIR, 3);
+	zs1.addWave(4, AIR, 3);
 
-	path2.add(VECTOR2(600,GAME_HEIGHT*3/4));
-	path2.add(VECTOR2(1000, GAME_HEIGHT/2));
+	zs1.addWave(50, GROUND, 24);
+	zs1.addWave(18, AIR, 0);
+
+	path2.add(VECTOR2(600,getCurrentWorldSize().y*3/4));
+	path2.add(VECTOR2(1000, getCurrentWorldSize().y/2));
 	path2.add(base.getCenter());
 
 	zs2.setCenter(VECTOR2(0,getCurrentWorldSize().y+(randmax(200))));
 	zs2.setManager(&path2);
-	zs2.addWave(1, GROUND, 15);
-	zs2.addWave(2, AIR, 0);
-	zs2.addWave(2, GROUND, 10);
-	zs2.addWave(5, AIR, 0);
-	zs2.addWave(10, GROUND, 30);
+	zs2.addWave(2, GROUND, 15);
+	zs2.addWave(3, AIR, 0);
+
+	zs2.addWave(3, GROUND, 20);
+	zs2.addWave(8, AIR, 0);
+
+	zs2.addWave(8, GROUND, 30);
 	zs2.addWave(20, AIR, 0);
 
+	path3.add(VECTOR2(1000,getCurrentWorldSize().y/4));
+	path3.add(VECTOR2(800, getCurrentWorldSize().y/2));
+	path3.add(base.getCenter());
+
+	zs3.setCenter(VECTOR2(0,0));
+	zs3.setManager(&path2);
+
+	zs3.addWave(5, GROUND, 15);
+	zs3.addWave(5, AIR, 2);
+
+	zs3.addWave(10, GROUND, 18);
+	zs3.addWave(10, AIR, 2);
+
+	zs3.addWave(20, GROUND, 28);
+	zs3.addWave(20, AIR, 2);
+
 	levelTextCooldown = SHOW_TEXT_TIME;
-	levelString = "LEVEL 2";
-}
-
-void SootNSickle::level3Load()
-{
-	currentState = Level3;
-	deactivateAll();
-
-
+	levelString = "LEVEL 3: Final Level";
 }
 
 void SootNSickle::feelingLuckyLoad()
 {
 	currentState = FeelingLucky;
 	deactivateAll();
+
 
 }
 
@@ -1145,8 +1212,10 @@ void SootNSickle::deactivateAll()
 	base.setActive(false);
 	path1.clear();
 	path2.clear();
+	path3.clear();
 	zs1.clear();
 	zs2.clear();
+	zs3.clear();
 }
 
 void SootNSickle::resetZombies()
@@ -1157,8 +1226,10 @@ void SootNSickle::resetZombies()
 		zombieBats[i].setActive(false);
 	path1.clear();
 	path2.clear();
+	path3.clear();
 	zs1.clear();
 	zs2.clear();
+	zs3.clear();
 }
 
 void SootNSickle::onBaseDeath()
@@ -1729,6 +1800,7 @@ MineralPatch* SootNSickle::findMineableMinerals(Extractor * caller)
 	return nullptr;
 }
 
+
 void SootNSickle::updateMaxes()
 {
 	std::fstream fin;
@@ -1765,5 +1837,35 @@ void SootNSickle::updateMaxes()
 	fout<<MaxSecondsSurvived<<std::endl;
 	fout<<MaxScore<<std::endl;
 	fout.close();
-	
+}
+
+void SootNSickle::healBuildings() {
+			for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+			{
+				powerSupplies[i].heal(50);
+			}
+			for(int i = 0 ; i < MAX_EXTRACTORS; i++)
+			{
+				extractors[i].heal(50);
+			}
+			for(int i = 0; i < MAX_FACTORIES; i++) 
+			{
+				factories[i].heal(50);
+			}
+			for(int i = 0; i < MAX_GROUND_TURRETS; i++) 
+			{
+				turrets[i].heal(50);
+			}
+			for(int i = 0; i < MAX_AIR_TURRETS; i++) 
+			{
+				aaturrets[i].heal(50);
+			}
+			for(int i = 0; i < MAX_HOUSES; i++) 
+			{
+				houses[i].heal(50);
+			}
+			for(int i = 0; i < MAX_AIR_FIELDS; i++) 
+			{
+				airFields[i].heal(50);
+			}
 }

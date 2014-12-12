@@ -132,37 +132,25 @@ void ZombieBat::vectorTrack(float frametime)
 
 }
 
-void ZombieBat::ai(float frameTime, ActorWithHealthBar &t)
-{ 
+bool ZombieBat::ai(float frameTime, ActorWithHealthBar &t) { 
 	if(active && t.getActive() && !checked) {
-		float rad = 0;
-		if(targetEntity != nullptr && target) { //If previous target is still active and within range
-			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
-			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
-
-			if(distSqrdToOldTarget > personalEngageDistanceSQRD || !targetEntity->getActive()) {
-				shoot = false;
-				target = false;
-			}
-			else {
+		if(targetEntity != nullptr && targetEntity->getActive()) { //If previous target is still active and within range
 				checked = true;
-				return;							//No need to switch targets, continue firing
-
-			}
+				return true;							//No need to switch targets, continue firing
 		}
-		if(!target) {
+		else if(targetEntity == nullptr || !targetEntity->getActive()) {
 			VECTOR2 toTarget = t.getCenter() - getCenter();
 			float distSqrdToNewTarget = D3DXVec2LengthSq(&toTarget);
 
 			if(distSqrdToNewTarget < personalChaseDistanceSQRD) {
 				targetEntity = &t;
 				checked = true;
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
-
-	return;
+	return false;
 }
 
 void ZombieBat::create(VECTOR2 loc)

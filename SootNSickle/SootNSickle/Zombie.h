@@ -44,7 +44,7 @@ public:
 
 	void update(float frametime);
 
-	void ai(float time, ActorWithHealthBar &t);
+	bool ai(float time, ActorWithHealthBar &t);
 
 	void create(VECTOR2 loc);
 
