@@ -72,6 +72,7 @@ void SootNSickle::initialize(HWND hwnd)
 
 	zs1.initialize(this);
 	zs2.initialize(this);
+	zs3.initialize(this);
 
 	if(!mainMenuBackgroundTex.initialize(graphics,MENU_BACKGROUND_IMAGE))
 		throw GameError(1,"Failed to init menu background tex");
@@ -398,6 +399,7 @@ void SootNSickle::levelsUpdate()
 			break;
 		case Level2:
 			level3Load();
+			break;
 		case Level3:
 			victory = true;
 			showGameOverScreen = true;
@@ -916,6 +918,7 @@ void SootNSickle::level2Load()
 	zs1.addWave(50, GROUND, 27);
 	zs1.addWave(12, AIR, 0);
 
+	path2.add(VECTOR2(100, getCurrentWorldSize().y-50));
 	path2.add(VECTOR2(getCurrentWorldSize().x/2,getCurrentWorldSize().y-100));
 	path2.add(VECTOR2(getCurrentWorldSize().x*3/4, getCurrentWorldSize().y-400));
 	path2.add(base.getCenter());
@@ -935,7 +938,7 @@ void SootNSickle::level2Load()
 
 void SootNSickle::level3Load()
 {
-	levelTimer = 420;
+	levelTimer = 160;
 	currentState = Level3;
 	healBuildings();
 	resetZombies();
@@ -996,8 +999,6 @@ void SootNSickle::feelingLuckyLoad()
 {
 	currentState = FeelingLucky;
 	deactivateAll();
-
-
 }
 
 void SootNSickle::guiLoad()
