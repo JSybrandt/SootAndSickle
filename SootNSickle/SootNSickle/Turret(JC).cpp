@@ -88,7 +88,7 @@ void Turret::update(float frametime) {
 						//game->spawnBullet(v1,radians,graphicsNS::RED,false);
 						//game->spawnBullet(v2,radians,graphicsNS::RED,false);
 						animComplete = false;
-						game->spawnParticleCone(getCenter(),radians,graphicsNS::BLUE, 50);
+						game->spawnParticleCone(getCenter(),radians,graphicsNS::BLUE, 25);
 						//game->spawnParticleCone(getCenter()+turretNS::BULLET2_OFFSET,radians,graphicsNS::RED);
 						targetEntity->damage(25);
 						if(game->cheatMoreDamage)targetEntity->damage(500);
@@ -152,7 +152,6 @@ void Turret::create(VECTOR2 loc, float dir) {
 
 void Turret::ai(float frameTime, ActorWithHealthBar &t) {
 	if(active && t.getActive() && !checked) {
-		float rad = 0;
 		if(targetEntity != nullptr && targetEntity->getActive()) { //If previous target is still active and within range
 			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
 			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
