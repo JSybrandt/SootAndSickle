@@ -151,29 +151,32 @@ void Zombie::vectorTrack(float frametime)
 
 }
 
-void Zombie::ai(float frameTime, ActorWithHealthBar &t)
-{ 
+void Zombie::ai(float frameTime, ActorWithHealthBar &t) { 
 	if(active && t.getActive() && !checked) {
 		float rad = 0;
-		if(targetEntity != nullptr && target) { //If previous target is still active and within range
-			VECTOR2 toTarget = targetEntity->getCenter() - getCenter();
-			float distSqrdToOldTarget = D3DXVec2LengthSq(&toTarget);
+		if(targetEntity != nullptr && targetEntity->getActive()) { //If previous target is still active and within range
+			VECTOR2 toNewTarget = t.getCenter() - getCenter();
+			float distSqrdToNewTarget = D3DXVec2LengthSq(&toNewTarget);			
 
-			if(distSqrdToOldTarget > personalEngageDistanceSQRD || !targetEntity->getActive()) {
-				shoot = false;
-				target = false;
+			VECTOR2 toOldTarget = targetEntity->getCenter() - getCenter();
+			float distSqrdToOldTarget = D3DXVec2LengthSq(&toOldTarget);
+
+			if(distSqrdToNewTarget < distSqrdToOldTarget) {
+				targetEntity = &t;
+			}
+			else if(distSqrdToOldTarget > personalEngageDistanceSQRD || !targetEntity->getActive()) {
+				targetEntity = nullptr;
 			}
 			else {
 				checked = true;
 				return;							//No need to switch targets, continue firing
-
 			}
 		}
-		if(!target) {
+		if(targetEntity == nullptr || !targetEntity->getActive()) {
 			VECTOR2 toTarget = t.getCenter() - getCenter();
 			float distSqrdToNewTarget = D3DXVec2LengthSq(&toTarget);
 
-			if(distSqrdToNewTarget < personalChaseDistanceSQRD) {
+			if(distSqrdToNewTarget < personalEngageDistanceSQRD) {
 				targetEntity = &t;
 				checked = true;
 				return;

@@ -163,7 +163,6 @@ void Turret::ai(float frameTime, ActorWithHealthBar &t) {
 			else {
 				checked = true;
 				return;							//No need to switch targets, continue firing
-
 			}
 		}
 		if(!target) {

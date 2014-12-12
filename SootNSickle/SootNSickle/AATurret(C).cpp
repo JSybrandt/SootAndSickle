@@ -113,7 +113,7 @@ void AATurret::update(float frametime) {
 				}
 				if(radians < minDir)
 				{
-					//setRadians(minDir);
+					setRadians(minDir);
 					rotVel = turretNS::ROTATION_SPEED;
 				}
 				else

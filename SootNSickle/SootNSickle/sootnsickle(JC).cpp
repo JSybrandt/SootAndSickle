@@ -467,7 +467,6 @@ void SootNSickle::ai()
 	//ZOMBIES
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++) {
 		if(zombies[i].getActive()) {
-			zombies[i].ai(frameTime, base);
 			for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
 				if(turrets[j].getActive())
 					zombies[i].ai(frameTime, turrets[j]);
@@ -476,6 +475,7 @@ void SootNSickle::ai()
 				if(aaturrets[j].getActive())
 					zombies[i].ai(frameTime, aaturrets[j]);
 			}
+			zombies[i].ai(frameTime, base);
 			for(int j = 0; j < MAX_HOUSES; j++) {
 				if(houses[j].getActive())
 					zombies[i].ai(frameTime, houses[j]);
@@ -680,10 +680,12 @@ void SootNSickle::levelsRender()
 	infoText.print("MINERALS",20,5);
 	infoText.print("IDLE/TOTAL/MAX",150,5);
 	infoText.print("UPGRADE",400,5);
+	infoText.print("Level Timer: ",1100,5);
 
 	infoText.print(std::to_string((int)mineralLevel),20,25);
 	infoText.print(std::to_string(idlePopulation) + "/" + std::to_string(population)+ "/" + std::to_string(capacity),150,25);
 	infoText.print(std::to_string((int)upgradePoints),400,25);
+	infoText.print(std::to_string((int)levelTimer),1220,5);
 
 	if(levelTextCooldown>0)
 	{
@@ -814,9 +816,10 @@ void SootNSickle::level2Load()
 	zs1.addWave(5, GROUND, 15);
 	zs1.addWave(3, AIR, 0);
 	zs1.addWave(15, GROUND, 10);
-	zs1.addWave(9, AIR, 0);
-	zs1.addWave(50, GROUND, 30);
-	zs1.addWave(18, AIR, 0);
+	zs1.addWave(8, AIR, 0);
+	zs1.addWave(40, GROUND, 30);
+	zs1.addWave(10, AIR, 0);
+	zs1.addWave(100,GROUND, 40);
 
 	path2.add(VECTOR2(600,GAME_HEIGHT*3/4));
 	path2.add(VECTOR2(1000, GAME_HEIGHT/2));
@@ -1111,7 +1114,6 @@ void SootNSickle::resetZombies()
 		zombies[i].setActive(false);
 	for(int i = 0 ; i < MAX_AIR_ENEMIES;i++)
 		zombieBats[i].setActive(false);
-	base.setActive(false);
 	path1.clear();
 	path2.clear();
 	zs1.clear();
