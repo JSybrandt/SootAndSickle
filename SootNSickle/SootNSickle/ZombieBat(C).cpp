@@ -35,6 +35,7 @@ void ZombieBat::update(float frameTime)
 		if(health <= 0) {
 			setActive(false);
 			//audio->playCue(KILL1_CUE);
+			game->enemeiesKilled++;
 		}
 
 		checked = false;

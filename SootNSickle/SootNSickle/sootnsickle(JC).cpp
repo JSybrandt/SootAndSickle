@@ -264,7 +264,6 @@ void SootNSickle::initialize(HWND hwnd)
 //=============================================================================
 void SootNSickle::update()
 {
-	handleLostGraphicsDevice();
 
 
 	if(playingIntro)
@@ -294,7 +293,9 @@ void SootNSickle::menuUpdate(bool reset)
 	if(showGameOverScreen)
 	{
 		if(input->wasKeyPressed(VK_RETURN))
+		{
 			showGameOverScreen = false;
+		}
 	}
 	else
 	{
@@ -336,7 +337,7 @@ void SootNSickle::menuUpdate(bool reset)
 		if(choice == 0)
 			level1Load();
 		else if (choice == 1)
-			system("START https://www.youtube.com/watch?v=jj9VNZAvZj0");
+			system("START https://www.youtube.com/watch?v=PX-KhvY7xxs&feature=youtu.be");
 		else if (choice == 2)
 			showIcon = !showIcon;
 		else if (choice == 3)
@@ -383,6 +384,8 @@ void SootNSickle::levelsUpdate()
 
 	levelTextCooldown = max(levelTextCooldown-frameTime,0);
 	
+	secondsSurvived+=frameTime;
+
 	VECTOR2 in(0,0);
 
 	if(input->isKeyDown(controls.up))
@@ -587,9 +590,24 @@ void SootNSickle::menuRender()
 	if(showGameOverScreen)
 	{
 		gameOver.draw(UIScreenLoc);
-		infoText.print("SECONDS ALIVE:",200,300);
-		infoText.print("ENEMIES KILLED:",200,350);
+		infoText.print("SECONDS ALIVE:",200,350);
+		infoText.print(std::to_string((int)secondsSurvived),400,350);
+		infoText.print("ENEMIES KILLED:",200,375);
+		infoText.print(std::to_string((int)enemeiesKilled),400,375);
 		infoText.print("MINERALS MINED:",200,400);
+		infoText.print(std::to_string((int)mineralsMined),400,400);
+		infoText.print("SCORE:",200,450);
+		infoText.print(std::to_string(getScore()),400,450);
+
+		//maxes
+		infoText.print("HIGH SCORES:",600,350);
+		infoText.print(std::to_string((int)MaxSecondsSurvived),800,350);
+		infoText.print(std::to_string((int)MaxEnemeiesKilled),800,375);
+		infoText.print(std::to_string((int)MaxMineralsMined),800,400);
+		infoText.print(std::to_string((int)MaxScore),800,450);
+		infoText.print("PRESS ENTER TO CONTINUE",500,600);
+		if(victory)
+			infoText.print("VICTORY",500,650);
 	}
 	else
 	{
@@ -762,6 +780,12 @@ void SootNSickle::menuLoad()
 
 void SootNSickle::level1Load()
 {
+	mineralsMined = 0;
+	enemeiesKilled = 0;
+	buildingsDestroyed = 0;
+	secondsSurvived = 0;
+	victory = false;
+
 	levelTimer = 120;
 	currentState = Level1;
 	deactivateAll();
@@ -1140,6 +1164,7 @@ void SootNSickle::resetZombies()
 void SootNSickle::onBaseDeath()
 {
 	menuLoad();
+	updateMaxes();
 	showGameOverScreen = true;
 }
 void SootNSickle::raiseAllButtons(){
@@ -1702,4 +1727,43 @@ MineralPatch* SootNSickle::findMineableMinerals(Extractor * caller)
 
 	}
 	return nullptr;
+}
+
+void SootNSickle::updateMaxes()
+{
+	std::fstream fin;
+	fin.open("scores.txt",std::ios::in);
+	if(fin)
+	{
+		fin>>MaxMineralsMined;
+		fin>>MaxEnemeiesKilled;
+		fin>>MaxBuildingsDestroyed;
+		fin>>MaxSecondsSurvived;
+		fin>>MaxScore;
+	}
+	else
+	{
+		MaxMineralsMined = 0;
+		MaxEnemeiesKilled = 0;
+		MaxBuildingsDestroyed = 0;
+		MaxSecondsSurvived = 0;
+		MaxScore = 0;
+	}
+	fin.close();
+
+	MaxMineralsMined = max(MaxMineralsMined,mineralsMined);
+	MaxEnemeiesKilled = max(MaxEnemeiesKilled,enemeiesKilled);
+	MaxBuildingsDestroyed = max(MaxBuildingsDestroyed,buildingsDestroyed);
+	MaxSecondsSurvived = max(MaxSecondsSurvived,secondsSurvived);
+	MaxScore = max(MaxScore,getScore());
+
+	std::fstream fout;
+	fout.open("scores.txt",std::ios::out);
+	fout<<MaxMineralsMined<<std::endl;
+	fout<<MaxEnemeiesKilled<<std::endl;
+	fout<<MaxBuildingsDestroyed<<std::endl;
+	fout<<MaxSecondsSurvived<<std::endl;
+	fout<<MaxScore<<std::endl;
+	fout.close();
+	
 }
