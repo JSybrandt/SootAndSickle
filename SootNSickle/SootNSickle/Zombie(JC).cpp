@@ -37,6 +37,7 @@ void Zombie::update(float frameTime)
 			setActive(false);
 			audio->playCue(SC_ZOMBIEDEATH);
 			audio->stopCue(SC_ZOMBIE1);
+			game->enemeiesKilled++;
 		}
 		moan -= frameTime;
 		if(moan <= 0) {

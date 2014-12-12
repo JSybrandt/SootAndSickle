@@ -4,7 +4,7 @@
 
 namespace ExtractorNS{
 	const float DEFAULT_MINING_RATE = 10;
-	const float MINING_RANGE = 150;
+	const float MINING_RANGE = 10;
 	const float COLLISION_RADIUS = 50;
 	const int CAPACITY = 10;
 	const float HEALTH = 25;

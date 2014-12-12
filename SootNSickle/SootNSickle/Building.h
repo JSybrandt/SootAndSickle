@@ -16,6 +16,7 @@ private:
 	int numStaff, capacity;
 	bool hasPower;
 	int level;
+	float originalMaxHealth;
 public:
 	Building():ActorWithHealthBar(){setActive(false); setCapacity(BuildingNS::DEFAULT_CAPACITY);setStaff(0);setPower(false);setCollisionRadius(BuildingNS::RADIUS);level = 1;}
 	bool initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextDX* infoText);
@@ -41,7 +42,7 @@ public:
 
 	virtual void upgrade(){
 		level = min(level+1,3);
-		setMaxHealth(getMaxHealth()*1.2);
+		ActorWithHealthBar::setMaxHealth(getMaxHealth()*1.2);
 		setHealth(getMaxHealth());
 	}
 	int getLevel(){return level;}
@@ -51,4 +52,6 @@ public:
 	TextDX* getText(){return text;}
 
 	bool powerToggle;
+
+	void setMaxHealth(float n){ActorWithHealthBar::setMaxHealth(n); originalMaxHealth = n; }
 };

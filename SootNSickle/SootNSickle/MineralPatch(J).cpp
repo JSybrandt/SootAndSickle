@@ -1,5 +1,5 @@
 #include "MineralPatch.h"
-
+#include "sootnsickle.h"
 MineralPatch::MineralPatch(){setActive(false);setCollisionRadius(50);}
 
 void MineralPatch::create(VECTOR2 loc, float ammount){

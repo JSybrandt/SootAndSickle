@@ -14,6 +14,7 @@ using std::string;
 
 #include<Windows.h>
 
+#include<fstream>
 #include <stack> 
 
 #include "Actor.h"
@@ -196,6 +197,9 @@ private:
 
 	bool showIcon;
 	float levelTimer;
+
+	
+
 public:
 	// Constructor
     SootNSickle();
@@ -273,7 +277,7 @@ public:
 
 	MineralPatch* findMineableMinerals(Extractor * caller);
 
-	void addMinerals(float n){mineralLevel+=n;}
+	void addMinerals(float n){mineralLevel+=n; mineralsMined +=n;}
 
 
 	void addPopulation(int n){n = min(n,capacity-population);idlePopulation+=n;population+=n;}
@@ -283,6 +287,23 @@ public:
 	void removeIdlePop(int n){idlePopulation -=n;}
 
 	float upgradePoints;
+
+	float mineralsMined;
+	int enemeiesKilled;
+	int buildingsDestroyed;
+	float secondsSurvived;
+	bool victory;
+
+	float MaxMineralsMined;
+	int MaxEnemeiesKilled;
+	int MaxBuildingsDestroyed;
+	float MaxSecondsSurvived;
+	int MaxScore;
+
+	void updateMaxes();
+
+	int getScore(){return mineralsMined/2+5*enemeiesKilled-3*buildingsDestroyed+secondsSurvived;}
+
 };
 
 #endif
