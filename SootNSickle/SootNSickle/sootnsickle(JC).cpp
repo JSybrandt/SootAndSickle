@@ -439,7 +439,14 @@ void SootNSickle::levelsUpdate()
 	base.update(frameTime);
 	newCapacity += BaseNS::HOUSING;
 
-
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++)
+	{
+		turrets[i].update(frameTime);
+	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++)
+	{
+		aaturrets[i].update(frameTime);
+	}
 	for(int i = 0 ; i < MAX_POWER_SUPPLIES; i++)
 	{
 		powerSupplies[i].update(frameTime);
@@ -467,14 +474,6 @@ void SootNSickle::levelsUpdate()
 	for(int i = 0; i < MAX_AIR_FIELDS; i++)
 	{
 		airFields[i].update(frameTime);
-	}
-	for(int i = 0; i < MAX_GROUND_TURRETS; i++)
-	{
-		turrets[i].update(frameTime);
-	}
-	for(int i = 0; i < MAX_AIR_TURRETS; i++)
-	{
-		aaturrets[i].update(frameTime);
 	}
 	for(int i = 0; i < MAX_GROUND_ENEMIES; i++)
 		zombies[i].update(frameTime);
@@ -875,7 +874,7 @@ void SootNSickle::level1Load()
 	zs1.addWave(5, GROUND, 15);
 	zs1.addWave(2, AIR, 0);
 	zs1.addWave(20, GROUND, 30);
-	zs1.addWave(9, AIR, 0);
+	zs1.addWave(4, AIR, 0);
 
 	guiLoad();
 
@@ -913,14 +912,14 @@ void SootNSickle::level2Load()
 	zs1.setManager(&path1);
 
 	zs1.addWave(10, GROUND, 20);
-	zs1.addWave(5, AIR, 0);
+	zs1.addWave(4, AIR, 0);
 
 	zs1.addWave(20, GROUND, 15);
-	zs1.addWave(5, AIR, 0);
-	zs1.addWave(5, AIR, 3);
+	zs1.addWave(3, AIR, 0);
+	zs1.addWave(3, AIR, 4);
 
-	zs1.addWave(50, GROUND, 27);
-	zs1.addWave(12, AIR, 0);
+	zs1.addWave(50, GROUND, 26);
+	zs1.addWave(8, AIR, 4);
 
 	path2.add(VECTOR2(100, getCurrentWorldSize().y-50));
 	path2.add(VECTOR2(getCurrentWorldSize().x/2,getCurrentWorldSize().y-100));
