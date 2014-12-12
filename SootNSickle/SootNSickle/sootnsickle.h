@@ -12,6 +12,8 @@
 using std::string;
 #include <ctime>
 
+#include<Windows.h>
+
 #include <stack> 
 
 #include "Actor.h"
@@ -46,7 +48,7 @@ namespace SootNSickleNS
 	const int MAX_HOUSES = 100;
 	const int MAX_AIR_FIELDS = 100;
 	const int MAX_PARTICLES = 10000;
-	const int MAX_BUTTONS = 9;
+	const int MAX_BUTTONS = 10;
 
 	const int NUM_PARTICLES_IN_CONE_EFFECT = 150;
 	const int NUM_PARTICLES_IN_CLOUD_EFFECT = 200;
@@ -122,6 +124,8 @@ private:
 	TextureManager mainMenuButtonTex;
 	TextureManager tutorialTex;
 	TextureManager transportShipTex;
+	TextureManager logoTex;
+	TextureManager gameOverTex;
 
 	Base base;
 
@@ -132,6 +136,10 @@ private:
 	Image background;
 	Image guiOverlay;
 	Image cursor;
+	Image logo;
+	Image gameOver;
+
+	bool showGameOverScreen;
 
 	Image tutorial;
 
@@ -174,6 +182,7 @@ private:
 
 	void attemptToSellBuilding();
 	void attemptToUpgradeBuilding();
+	void attemptToTogglePower();
 
 	int tutorialSelection;
 	bool showTutorial;
@@ -184,6 +193,7 @@ private:
 	float levelTextCooldown;
 	string levelString;
 
+	bool showIcon;
 	float levelTimer;
 public:
 	// Constructor

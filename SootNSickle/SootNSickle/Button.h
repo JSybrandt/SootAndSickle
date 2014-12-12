@@ -25,6 +25,7 @@ namespace ButtonNS
 		AIR_FIELD_SELECTION,
 		SELL_SELECTION,
 		UPGRADE_SELECTION,
+		DEACTIVATE_SELECTION,
 		SIZE//must be last
 	};
 

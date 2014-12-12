@@ -31,6 +31,7 @@ public:
 
 	void create(VECTOR2 loc){Building::create(loc);	field.setActive(true); field.setCenter(loc);cooldown = BaseNS::TELEPORTER_COOLDOWN;}
 
+	void onDeath();
 private:
 	float windDir;
 	float cooldown;

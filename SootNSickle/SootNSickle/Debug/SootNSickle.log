@@ -1,7 +1,7 @@
-﻿Build started 12/11/2014 4:59:21 PM.
+﻿Build started 12/11/2014 8:13:33 PM.
      1>Project "C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\SootNSickle.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "sootnsickle(JC).cpp"
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "AATurret(C).cpp" AGTurret.cpp Actor.cpp "ActorWithHealthBar(J).cpp" "AirField(J).cpp" "Base(J).cpp" "Building (J).cpp" "Button(J).cpp" "Extractor(J).cpp" "Factory(J).cpp" "HealthBar(J).cpp" "MineralPatch(J).cpp" "Particle(J).cpp" "PowerSupply(J).cpp" "Turret(JC).cpp" "Utility(J).cpp" "WPManager(C).cpp" "Waypoint(C).cpp" "Zombie(JC).cpp" "ZombieBat(C).cpp" "ZombieSpawner(C).cpp" audio.cpp constants.cpp game.cpp graphics.cpp image.cpp input.cpp "sootnsickle(JC).cpp" textDX.cpp textureManager.cpp winmain.cpp
          sootnsickle(JC).cpp
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
@@ -24,32 +24,441 @@
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(67): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(241): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(15): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(19): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
      1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(23): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(131): warning C4244: 'argument' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(322): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(348): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(569): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(570): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(641): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(642): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(643): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(644): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(645): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(646): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(647): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(652): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(653): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(684): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(739): warning C4244: '+=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(741): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(899): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(911): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(912): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(1029): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(143): warning C4244: 'argument' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(329): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(367): warning C4244: 'argument' : conversion from 'const UINT' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(664): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(665): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(666): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(667): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(668): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(669): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(670): warning C4244: '=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(675): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(676): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(707): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(755): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(768): warning C4244: '+=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(770): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(959): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(971): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(972): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle(jc).cpp(1089): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         ZombieSpawner(C).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         ZombieBat(C).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         Zombie(JC).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         Turret(JC).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret(jc).cpp(10): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret(jc).cpp(138): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+         AATurret(C).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret(c).cpp(10): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret(c).cpp(92): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret(c).cpp(146): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
+         winmain.cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         textureManager.cpp
+         textDX.cpp
+         input.cpp
+         image.cpp
+         graphics.cpp
+         game.cpp
+         constants.cpp
+         audio.cpp
+         Waypoint(C).cpp
+         WPManager(C).cpp
+         Utility(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\utility(j).cpp(10): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\utility(j).cpp(12): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\utility(j).cpp(14): warning C4244: 'return' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\utility(j).cpp(16): warning C4244: 'return' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\utility(j).cpp(20): warning C4244: '+=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\utility(j).cpp(21): warning C4244: '-=' : conversion from 'const double' to 'float', possible loss of data
+         PowerSupply(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         Particle(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\particle(j).cpp(6): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+         MineralPatch(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\mineralpatch(j).cpp(11): warning C4552: '>' : operator has no effect; expected operator with side-effect
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\mineralpatch(j).cpp(41): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\mineralpatch(j).cpp(42): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+         HealthBar(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\healthbar(j).cpp(23): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\healthbar(j).cpp(24): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\healthbar(j).cpp(25): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         Factory(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         Extractor(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         Button(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\button(j).cpp(35): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         Building (J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building (j).cpp(18): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building (j).cpp(19): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building (j).cpp(29): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building (j).cpp(30): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+         Generating Code...
+         Compiling...
+         Base(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base(j).cpp(13): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base(j).cpp(23): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         AirField(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         ActorWithHealthBar(J).cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+         Actor.cpp
+         AGTurret.cpp
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(37): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(39): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\building.h(44): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(7): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(8): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(10): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\turret.h(11): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\agturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\agturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\agturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\agturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\base.h(24): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(6): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(7): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(8): warning C4244: 'initializing' : conversion from 'const double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(9): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\aaturret.h(10): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(12): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombie.h(13): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(9): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(10): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\zombiebat.h(11): warning C4244: 'initializing' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\factory.h(17): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(69): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\sootnsickle.h(252): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
+     1>c:\users\sybrandtjg1\desktop\sootandsickle\sootnsickle\sootnsickle\agturret.cpp(10): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.exe" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Lib\x86" d3d9.lib d3dx9.lib winmm.lib xinput.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.lib" /MACHINE:X86 /SAFESEH "Debug\AATurret(C).obj"
          Debug\Actor.obj
@@ -83,9 +492,10 @@
          Debug\winmain.obj
          "Debug\ZombieBat(C).obj"
          "Debug\ZombieSpawner(C).obj"
+     1>AATurret(C).obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
          SootNSickle.vcxproj -> C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\Debug\SootNSickle.exe
      1>Done Building Project "C:\Users\SybrandtJG1\Desktop\SootAndSickle\SootNSickle\SootNSickle\SootNSickle.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.89
+Time Elapsed 00:00:27.78

@@ -84,6 +84,18 @@ void SootNSickle::initialize(HWND hwnd)
 		mainMenuOptions[i].setCurrentFrame(i);
 	}
 
+	if(!logoTex.initialize(graphics,LOGO_IMAGE))
+		throw GameError(1,"failed to make icon tex");
+
+	if(!logo.initialize(graphics,0,0,0,&logoTex))
+		throw GameError(1,"Failed to init icon");
+
+	if(!gameOverTex.initialize(graphics,GAMEOVER_IMAGE))
+		throw GameError(1,"failed to make icon tex");
+
+	if(!gameOver.initialize(graphics,0,0,0,&gameOverTex))
+		throw GameError(1,"Failed to init gameover");
+
 	//
 	//Initializing Textures
 	//
@@ -252,6 +264,8 @@ void SootNSickle::initialize(HWND hwnd)
 //=============================================================================
 void SootNSickle::update()
 {
+	handleLostGraphicsDevice();
+
 
 	if(playingIntro)
 	{
@@ -277,17 +291,10 @@ void SootNSickle::menuUpdate(bool reset)
 {
 	static int selection = 0;
 
-	if(showTutorial)
+	if(showGameOverScreen)
 	{
-		if(input->wasKeyPressed(controls.left))
-			tutorialSelection--;
-		if(input->wasKeyPressed(controls.right))
-			tutorialSelection++;
 		if(input->wasKeyPressed(VK_RETURN))
-			showTutorial = false;
-		if(tutorialSelection < 0) tutorialSelection = NUM_TUTORIAL_IMAGES-1;
-		if(tutorialSelection >= NUM_TUTORIAL_IMAGES) tutorialSelection = 0;
-		tutorial.setCurrentFrame(tutorialSelection);
+			showGameOverScreen = false;
 	}
 	else
 	{
@@ -329,7 +336,9 @@ void SootNSickle::menuUpdate(bool reset)
 		if(choice == 0)
 			level1Load();
 		else if (choice == 1)
-			showTutorial = true;
+			system("START https://www.youtube.com/watch?v=jj9VNZAvZj0");
+		else if (choice == 2)
+			showIcon = !showIcon;
 		else if (choice == 3)
 			exitGame();
 	}
@@ -575,11 +584,12 @@ void SootNSickle::menuRender()
 {
 	VECTOR2 UIScreenLoc(0,0);
 
-	if(showTutorial)
+	if(showGameOverScreen)
 	{
-		tutorial.draw(UIScreenLoc);
-		infoText.print("<<<"+std::to_string(tutorialSelection+1) + "/" + std::to_string(NUM_TUTORIAL_IMAGES) + ">>>",GAME_WIDTH*0.85,10);
-		infoText.print("PRESS ENTER TO RETURN",GAME_WIDTH*0.8,30);
+		gameOver.draw(UIScreenLoc);
+		infoText.print("SECONDS ALIVE:",200,300);
+		infoText.print("ENEMIES KILLED:",200,350);
+		infoText.print("MINERALS MINED:",200,400);
 	}
 	else
 	{
@@ -589,7 +599,8 @@ void SootNSickle::menuRender()
 			mainMenuOptions[i].draw(UIScreenLoc);
 		}
 	}
-
+	if(showIcon)
+		logo.draw(UIScreenLoc);
 }
 
 void SootNSickle::levelsRender()
@@ -741,6 +752,11 @@ void SootNSickle::menuLoad()
 
 	tutorialSelection = 0;
 	showTutorial = false;
+	showIcon = false;
+	logo.setX(10);
+	logo.setY(GAME_HEIGHT - logo.getHeight()-10);
+	gameOver.setX(0);gameOver.setY(0);
+	showGameOverScreen = false;
 
 }
 
@@ -871,6 +887,7 @@ void SootNSickle::guiLoad()
 			if(type >= (int)ButtonNS::ButtonType::SIZE) return;
 
 		}
+	
 }
 
 void SootNSickle::updateScreen()
@@ -1122,7 +1139,8 @@ void SootNSickle::resetZombies()
 
 void SootNSickle::onBaseDeath()
 {
-
+	menuLoad();
+	showGameOverScreen = true;
 }
 void SootNSickle::raiseAllButtons(){
 	for(int i = 0; i < MAX_BUTTONS;i++)
@@ -1253,6 +1271,10 @@ void SootNSickle::checkClick()
 	else if(cursorSelection == ButtonNS::UPGRADE_SELECTION && upgradePoints > 1)
 	{
 		attemptToUpgradeBuilding();
+	}
+	else if(cursorSelection == ButtonNS::DEACTIVATE_SELECTION)
+	{
+		attemptToTogglePower();
 	}
 }
 
@@ -1494,6 +1516,86 @@ void SootNSickle::attemptToUpgradeBuilding()
 				upgradePoints-=1;
 				airFields[i].upgrade();
 				audio->playCue(SC_UPGRADE);
+			}
+		}
+	}
+}
+
+void SootNSickle::attemptToTogglePower()
+{
+	VECTOR2 disp;
+	VECTOR2 mouse = getMouseInWorld();
+	
+
+	for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+	{
+		if(powerSupplies[i].getActive())
+		{
+			disp = mouse - powerSupplies[i].getCenter();
+			if(D3DXVec2Length(&disp) < powerSupplies[i].getRadius())
+			{
+				powerSupplies[i].powerToggle = ! powerSupplies[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_EXTRACTORS;i++)
+	{
+		if(extractors[i].getActive())
+		{
+			disp = mouse - extractors[i].getCenter();
+			if(D3DXVec2Length(&disp) < extractors[i].getRadius())
+			{
+				extractors[i].powerToggle = ! extractors[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_GROUND_TURRETS; i++) {
+		if(turrets[i].getActive())
+		{
+			disp = mouse - turrets[i].getCenter();
+			if(D3DXVec2Length(&disp) < turrets[i].getRadius())
+			{
+				turrets[i].powerToggle = ! turrets[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_AIR_TURRETS; i++) {
+		if(aaturrets[i].getActive())
+		{
+			disp = mouse - aaturrets[i].getCenter();
+			if(D3DXVec2Length(&disp) < aaturrets[i].getRadius())
+			{
+				aaturrets[i].powerToggle = ! aaturrets[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_FACTORIES; i++) {
+		if(factories[i].getActive())
+		{
+			disp = mouse - factories[i].getCenter();
+			if(D3DXVec2Length(&disp) < factories[i].getRadius())
+			{
+				factories[i].powerToggle = ! factories[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_HOUSES; i++){
+		if(houses[i].getActive())
+		{
+			disp = mouse - houses[i].getCenter();
+			if(D3DXVec2Length(&disp) < houses[i].getRadius())
+			{
+				houses[i].powerToggle = ! houses[i].powerToggle;
+			}
+		}
+	}
+	for(int i = 0; i < MAX_AIR_FIELDS; i++){
+		if(airFields[i].getActive())
+		{
+			disp = mouse - airFields[i].getCenter();
+			if(D3DXVec2Length(&disp) < airFields[i].getRadius())
+			{
+				airFields[i].powerToggle = ! airFields[i].powerToggle;
 			}
 		}
 	}

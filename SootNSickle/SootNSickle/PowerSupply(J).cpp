@@ -34,6 +34,11 @@ void PowerSupply::update(float frameTime)
 			game->spawnParticleCloud(getCenter(),graphicsNS::YELLOW,1);
 		}
 
+		if(!hasPowerLastFrame && getPower())
+			bootCooldown = PowerSupplyNS::BOOT_TIME;
+		field.setVisible(getPower());
+		
+
 		hasPowerLastFrame = getPower();
 	}
 }

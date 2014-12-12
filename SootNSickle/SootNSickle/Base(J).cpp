@@ -52,3 +52,5 @@ bool Base::initialize(SootNSickle *gamePtr, int width, int height, int ncols,Tex
 	field.setFieldRadius(BASE_POWER_RADIUS);
 	return res&Building::initialize(gamePtr,width,height,ncols,textureM,hbTexM,infoText);
 }
+
+void Base::onDeath(){Building::onDeath(); game->onBaseDeath();}
