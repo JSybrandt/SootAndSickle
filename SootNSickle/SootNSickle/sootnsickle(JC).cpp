@@ -482,6 +482,7 @@ void SootNSickle::levelsUpdate()
 		zombies[i].update(frameTime);
 	for(int i = 0; i < MAX_AIR_ENEMIES; i++)
 		zombieBats[i].update(frameTime);
+
 	zs1.update(frameTime);
 	zs2.update(frameTime);
 	zs3.update(frameTime);
@@ -878,9 +879,10 @@ void SootNSickle::level1Load()
 	zs1.setManager(&path1);
 	zs1.addWave(2, GROUND, 10);
 	zs1.addWave(5, GROUND, 15);
-	zs1.addWave(2, AIR, 0);
-	zs1.addWave(20, GROUND, 30);
-	zs1.addWave(4, AIR, 0);
+	zs1.addWave(2, AIR, 3);
+	zs1.addWave(10, GROUND, 15);
+	zs1.addWave(10, GROUND, 5);
+	zs1.addWave(4, AIR, 2);
 
 	guiLoad();
 
@@ -918,14 +920,15 @@ void SootNSickle::level2Load()
 	zs1.setManager(&path1);
 
 	zs1.addWave(10, GROUND, 20);
-	zs1.addWave(4, AIR, 0);
+	zs1.addWave(4, AIR, 3);
 
 	zs1.addWave(20, GROUND, 15);
-	zs1.addWave(3, AIR, 0);
+	zs1.addWave(3, AIR, 2);
 	zs1.addWave(3, AIR, 4);
 
-	zs1.addWave(50, GROUND, 26);
+	zs1.addWave(25, GROUND, 24);
 	zs1.addWave(8, AIR, 4);
+	zs1.addWave(25, GROUND, 4);
 
 	path2.add(VECTOR2(100, getCurrentWorldSize().y-50));
 	path2.add(VECTOR2(getCurrentWorldSize().x/2,getCurrentWorldSize().y-100));
@@ -935,11 +938,12 @@ void SootNSickle::level2Load()
 	zs2.setCenter(VECTOR2(0,getCurrentWorldSize().y+(randmax(200))));
 	zs2.setManager(&path2);
 	zs2.addWave(2, GROUND, 10);
-	zs2.addWave(3, AIR, 0);
+	zs2.addWave(3, AIR, 3);
 	zs2.addWave(3, GROUND, 15);
-	zs2.addWave(8, AIR, 0);
+	zs2.addWave(8, AIR, 3);
 	zs2.addWave(6, GROUND, 30);
-	zs2.addWave(20, AIR, 0);
+	zs2.addWave(10, AIR, 3);
+	zs2.addWave(10, AIR, 6);
 
 	levelTextCooldown = SHOW_TEXT_TIME;
 	levelString = "LEVEL 2";
@@ -961,13 +965,20 @@ void SootNSickle::level3Load()
 	zs1.setManager(&path1);
 	zs1.addWave(15, GROUND, 30);
 	zs1.addWave(8, AIR, 0);
-	zs1.addWave(30, GROUND, 15);
-	zs1.addWave(8, AIR, 0);
+	zs1.addWave(15, GROUND, 15);
 	zs1.addWave(8, AIR, 3);
+	zs1.addWave(15, GROUND, 5);
 	zs1.addWave(8, AIR, 3);
+	zs1.addWave(8, AIR, 6);
 
-	zs1.addWave(100, GROUND, 24);
-	zs1.addWave(25, AIR, 0);
+	zs1.addWave(25, GROUND, 6);
+	zs1.addWave(4, AIR, 3);
+	zs1.addWave(25, GROUND, 6);
+	zs1.addWave(4, AIR, 3);
+	zs1.addWave(25, GROUND, 6);
+	zs1.addWave(4, AIR, 3);
+	zs1.addWave(25, GROUND, 6);
+	zs1.addWave(4, AIR, 3);
 
 	path2.add(VECTOR2(getCurrentWorldSize().x/2,getCurrentWorldSize().y-100));
 	path2.add(VECTOR2(getCurrentWorldSize().x*3/4, getCurrentWorldSize().y-400));
@@ -982,7 +993,8 @@ void SootNSickle::level3Load()
 	zs2.addWave(15, AIR, 0);
 
 	zs2.addWave(10, GROUND, 30);
-	zs2.addWave(30, AIR, 0);
+	zs2.addWave(15, AIR, 0);
+	zs2.addWave(15, AIR, 5);
 
 	path3.add(VECTOR2(800,getCurrentWorldSize().y*3/4));
 	path3.add(VECTOR2(1000, getCurrentWorldSize().y/2));
@@ -992,13 +1004,13 @@ void SootNSickle::level3Load()
 	zs3.setManager(&path2);
 
 	zs3.addWave(10, GROUND, 5);
-	zs3.addWave(10, AIR, 2);
+	zs3.addWave(5, AIR, 2);
 
 	zs3.addWave(20, GROUND, 18);
-	zs3.addWave(20, AIR, 2);
+	zs3.addWave(10, AIR, 2);
 
 	zs3.addWave(30, GROUND, 28);
-	zs3.addWave(30, AIR, 2);
+	zs3.addWave(15, AIR, 2);
 
 	levelTextCooldown = SHOW_TEXT_TIME;
 	levelString = "LEVEL 3: Final Level";
