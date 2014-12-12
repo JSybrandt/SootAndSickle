@@ -480,32 +480,39 @@ void SootNSickle::ai()
 		if(zombies[i].getActive()) {
 			for(int j = 0; j < MAX_GROUND_TURRETS; j++) {
 				if(turrets[j].getActive())
-					zombies[i].ai(frameTime, turrets[j]);
+					if(zombies[i].ai(frameTime, turrets[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_AIR_TURRETS; j++) {
 				if(aaturrets[j].getActive())
-					zombies[i].ai(frameTime, aaturrets[j]);
+					if(zombies[i].ai(frameTime, aaturrets[j]))
+						break;
 			}
 			zombies[i].ai(frameTime, base);
 			for(int j = 0; j < MAX_HOUSES; j++) {
 				if(houses[j].getActive())
-					zombies[i].ai(frameTime, houses[j]);
+					if(zombies[i].ai(frameTime, houses[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
 				if(airFields[j].getActive())
-					zombies[i].ai(frameTime, airFields[j]);
+					if(zombies[i].ai(frameTime, airFields[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_FACTORIES; j++) {
 				if(factories[j].getActive())
-					zombies[i].ai(frameTime, factories[j]);
+					if(zombies[i].ai(frameTime, factories[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_EXTRACTORS; j++) {
 				if(extractors[j].getActive())
-					zombies[i].ai(frameTime, extractors[j]);
+					if(zombies[i].ai(frameTime, extractors[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
 				if(powerSupplies[j].getActive())
-					zombies[i].ai(frameTime, powerSupplies[j]);
+					if(zombies[i].ai(frameTime, powerSupplies[j]))
+						break;
 			}
 		}
 	}
@@ -516,15 +523,18 @@ void SootNSickle::ai()
 			
 			for(int j = 0; j < MAX_POWER_SUPPLIES; j++) {
 				if(powerSupplies[j].getActive())
-					zombieBats[i].ai(frameTime, powerSupplies[j]);
+					if(zombieBats[i].ai(frameTime, powerSupplies[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_HOUSES; j++) {
 				if(houses[j].getActive())
-					zombieBats[i].ai(frameTime, houses[j]);
+					if(zombieBats[i].ai(frameTime, houses[j]))
+						break;
 			}
 			for(int j = 0; j < MAX_AIR_FIELDS; j++) {
 				if(airFields[j].getActive())
-					zombieBats[i].ai(frameTime, airFields[j]);
+					if(zombieBats[i].ai(frameTime, airFields[j]))
+						break;
 			}
 			zombieBats[i].ai(frameTime, base);	
 		}
@@ -823,12 +833,12 @@ void SootNSickle::level2Load()
 	levelTimer = 420;
 	currentState = Level2;
 	resetZombies();
+	healBuildings();
 
 	path1.add(VECTOR2(1200,200));
 	path1.add(VECTOR2(800,200));
 	path1.add(VECTOR2(600,600));
 	path1.add(base.getCenter());
-
 	zs1.setCenter(VECTOR2(getCurrentWorldSize().x+(randmax(200)),getCurrentWorldSize().y/2+(randmax(200))));
 	zs1.setManager(&path1);
 
@@ -842,8 +852,8 @@ void SootNSickle::level2Load()
 	zs1.addWave(35, GROUND, 27);
 	zs1.addWave(12, AIR, 0);
 
-	path2.add(VECTOR2(600,getCurrentWorldSize().y*3/4));
-	path2.add(VECTOR2(1000, getCurrentWorldSize().y/2));
+	path2.add(VECTOR2(800,getCurrentWorldSize().y-100));
+	path2.add(VECTOR2(1000, getCurrentWorldSize().y-400));
 	path2.add(base.getCenter());
 
 	zs2.setCenter(VECTOR2(0,getCurrentWorldSize().y+(randmax(200))));
@@ -863,6 +873,7 @@ void SootNSickle::level3Load()
 {
 	levelTimer = 420;
 	currentState = Level3;
+	healBuildings();
 	resetZombies();
 
 	path1.add(VECTOR2(1200,200));
@@ -914,7 +925,7 @@ void SootNSickle::level3Load()
 	zs3.addWave(20, AIR, 2);
 
 	levelTextCooldown = SHOW_TEXT_TIME;
-	levelString = "LEVEL 2";
+	levelString = "LEVEL 3: Final Level";
 }
 
 void SootNSickle::feelingLuckyLoad()
@@ -1762,4 +1773,35 @@ MineralPatch* SootNSickle::findMineableMinerals(Extractor * caller)
 
 	}
 	return nullptr;
+}
+
+void SootNSickle::healBuildings() {
+			for(int i = 0; i < MAX_POWER_SUPPLIES;i++)
+			{
+				powerSupplies[i].heal(50);
+			}
+			for(int i = 0 ; i < MAX_EXTRACTORS; i++)
+			{
+				extractors[i].heal(50);
+			}
+			for(int i = 0; i < MAX_FACTORIES; i++) 
+			{
+				factories[i].heal(50);
+			}
+			for(int i = 0; i < MAX_GROUND_TURRETS; i++) 
+			{
+				turrets[i].heal(50);
+			}
+			for(int i = 0; i < MAX_AIR_TURRETS; i++) 
+			{
+				aaturrets[i].heal(50);
+			}
+			for(int i = 0; i < MAX_HOUSES; i++) 
+			{
+				houses[i].heal(50);
+			}
+			for(int i = 0; i < MAX_AIR_FIELDS; i++) 
+			{
+				airFields[i].heal(50);
+			}
 }

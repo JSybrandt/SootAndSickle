@@ -248,6 +248,7 @@ public:
 	void levelsRender();
 
 	void resetZombies();
+	void healBuildings();
 	void deactivateAll();
 
 	VECTOR2 getMouseInWorld(){

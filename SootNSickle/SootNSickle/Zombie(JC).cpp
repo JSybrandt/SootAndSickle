@@ -151,41 +151,62 @@ void Zombie::vectorTrack(float frametime)
 
 }
 
-void Zombie::ai(float frameTime, ActorWithHealthBar &t) { 
+bool Zombie::ai(float frameTime, ActorWithHealthBar &t) { 
 	if(active && t.getActive() && !checked) {
-		float rad = 0;
 		if(targetEntity != nullptr && targetEntity->getActive()) { //If previous target is still active and within range
-			VECTOR2 toNewTarget = t.getCenter() - getCenter();
-			float distSqrdToNewTarget = D3DXVec2LengthSq(&toNewTarget);			
-
-			VECTOR2 toOldTarget = targetEntity->getCenter() - getCenter();
-			float distSqrdToOldTarget = D3DXVec2LengthSq(&toOldTarget);
-
-			if(distSqrdToNewTarget < distSqrdToOldTarget) {
-				targetEntity = &t;
-			}
-			else if(distSqrdToOldTarget > personalEngageDistanceSQRD || !targetEntity->getActive()) {
-				targetEntity = nullptr;
-			}
-			else {
 				checked = true;
-				return;							//No need to switch targets, continue firing
-			}
+				return true;							//No need to switch targets, continue firing
 		}
-		if(targetEntity == nullptr || !targetEntity->getActive()) {
+		else if(targetEntity == nullptr || !targetEntity->getActive()) {
 			VECTOR2 toTarget = t.getCenter() - getCenter();
 			float distSqrdToNewTarget = D3DXVec2LengthSq(&toTarget);
 
-			if(distSqrdToNewTarget < personalEngageDistanceSQRD) {
+			if(distSqrdToNewTarget < personalChaseDistanceSQRD) {
 				targetEntity = &t;
 				checked = true;
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
-
-	return;
+	return false;
 }
+
+//void Zombie::ai(float frameTime, ActorWithHealthBar &t) { 
+//	if(active && t.getActive() && !checked) {
+//		float rad = 0;
+//		if(targetEntity != nullptr && targetEntity->getActive()) { //If previous target is still active and within range
+//			VECTOR2 toNewTarget = t.getCenter() - getCenter();
+//			float distSqrdToNewTarget = D3DXVec2LengthSq(&toNewTarget);			
+//
+//			VECTOR2 toOldTarget = targetEntity->getCenter() - getCenter();
+//			float distSqrdToOldTarget = D3DXVec2LengthSq(&toOldTarget);
+//
+//			if(distSqrdToNewTarget < distSqrdToOldTarget) {
+//				targetEntity = &t;
+//			}
+//			else if(distSqrdToOldTarget > personalEngageDistanceSQRD || !targetEntity->getActive()) {
+//				targetEntity = nullptr;
+//			}
+//			else {
+//				checked = true;
+//				return;							//No need to switch targets, continue firing
+//			}
+//		}
+//		if(targetEntity == nullptr || !targetEntity->getActive()) {
+//			VECTOR2 toTarget = t.getCenter() - getCenter();
+//			float distSqrdToNewTarget = D3DXVec2LengthSq(&toTarget);
+//
+//			if(distSqrdToNewTarget < personalEngageDistanceSQRD) {
+//				targetEntity = &t;
+//				checked = true;
+//				return;
+//			}
+//		}
+//	}
+//
+//	return;
+//}
 
 void Zombie::create(VECTOR2 loc)
 {
