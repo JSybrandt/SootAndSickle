@@ -1,0 +1,4 @@
+ABT - base doesnt die
+NMD - turrets insta-kill
+DBY - Start with significantly more resources
+EZY - Easy Mode
