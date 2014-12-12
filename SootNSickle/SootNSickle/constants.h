@@ -75,7 +75,7 @@ const char SC_CANNON[] = "cannon";
 // window
 const char CLASS_NAME[] = "Soot & Sickle";
 const char GAME_TITLE[] = "Soot & Sickle";
-const bool FULLSCREEN = true;              // windowed or fullscreen DO NOT RUN FULLSCREEN IN DEBUG MODE
+const bool FULLSCREEN = false;              // windowed or fullscreen DO NOT RUN FULLSCREEN IN DEBUG MODE
 const UINT GAME_WIDTH =  1280;               // width of screen in pixels
 const UINT GAME_HEIGHT = 800;               // height of screen in pixels
 

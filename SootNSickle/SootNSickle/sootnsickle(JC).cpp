@@ -409,9 +409,10 @@ void SootNSickle::levelsUpdate()
 			level3Load();
 			break;
 		case Level3:
+			menuLoad();
 			victory = true;
 			showGameOverScreen = true;
-			menuLoad();
+			updateMaxes();
 			break;
 		}
 	}
