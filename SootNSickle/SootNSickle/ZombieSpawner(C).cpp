@@ -6,7 +6,7 @@ ZombieSpawner::ZombieSpawner(){
 	spawnTimer = 0;
 	zombies = 0;
 	resetTimer = 10;
-	alive = true;
+	alive = false;
 	last = false;
 }
 
