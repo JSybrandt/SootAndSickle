@@ -60,17 +60,17 @@ const char SOUND_BANK[] = "audio\\win\\Sound Bank.xsb";
 const char XGS_FILE[]   = "audio\\Win\\AudioProject.xgs";
 
 //Cue Names
-const char SC_BUILDING[] = "building";
-const char SC_OPENING[] = "ruski start";
-const char SC_MAIN_LOOP[] = "ruski main";
-const char SC_SELL[] = "cash";
-const char SC_UPGRADE[] = "upgrade";
-const char SC_POWER_ON[] = "powerOn";
-const char SC_BUILDING_COLLAPSE[] = "buildingCollapse";
-const char SC_ZOMBIE1[] = "zombie1";
-const char SC_ZOMBIEDEATH[] = "zombieDeath";
-const char SC_ROCKET[] = "rocket";
-const char SC_CANNON[] = "cannon";
+const char SC_BUILDING[] = "buildingJ";
+const char SC_OPENING[] = "ruski startJ";
+const char SC_MAIN_LOOP[] = "ruski mainJ";
+const char SC_SELL[] = "cashJ";
+const char SC_UPGRADE[] = "upgradeJ";
+const char SC_POWER_ON[] = "powerOnJ";
+const char SC_BUILDING_COLLAPSE[] = "buildingCollapseJ";
+const char SC_ZOMBIE1[] = "zombie1C";
+const char SC_ZOMBIEDEATH[] = "zombieDeathC";
+const char SC_ROCKET[] = "rocketC";
+const char SC_CANNON[] = "cannonC";
 
 // window
 const char CLASS_NAME[] = "Soot & Sickle";

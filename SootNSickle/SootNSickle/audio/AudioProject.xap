@@ -16,8 +16,8 @@ Global Settings
     Header File = AudioProject.h;
     Exclude Category Names = 0;
     Exclude Variable Names = 0;
-    Last Modified Low = 2158660482;
-    Last Modified High = 30414231;
+    Last Modified Low = 181167395;
+    Last Modified High = 30414293;
 
     Category
     {
@@ -227,385 +227,17 @@ Wave Bank
     Compression Preset Name = <none>;
     Xbox Bank Last Modified Low = 0;
     Xbox Bank Last Modified High = 0;
-    PC Bank Last Modified Low = 2326781561;
-    PC Bank Last Modified High = 30414234;
-    Bank Last Revised Low = 2228830637;
-    Bank Last Revised High = 30414234;
+    PC Bank Last Modified Low = 181267466;
+    PC Bank Last Modified High = 30414293;
+    Bank Last Revised Low = 75516872;
+    Bank Last Revised High = 30414293;
 
     Wave
     {
-        Name = crash;
-        File = crash.wav;
-        Build Settings Last Modified Low = 3711061672;
-        Build Settings Last Modified High = 30406134;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 1;
-            Sampling Rate = 11025;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 12726;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2557051732;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = pistol;
-        File = pistol.wav;
-        Build Settings Last Modified Low = 2025279632;
-        Build Settings Last Modified High = 30407365;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 95384;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2561954976;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = turret;
-        File = turret.wav;
-        Build Settings Last Modified Low = 2056767940;
-        Build Settings Last Modified High = 30407365;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 122612;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2562115096;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = empty;
-        File = empty.wav;
-        Build Settings Last Modified Low = 2094789234;
-        Build Settings Last Modified High = 30407365;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 87552;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2557141784;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = kill1;
-        File = kill1.wav;
-        Build Settings Last Modified Low = 2110422893;
-        Build Settings Last Modified High = 30407365;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 87184;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2558342580;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = kill2;
-        File = kill2.wav;
-        Build Settings Last Modified Low = 2126084482;
-        Build Settings Last Modified High = 30407365;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 90416;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2558632772;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = kill3;
-        File = kill3.wav;
-        Build Settings Last Modified Low = 2142497252;
-        Build Settings Last Modified High = 30407365;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 99788;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2558802884;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = exp1;
-        File = exp1.wav;
-        Build Settings Last Modified Low = 929110694;
-        Build Settings Last Modified High = 30407371;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 150680;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2557982345;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = exp3;
-        File = exp3.wav;
-        Build Settings Last Modified Low = 954887130;
-        Build Settings Last Modified High = 30407371;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 134516;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2558152454;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = cock1;
-        File = cock1.wav;
-        Build Settings Last Modified Low = 1038651084;
-        Build Settings Last Modified High = 30407371;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 85748;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2556381284;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = beep;
-        File = beep.wav;
-        Build Settings Last Modified Low = 1809225127;
-        Build Settings Last Modified High = 30407376;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 11948;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2556241188;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = end;
-        File = end.wav;
-        Build Settings Last Modified Low = 1988848764;
-        Build Settings Last Modified High = 30407799;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 1082880;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2557482028;
-            Last Modified High = 30411827;
-        }
-    }
-
-    Wave
-    {
-        Name = ruski start;
-        File = ruski start.wav;
-        Build Settings Last Modified Low = 2956135675;
-        Build Settings Last Modified High = 30414166;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 3078964;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2329483678;
-            Last Modified High = 30414191;
-        }
-    }
-
-    Wave
-    {
-        Name = ruski main;
-        File = ruski main.wav;
-        Build Settings Last Modified Low = 2956135675;
-        Build Settings Last Modified High = 30414166;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 22130336;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2338973206;
-            Last Modified High = 30414191;
-        }
-    }
-
-    Wave
-    {
-        Name = building;
-        File = building.wav;
-        Build Settings Last Modified Low = 4256886892;
-        Build Settings Last Modified High = 30414167;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 53764;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2326421612;
-            Last Modified High = 30414191;
-        }
-    }
-
-    Wave
-    {
-        Name = cash;
-        File = cash.wav;
-        Build Settings Last Modified Low = 1830545193;
-        Build Settings Last Modified High = 30414170;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 1;
-            Sampling Rate = 11025;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 15014;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2326561714;
-            Last Modified High = 30414191;
-        }
-    }
-
-    Wave
-    {
-        Name = upgrade;
-        File = upgrade.wav;
-        Build Settings Last Modified Low = 1111932228;
-        Build Settings Last Modified High = 30414171;
+        Name = upgradeJ;
+        File = upgradeJ.wav;
+        Build Settings Last Modified Low = 29039226;
+        Build Settings Last Modified High = 30414293;
 
         Cache
         {
@@ -625,56 +257,10 @@ Wave Bank
 
     Wave
     {
-        Name = powerOn;
-        File = powerOn.wav;
-        Build Settings Last Modified Low = 1945094942;
-        Build Settings Last Modified High = 30414172;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 179352;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2326601741;
-            Last Modified High = 30414191;
-        }
-    }
-
-    Wave
-    {
-        Name = buildingCollapse;
-        File = buildingCollapse.wav;
-        Build Settings Last Modified Low = 1636133537;
-        Build Settings Last Modified High = 30414176;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 545156;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 2326521676;
-            Last Modified High = 30414191;
-        }
-    }
-
-    Wave
-    {
-        Name = zombie1;
-        File = zombie1.wav;
-        Build Settings Last Modified Low = 2361879289;
-        Build Settings Last Modified High = 30414230;
+        Name = zombie1C;
+        File = zombie1C.wav;
+        Build Settings Last Modified Low = 29039226;
+        Build Settings Last Modified High = 30414293;
 
         Cache
         {
@@ -694,10 +280,10 @@ Wave Bank
 
     Wave
     {
-        Name = zombieDeath;
-        File = zombieDeath.wav;
-        Build Settings Last Modified Low = 2016345974;
-        Build Settings Last Modified High = 30414231;
+        Name = zombieDeathC;
+        File = zombieDeathC.wav;
+        Build Settings Last Modified Low = 29039226;
+        Build Settings Last Modified High = 30414293;
 
         Cache
         {
@@ -717,10 +303,148 @@ Wave Bank
 
     Wave
     {
-        Name = rocket;
-        File = rocket.wav;
-        Build Settings Last Modified Low = 189464065;
-        Build Settings Last Modified High = 30414233;
+        Name = buildingCollapseJ;
+        File = buildingCollapseJ.wav;
+        Build Settings Last Modified Low = 29039226;
+        Build Settings Last Modified High = 30414293;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 545156;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2326521676;
+            Last Modified High = 30414191;
+        }
+    }
+
+    Wave
+    {
+        Name = buildingJ;
+        File = buildingJ.wav;
+        Build Settings Last Modified Low = 29049233;
+        Build Settings Last Modified High = 30414293;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 53764;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2326421612;
+            Last Modified High = 30414191;
+        }
+    }
+
+    Wave
+    {
+        Name = cannonC;
+        File = cannonC.wav;
+        Build Settings Last Modified Low = 29049233;
+        Build Settings Last Modified High = 30414293;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 96000;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 168318;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 37400875;
+            Last Modified High = 30414292;
+        }
+    }
+
+    Wave
+    {
+        Name = cashJ;
+        File = cashJ.wav;
+        Build Settings Last Modified Low = 29049233;
+        Build Settings Last Modified High = 30414293;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 11025;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 15014;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2326561714;
+            Last Modified High = 30414191;
+        }
+    }
+
+    Wave
+    {
+        Name = crashJ;
+        File = crashJ.wav;
+        Build Settings Last Modified Low = 29049233;
+        Build Settings Last Modified High = 30414293;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 11025;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 12726;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2557051732;
+            Last Modified High = 30411827;
+        }
+    }
+
+    Wave
+    {
+        Name = powerOnJ;
+        File = powerOnJ.wav;
+        Build Settings Last Modified Low = 29059240;
+        Build Settings Last Modified High = 30414293;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 179352;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2326601741;
+            Last Modified High = 30414191;
+        }
+    }
+
+    Wave
+    {
+        Name = rocketC;
+        File = rocketC.wav;
+        Build Settings Last Modified Low = 29059240;
+        Build Settings Last Modified High = 30414293;
 
         Cache
         {
@@ -740,24 +464,47 @@ Wave Bank
 
     Wave
     {
-        Name = cannon;
-        File = cannon.wav;
-        Build Settings Last Modified Low = 2189235943;
-        Build Settings Last Modified High = 30414234;
+        Name = ruski mainJ;
+        File = ruski mainJ.wav;
+        Build Settings Last Modified Low = 29059240;
+        Build Settings Last Modified High = 30414293;
 
         Cache
         {
             Format Tag = 0;
-            Channels = 1;
-            Sampling Rate = 96000;
+            Channels = 2;
+            Sampling Rate = 44100;
             Bits Per Sample = 1;
             Play Region Offset = 44;
-            Play Region Length = 168318;
+            Play Region Length = 22130336;
             Loop Region Offset = 0;
             Loop Region Length = 0;
             File Type = 1;
-            Last Modified Low = 2042697410;
-            Last Modified High = 30414234;
+            Last Modified Low = 2338973206;
+            Last Modified High = 30414191;
+        }
+    }
+
+    Wave
+    {
+        Name = ruski startJ;
+        File = ruski startJ.wav;
+        Build Settings Last Modified Low = 29059240;
+        Build Settings Last Modified High = 30414293;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 3078964;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2329483678;
+            Last Modified High = 30414191;
         }
     }
 }
@@ -769,14 +516,14 @@ Sound Bank
     Windows File = Win\Sound Bank.xsb;
     Xbox Bank Path Edited = 0;
     Windows Bank Path Edited = 0;
-    Bank Last Modified Low = 2327472018;
-    Bank Last Modified High = 30414234;
+    Bank Last Modified Low = 183408918;
+    Bank Last Modified High = 30414293;
     Header Last Modified High = 0;
     Header Last Modified Low = 0;
 
     Sound
     {
-        Name = crash;
+        Name = upgradeJ;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -812,7 +559,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = crash;
+                    Entry Name = upgradeJ;
                     Entry Index = 0;
                     Weight = 255;
                     Weight Min = 0;
@@ -823,7 +570,7 @@ Sound Bank
 
     Sound
     {
-        Name = pistol;
+        Name = zombie1C;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -859,7 +606,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = pistol;
+                    Entry Name = zombie1C;
                     Entry Index = 1;
                     Weight = 255;
                     Weight Min = 0;
@@ -870,7 +617,7 @@ Sound Bank
 
     Sound
     {
-        Name = turret;
+        Name = zombieDeathC;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -906,7 +653,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = turret;
+                    Entry Name = zombieDeathC;
                     Entry Index = 2;
                     Weight = 255;
                     Weight Min = 0;
@@ -917,7 +664,7 @@ Sound Bank
 
     Sound
     {
-        Name = empty;
+        Name = buildingCollapseJ;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -953,7 +700,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = empty;
+                    Entry Name = buildingCollapseJ;
                     Entry Index = 3;
                     Weight = 255;
                     Weight Min = 0;
@@ -964,7 +711,7 @@ Sound Bank
 
     Sound
     {
-        Name = kill1;
+        Name = buildingJ;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -1000,7 +747,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = kill1;
+                    Entry Name = buildingJ;
                     Entry Index = 4;
                     Weight = 255;
                     Weight Min = 0;
@@ -1011,7 +758,7 @@ Sound Bank
 
     Sound
     {
-        Name = kill2;
+        Name = cannonC;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -1047,7 +794,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = kill2;
+                    Entry Name = cannonC;
                     Entry Index = 5;
                     Weight = 255;
                     Weight Min = 0;
@@ -1058,7 +805,7 @@ Sound Bank
 
     Sound
     {
-        Name = kill3;
+        Name = cashJ;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -1094,7 +841,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = kill3;
+                    Entry Name = cashJ;
                     Entry Index = 6;
                     Weight = 255;
                     Weight Min = 0;
@@ -1105,7 +852,7 @@ Sound Bank
 
     Sound
     {
-        Name = exp1;
+        Name = crashJ;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -1141,7 +888,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = exp1;
+                    Entry Name = crashJ;
                     Entry Index = 7;
                     Weight = 255;
                     Weight Min = 0;
@@ -1152,7 +899,7 @@ Sound Bank
 
     Sound
     {
-        Name = exp3;
+        Name = powerOnJ;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -1188,7 +935,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = exp3;
+                    Entry Name = powerOnJ;
                     Entry Index = 8;
                     Weight = 255;
                     Weight Min = 0;
@@ -1199,7 +946,7 @@ Sound Bank
 
     Sound
     {
-        Name = cock1;
+        Name = rocketC;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -1235,7 +982,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = cock1;
+                    Entry Name = rocketC;
                     Entry Index = 9;
                     Weight = 255;
                     Weight Min = 0;
@@ -1246,7 +993,7 @@ Sound Bank
 
     Sound
     {
-        Name = beep;
+        Name = ruski mainJ;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -1282,7 +1029,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = beep;
+                    Entry Name = ruski mainJ;
                     Entry Index = 10;
                     Weight = 255;
                     Weight Min = 0;
@@ -1293,7 +1040,7 @@ Sound Bank
 
     Sound
     {
-        Name = end;
+        Name = ruski startJ;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -1329,7 +1076,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = end;
+                    Entry Name = ruski startJ;
                     Entry Index = 11;
                     Weight = 255;
                     Weight Min = 0;
@@ -1338,527 +1085,9 @@ Sound Bank
         }
     }
 
-    Sound
-    {
-        Name = ruski start;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = ruski start;
-                    Entry Index = 12;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = ruski main;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Loop Count = 255;
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = ruski main;
-                    Entry Index = 13;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = building;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = building;
-                    Entry Index = 14;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = cash;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = cash;
-                    Entry Index = 15;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = upgrade;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = upgrade;
-                    Entry Index = 16;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = powerOn;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = powerOn;
-                    Entry Index = 17;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = buildingCollapse;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = buildingCollapse;
-                    Entry Index = 18;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = zombie1;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = zombie1;
-                    Entry Index = 19;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = zombieDeath;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = zombieDeath;
-                    Entry Index = 20;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = rocket;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = rocket;
-                    Entry Index = 21;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
-    Sound
-    {
-        Name = cannon;
-        Volume = -1200;
-        Pitch = 0;
-        Priority = 0;
-
-        Category Entry
-        {
-            Name = Default;
-        }
-
-        Track
-        {
-            Volume = 0;
-            Use Filter = 0;
-
-            Play Wave Event
-            {
-                Break Loop = 0;
-                Use Speaker Position = 0;
-                Use Center Speaker = 1;
-                New Speaker Position On Loop = 1;
-                Speaker Position Angle = 0.000000;
-                Speaker Position Arc = 0.000000;
-
-                Event Header
-                {
-                    Timestamp = 0;
-                    Relative = 0;
-                    Random Recurrence = 0;
-                    Random Offset = 0;
-                }
-
-                Wave Entry
-                {
-                    Bank Name = Wave Bank;
-                    Bank Index = 0;
-                    Entry Name = cannon;
-                    Entry Index = 22;
-                    Weight = 255;
-                    Weight Min = 0;
-                }
-            }
-        }
-    }
-
     Cue
     {
-        Name = crash;
+        Name = upgradeJ;
 
         Variation
         {
@@ -1869,7 +1098,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = crash;
+            Name = upgradeJ;
             Index = 0;
             Weight Min = 0;
             Weight Max = 255;
@@ -1878,7 +1107,7 @@ Sound Bank
 
     Cue
     {
-        Name = pistol;
+        Name = zombie1C;
 
         Variation
         {
@@ -1889,7 +1118,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = pistol;
+            Name = zombie1C;
             Index = 1;
             Weight Min = 0;
             Weight Max = 255;
@@ -1898,7 +1127,7 @@ Sound Bank
 
     Cue
     {
-        Name = turret;
+        Name = zombieDeathC;
 
         Variation
         {
@@ -1909,7 +1138,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = turret;
+            Name = zombieDeathC;
             Index = 2;
             Weight Min = 0;
             Weight Max = 255;
@@ -1918,7 +1147,7 @@ Sound Bank
 
     Cue
     {
-        Name = empty;
+        Name = buildingCollapseJ;
 
         Variation
         {
@@ -1929,7 +1158,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = empty;
+            Name = buildingCollapseJ;
             Index = 3;
             Weight Min = 0;
             Weight Max = 255;
@@ -1938,7 +1167,7 @@ Sound Bank
 
     Cue
     {
-        Name = kill1;
+        Name = buildingJ;
 
         Variation
         {
@@ -1949,7 +1178,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = kill1;
+            Name = buildingJ;
             Index = 4;
             Weight Min = 0;
             Weight Max = 255;
@@ -1958,7 +1187,7 @@ Sound Bank
 
     Cue
     {
-        Name = kill2;
+        Name = cannonC;
 
         Variation
         {
@@ -1969,7 +1198,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = kill2;
+            Name = cannonC;
             Index = 5;
             Weight Min = 0;
             Weight Max = 255;
@@ -1978,7 +1207,7 @@ Sound Bank
 
     Cue
     {
-        Name = kill3;
+        Name = cashJ;
 
         Variation
         {
@@ -1989,7 +1218,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = kill3;
+            Name = cashJ;
             Index = 6;
             Weight Min = 0;
             Weight Max = 255;
@@ -1998,7 +1227,7 @@ Sound Bank
 
     Cue
     {
-        Name = exp1;
+        Name = crashJ;
 
         Variation
         {
@@ -2009,7 +1238,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = exp1;
+            Name = crashJ;
             Index = 7;
             Weight Min = 0;
             Weight Max = 255;
@@ -2018,7 +1247,7 @@ Sound Bank
 
     Cue
     {
-        Name = exp3;
+        Name = powerOnJ;
 
         Variation
         {
@@ -2029,7 +1258,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = exp3;
+            Name = powerOnJ;
             Index = 8;
             Weight Min = 0;
             Weight Max = 255;
@@ -2038,7 +1267,7 @@ Sound Bank
 
     Cue
     {
-        Name = cock1;
+        Name = rocketC;
 
         Variation
         {
@@ -2049,7 +1278,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = cock1;
+            Name = rocketC;
             Index = 9;
             Weight Min = 0;
             Weight Max = 255;
@@ -2058,7 +1287,7 @@ Sound Bank
 
     Cue
     {
-        Name = beep;
+        Name = ruski mainJ;
 
         Variation
         {
@@ -2069,7 +1298,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = beep;
+            Name = ruski mainJ;
             Index = 10;
             Weight Min = 0;
             Weight Max = 255;
@@ -2078,7 +1307,7 @@ Sound Bank
 
     Cue
     {
-        Name = end;
+        Name = ruski startJ;
 
         Variation
         {
@@ -2089,228 +1318,8 @@ Sound Bank
 
         Sound Entry
         {
-            Name = end;
+            Name = ruski startJ;
             Index = 11;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = ruski start;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = ruski start;
-            Index = 12;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = ruski main;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = ruski main;
-            Index = 13;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = building;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = building;
-            Index = 14;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = cash;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = cash;
-            Index = 15;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = upgrade;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = upgrade;
-            Index = 16;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = powerOn;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = powerOn;
-            Index = 17;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = buildingCollapse;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = buildingCollapse;
-            Index = 18;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = zombie1;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = zombie1;
-            Index = 19;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = zombieDeath;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = zombieDeath;
-            Index = 20;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = rocket;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = rocket;
-            Index = 21;
-            Weight Min = 0;
-            Weight Max = 255;
-        }
-    }
-
-    Cue
-    {
-        Name = cannon;
-
-        Variation
-        {
-            Variation Type = 3;
-            Variation Table Type = 1;
-            New Variation on Loop = 0;
-        }
-
-        Sound Entry
-        {
-            Name = cannon;
-            Index = 22;
             Weight Min = 0;
             Weight Max = 255;
         }

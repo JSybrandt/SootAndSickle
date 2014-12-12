@@ -922,7 +922,7 @@ void SootNSickle::level2Load()
 
 	zs1.addWave(25, GROUND, 24);
 	zs1.addWave(8, AIR, 4);
-	zs1.addWave(25, GROUND, 4);
+	zs1.addWave(30, GROUND, 4);
 
 	path2.add(VECTOR2(100, getCurrentWorldSize().y-50));
 	path2.add(VECTOR2(getCurrentWorldSize().x/2,getCurrentWorldSize().y-100));
@@ -967,12 +967,12 @@ void SootNSickle::level3Load()
 
 	zs1.addWave(25, GROUND, 6);
 	zs1.addWave(4, AIR, 3);
-	zs1.addWave(25, GROUND, 6);
-	zs1.addWave(4, AIR, 3);
-	zs1.addWave(25, GROUND, 6);
-	zs1.addWave(4, AIR, 3);
-	zs1.addWave(25, GROUND, 6);
-	zs1.addWave(4, AIR, 3);
+	zs1.addWave(30, GROUND, 6);
+	zs1.addWave(5, AIR, 3);
+	zs1.addWave(35, GROUND, 6);
+	zs1.addWave(6, AIR, 3);
+	zs1.addWave(40, GROUND, 6);
+	zs1.addWave(7, AIR, 3);
 
 	path2.add(VECTOR2(getCurrentWorldSize().x/2,getCurrentWorldSize().y-100));
 	path2.add(VECTOR2(getCurrentWorldSize().x*3/4, getCurrentWorldSize().y-400));
