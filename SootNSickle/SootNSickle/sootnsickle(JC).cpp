@@ -921,8 +921,8 @@ void SootNSickle::level2Load()
 	zs1.addWave(50, GROUND, 27);
 	zs1.addWave(12, AIR, 0);
 
-	path2.add(VECTOR2(800,getCurrentWorldSize().y-100));
-	path2.add(VECTOR2(1000, getCurrentWorldSize().y-400));
+	path2.add(VECTOR2(getCurrentWorldSize().x/2,getCurrentWorldSize().y-100));
+	path2.add(VECTOR2(getCurrentWorldSize().x*3/4, getCurrentWorldSize().y-400));
 	path2.add(base.getCenter());
 
 	zs2.setCenter(VECTOR2(0,getCurrentWorldSize().y+(randmax(200))));
@@ -962,8 +962,8 @@ void SootNSickle::level3Load()
 	zs1.addWave(100, GROUND, 24);
 	zs1.addWave(25, AIR, 0);
 
-	path2.add(VECTOR2(600,getCurrentWorldSize().y*3/4));
-	path2.add(VECTOR2(1000, getCurrentWorldSize().y/2));
+	path2.add(VECTOR2(getCurrentWorldSize().x/2,getCurrentWorldSize().y-100));
+	path2.add(VECTOR2(getCurrentWorldSize().x*3/4, getCurrentWorldSize().y-400));
 	path2.add(base.getCenter());
 
 	zs2.setCenter(VECTOR2(0,getCurrentWorldSize().y+(randmax(200))));
@@ -977,8 +977,8 @@ void SootNSickle::level3Load()
 	zs2.addWave(10, GROUND, 30);
 	zs2.addWave(30, AIR, 0);
 
-	path3.add(VECTOR2(1000,getCurrentWorldSize().y/4));
-	path3.add(VECTOR2(800, getCurrentWorldSize().y/2));
+	path3.add(VECTOR2(800,getCurrentWorldSize().y*3/4));
+	path3.add(VECTOR2(1000, getCurrentWorldSize().y/2));
 	path3.add(base.getCenter());
 
 	zs3.setCenter(VECTOR2(0,0));
