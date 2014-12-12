@@ -89,7 +89,7 @@
   <ItemGroup>
     <ClCompile Include="AATurret%28C%29.cpp" />
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="AGTurret.cpp" />
+    <ClCompile Include="AGTurret%28C%29.cpp" />
     <ClCompile Include="AirField(J).cpp" />
     <ClCompile Include="ActorWithHealthBar(J).cpp" />
     <ClCompile Include="audio.cpp" />
