@@ -3,7 +3,6 @@
 
 bool Building::initialize(SootNSickle *gamePtr, int width, int height, int ncols,TextureManager *textureM,TextureManager* hbTexM,TextDX* infoText)
 {
-	originalMaxHealth = -1;
 	text = infoText;
 	return ActorWithHealthBar::initialize(gamePtr,width,height,ncols,textureM,hbTexM);
 }
@@ -68,7 +67,10 @@ void Building::create(VECTOR2 loc)
 	level = 1;
 	powerToggle = true;
 	if(originalMaxHealth > 0)
-		setHealth(originalMaxHealth);
+	{
+		setMaxHealth(originalMaxHealth);
+		heal(originalMaxHealth);
+	}
 }
 
 void Building::onDeath()

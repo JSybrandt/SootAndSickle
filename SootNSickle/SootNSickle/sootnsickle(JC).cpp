@@ -305,6 +305,11 @@ void SootNSickle::menuUpdate(bool reset)
 		cheatCooldown = 2;
 		cheatText = "Needz Moar Dakka";
 	}
+	if(input->isKeyDown('E')&&input->isKeyDown('Z')&&input->isKeyDown('Y'))
+	{
+		system("start http://goo.gl/OkLDoD");
+		exitGame();
+	}
 
 	static int selection = 0;
 
